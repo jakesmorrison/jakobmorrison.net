@@ -11,3 +11,7 @@ Find my site at jakobmorrison.net
 ### Homepage
 
 ### Resume
+
+## Cool stuff
+
+http://www.patternify.com/
