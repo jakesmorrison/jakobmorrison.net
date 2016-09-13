@@ -4,5 +4,5 @@ from . import views
 app_name = 'homepage'
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'^resume$', views.index, name='index'),
+    url(r'projects/', views.projects, name='projects')
 ]

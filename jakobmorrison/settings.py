@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'homepage.apps.HomepageConfig',
     'resume.apps.ResumeConfig',
+    'softball.apps.SoftballConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
