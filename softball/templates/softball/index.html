@@ -1,10 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title>Project 57</title>
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+
+    <!-- CSS -->
+    {% load staticfiles %}
+    <link href=" {% static 'softball/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'softball/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'softball/css/landing-page.css' %}" rel="stylesheet">
+    <link href=" {% static 'softball/css/style.css' %}" rel="stylesheet">
+    <link href=" {% static 'softball/css/table_style.css' %}" rel="stylesheet">
+    <link href=" {% static 'softball/css/jquery.dataTables.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'softball/css/fixedColumns.dataTables.min.css' %}" rel="stylesheet">
+    <!--<link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.datatables.net/fixedcolumns/3.2.2/css/fixedColumns.dataTables.min.css" rel="stylesheet">-->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
+<nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top">Project 57</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <br>
+            <div class="col-md-12">
+                        {{ table|safe }}
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.intro-header -->
+
+<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+    <p class="footer-jake">&copy; 2016 Jake Morrison.</p>
+</div>
+
+<!-- jQuery -->
+{% load staticfiles %}
+<script src=" {% static 'softball/js/jquery.min.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'softball/js/bootstrap.min.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'softball/js/datatables.min.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'softball/js/dataTables.fixedColumns.min.js' %}" rel="stylesheet"></script>
+
+<!-- Plugin -->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>-->
+<!--<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/r-2.1.0/sc-1.4.2/datatables.min.js"></script>-->
+<!--<script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.2.2/js/dataTables.fixedColumns.min.js"></script>-->
+
+
+<script>
+function highlight_high(arr){
+    arr.sort(function(a,b){
+        return parseInt($(a).text()) - parseInt($(b).text());
+    });
+    $(arr[arr.length-1]).addClass('highest');
+}
+
+function highlight_low(arr){
+    arr.sort(function(a,b){
+        return parseInt($(a).text()) - parseInt($(b).text());
+    });
+    if ($(arr[arr.length-1]).text() != "0") {
+        $(arr[arr.length-1]).addClass('lowest');
+    }
+}
+
+
+$(document).ready(function() {
+    var table = $('#table-custom-sort').DataTable({
+        scrollY:        "300px",
+        scrollX:        true,
+        scrollCollapse: true,
+        paging:         false,
+        fixedColumns:   {
+            leftColumns: 2,
+            rightColumns: 0
+        }
+    });
+
+    var labels_high = ["Games", "PA", "AB", "BB", "SB", "H", "1B", "2B", "3B", "4B", "HR", "R", "RBI", "TB", "AVG", "OBP", "SLP", "OPS"];
+    for (var i = 0; i < labels_high.length; i++) {
+        var tds = $('td.'+labels_high[i]);
+        var arr = $.makeArray(tds);
+        highlight_high(arr);
+    }
+
+    var labels_high = ["SO", "HIDP", "CS", "DBO"];
+    for (var i = 0; i < labels_high.length; i++) {
+        var tds = $('td.'+labels_high[i]);
+        var arr = $.makeArray(tds);
+        highlight_low(arr);
+    }
+
+    var tds = $('td.Ranking');
+    var arr = $.makeArray(tds);
+    arr.sort(function(a,b){
+        return parseInt($(b).text()) - parseInt($(a).text());
+    });
+    $(arr[arr.length-1]).addClass('lowest_pos');
+
+
+});
+</script>
 
 </body>
 </html>

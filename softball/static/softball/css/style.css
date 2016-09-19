@@ -1,0 +1,45 @@
+.img-circle {
+    border-radius: 50% !important;
+    border-color: black !important;
+    border-style: solid;
+    border-width: 1px !important;
+}
+
+.background {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    overflow-y: hidden;
+    background: url(../img/bg-pattern1.png), #7b4397;
+    background: url(../img/bg-pattern1.png), -webkit-linear-gradient(to left, #7b4397, #dc2430);
+    background: url(../img/bg-pattern1.png), linear-gradient(to left, #000000, #5400b1);
+    color: #fff;
+    overflow-y:auto;
+
+}
+
+.btn-jake{
+    border-radius:50%;
+}
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default {
+    color: #fff;
+    background-color: #00b3db;
+    border-color: #285e8e; /*set the color you want here*/
+}
+
+.footer-jake{
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+.table-hover>tbody>tr:hover {
+    background-color: black;
+}
+
+td.highest {background-color:yellow;}
+td.lowest {background-color:red;}
+td.lowest_pos {background-color:yellow;}

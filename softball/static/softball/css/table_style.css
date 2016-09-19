@@ -1,0 +1,17 @@
+.table {
+    color: black;
+}
+
+.table-hover>tbody>tr:hover {
+    background-color: black;
+    color: #ddd;
+}
+
+.row {
+margin-left: 0 !important;
+margin-right: 0 !important;
+}
+
+.table th, .table td {
+text-align: center !important;
+}
