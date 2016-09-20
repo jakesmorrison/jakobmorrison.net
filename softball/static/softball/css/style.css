@@ -40,6 +40,6 @@
     background-color: black;
 }
 
-td.highest {background-color:yellow;}
+td.highest {background-color:green;}
 td.lowest {background-color:red;}
-td.lowest_pos {background-color:yellow;}
+td.lowest_pos {background-color:green;}

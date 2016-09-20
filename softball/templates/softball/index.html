@@ -39,12 +39,12 @@
 <nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-            </button>
+        <!--<div class="navbar-header">-->
+            <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">-->
+                <!--<span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>-->
+            <!--</button>-->
             <a class="navbar-brand page-scroll" href="#page-top">Project 57</a>
-        </div>
+        <!--</div>-->
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -88,14 +88,14 @@
 <script>
 function highlight_high(arr){
     arr.sort(function(a,b){
-        return parseInt($(a).text()) - parseInt($(b).text());
+        return parseFloat($(a).text()) - parseFloat($(b).text());
     });
     $(arr[arr.length-1]).addClass('highest');
 }
 
 function highlight_low(arr){
     arr.sort(function(a,b){
-        return parseInt($(a).text()) - parseInt($(b).text());
+        return parseFloat($(a).text()) - parseFloat($(b).text());
     });
     if ($(arr[arr.length-1]).text() != "0") {
         $(arr[arr.length-1]).addClass('lowest');
@@ -115,7 +115,7 @@ $(document).ready(function() {
         }
     });
 
-    var labels_high = ["Games", "PA", "AB", "BB", "SB", "H", "1B", "2B", "3B", "4B", "HR", "R", "RBI", "TB", "AVG", "OBP", "SLP", "OPS"];
+    var labels_high = ["Games", "PA", "AB", "BB", "SB", "H", "1B", "2B", "3B", "4B", "HR", "R", "RBI", "TB", "AVG", "OBP", "SLG", "OPS"];
     for (var i = 0; i < labels_high.length; i++) {
         var tds = $('td.'+labels_high[i]);
         var arr = $.makeArray(tds);
@@ -132,10 +132,9 @@ $(document).ready(function() {
     var tds = $('td.Ranking');
     var arr = $.makeArray(tds);
     arr.sort(function(a,b){
-        return parseInt($(b).text()) - parseInt($(a).text());
+        return parseFloat($(b).text()) - parseFloat($(a).text());
     });
     $(arr[arr.length-1]).addClass('lowest_pos');
-
 
 });
 </script>
