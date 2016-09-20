@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 import os, sys, site
 
 # add site dir
-site.addsitedir('/var/www/.virtualenvs/jakobmorrison_env/lib/python3.5/site-packages/')
+site.addsitedir('/root/.virtualenvs/jakobmorrison_env/lib/python3.5/site-packages/')
 
 # Calculate the path based on the location of the WSGI script.
 sys.path.append('/root/jakobmorrison')
@@ -20,7 +20,7 @@ sys.path.append('/root/jakobmorrison/jakobmorrison')
 #sys.path.append('/root')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'jakobmorrison.apache.override'
 
-activate_env='/var/www/.virtualenvs/jakobmorrison_env/bin/activate_this.py'
+activate_env='/root/.virtualenvs/jakobmorrison_env/bin/activate_this.py'
 exec(open(activate_env).read())
 
 from django.core.wsgi import get_wsgi_application
