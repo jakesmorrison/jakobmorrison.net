@@ -24,6 +24,7 @@
     <link href=" {% static 'softball/css/table_style.css' %}" rel="stylesheet">
     <link href=" {% static 'softball/css/jquery.dataTables.min.css' %}" rel="stylesheet">
     <link href=" {% static 'softball/css/fixedColumns.dataTables.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'softball/css/selectize_default.css' %}" rel="stylesheet">
     <!--<link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">-->
     <!--<link href="https://cdn.datatables.net/fixedcolumns/3.2.2/css/fixedColumns.dataTables.min.css" rel="stylesheet">-->
 
@@ -56,10 +57,40 @@
 
 <div class="intro-header">
     <div class="container">
+
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                {%block title%}
+                {%endblock%}
+            </div>
+            <div class="col-sm-6" id="top_selectors" style="margin-top: 25px;">
+                    <div class="btn-group setting-min-width" role="group">
+                        <label class="mylabel">Season</label>
+                        <input type="text" class="input_selectize setting-min-width" name="select-season" id="select-season">
+                    </div>
+                    <div class="btn-group" role="group">
+                        <label class="mylabel">Game</label>
+                        <input type="text" class="input_selectize setting-min-width" name="select-game" id="select-game">
+                    </div>
+                    <div class="btn-group" role="group">
+                        <label class="mylabel">Player</label>
+                        <input type="text" class="input_selectize setting-min-width" name="select-player" id="select-player">
+                    </div>
+                    <div class="btn-group" role="group">
+                        <input class="btn btn-default mybutton btn-sm hover" style="width: 40px !important; margin-top: 22px;" value="Go" name="submit" id="submit" readonly>
+                    </div>
+            </div>
+            <div class="col-sm-6" id="top_selectors">
+                <h1 class="title-style">Project 57 Stats</h1>
+            </div>
+        </div>
+
         <div class="row">
             <br>
             <div class="col-md-12">
-                        {{ table|safe }}
+                <div class="mytable" id="mytable">
+                    {{ table|safe }}
+                </div>
             </div>
         </div>
 
@@ -74,8 +105,10 @@
 
 <!-- jQuery -->
 {% load staticfiles %}
-<script src=" {% static 'softball/js/jquery.min.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'softball/js/jquery-2.1.1.js' %}" rel="stylesheet"></script>
 <script src=" {% static 'softball/js/bootstrap.min.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'softball/js/selectize.js' %}" rel="stylesheet"></script>
+
 <script src=" {% static 'softball/js/datatables.min.js' %}" rel="stylesheet"></script>
 <script src=" {% static 'softball/js/dataTables.fixedColumns.min.js' %}" rel="stylesheet"></script>
 
@@ -102,17 +135,46 @@ function highlight_low(arr){
     }
 }
 
+function make_chart(url) {
+    $.getJSON(url, function(chart_data) {
+    $("#regTitle").html("Hello World");
+        $("#mytable").html(chart_data.table);
+        setup_table();
+    });
+}
 
-$(document).ready(function() {
+
+$("#submit").click( function(){
+
+    <!--var table = $('#table-custom-sort').DataTable();-->
+    <!--table.clear();-->
+    $("#mytable").html("");
+    <!--$( "div.mytable" ).replaceWith("<div class='mytable'></div>");-->
+
+    <!--Return data from server and make chart. -->
+    var season = $('#select-season').val();
+    var game = $("#select-game").val();
+    var player = $('#select-player').val();
+
+    url_base = "{% url 'softball:index_updates' %}";
+    params = {'season': season, 'game': game,'player': player};
+    url = url_base + "?" + $.param( params );
+    make_chart(url);
+});
+
+function setup_table(){
     var table = $('#table-custom-sort').DataTable({
         scrollY:        "300px",
         scrollX:        true,
         scrollCollapse: true,
         paging:         false,
+        bFilter:        false,
+        bAutoWidth:     false,
         fixedColumns:   {
-            leftColumns: 2,
+            leftColumns: 3,
             rightColumns: 0
-        }
+        },
+        bSort:          false
     });
 
     var labels_high = ["Games", "PA", "AB", "BB", "SB", "H", "1B", "2B", "3B", "4B", "HR", "R", "RBI", "TB", "AVG", "OBP", "SLG", "OPS"];
@@ -135,6 +197,49 @@ $(document).ready(function() {
         return parseFloat($(b).text()) - parseFloat($(a).text());
     });
     $(arr[arr.length-1]).addClass('lowest_pos');
+}
+
+$(document).ready(function() {
+    setup_table();
+    var $select_season = $('#select-season').selectize({
+        plugins: ['remove_button'],
+        maxItems: 1,
+        readOnly: true,
+        onDelete: function() { return false }
+    });
+    var $select_game = $('#select-game').selectize({
+        plugins: ['remove_button'],
+        maxItems: 1,
+        readOnly: true,
+        onDelete: function() { return false }
+    });
+    var $select_player = $('#select-player').selectize({
+        plugins: ['remove_button'],
+        maxItems: 1,
+        readOnly: true,
+        onDelete: function() { return false }
+    });
+
+    function add_options($select, somelist, currentselect){
+        var selectize = $select[0].selectize;
+        new_options = somelist
+
+        selectize.clear()
+        selectize.clearOptions()
+
+        selectize.renderCache['option'] = {};
+        selectize.renderCache['item'] = {};
+
+        for (i = 0; i < new_options.length; i++) {
+            selectize.addOption({text:new_options[i],value: new_options[i]});
+        }
+        selectize.addOption(new_options)
+        $select[0].selectize.setValue(currentselect);
+    }
+
+    add_options($select_season, {{seasons|safe}},"{{current_season|safe}}")
+    add_options($select_game, {{games|safe}},"All")
+    add_options($select_player, {{players|safe}},"All")
 
 });
 </script>
