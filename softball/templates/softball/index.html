@@ -140,6 +140,9 @@ function make_chart(url) {
     $("#regTitle").html("Hello World");
         $("#mytable").html(chart_data.table);
         setup_table();
+        add_options($select_season, chart_data.seasons,chart_data.current_season)
+        add_options($select_game, chart_data.games,chart_data.current_players)
+        add_options($select_player, chart_data.players,chart_data.current_game)
     });
 }
 
@@ -199,43 +202,44 @@ function setup_table(){
     $(arr[arr.length-1]).addClass('lowest_pos');
 }
 
+var $select_season = $('#select-season').selectize({
+    plugins: ['remove_button'],
+    maxItems: 1,
+    readOnly: true,
+    onDelete: function() { return false }
+});
+var $select_game = $('#select-game').selectize({
+    plugins: ['remove_button'],
+    maxItems: 1,
+    readOnly: true,
+    onDelete: function() { return false }
+});
+var $select_player = $('#select-player').selectize({
+    plugins: ['remove_button'],
+    maxItems: 1,
+    readOnly: true,
+    onDelete: function() { return false }
+});
+
+function add_options($select, somelist, currentselect){
+    var selectize = $select[0].selectize;
+    new_options = somelist
+
+    selectize.clear()
+    selectize.clearOptions()
+
+    selectize.renderCache['option'] = {};
+    selectize.renderCache['item'] = {};
+
+    for (i = 0; i < new_options.length; i++) {
+        selectize.addOption({text:new_options[i],value: new_options[i]});
+    }
+    selectize.addOption(new_options)
+    $select[0].selectize.setValue(currentselect);
+}
+
 $(document).ready(function() {
     setup_table();
-    var $select_season = $('#select-season').selectize({
-        plugins: ['remove_button'],
-        maxItems: 1,
-        readOnly: true,
-        onDelete: function() { return false }
-    });
-    var $select_game = $('#select-game').selectize({
-        plugins: ['remove_button'],
-        maxItems: 1,
-        readOnly: true,
-        onDelete: function() { return false }
-    });
-    var $select_player = $('#select-player').selectize({
-        plugins: ['remove_button'],
-        maxItems: 1,
-        readOnly: true,
-        onDelete: function() { return false }
-    });
-
-    function add_options($select, somelist, currentselect){
-        var selectize = $select[0].selectize;
-        new_options = somelist
-
-        selectize.clear()
-        selectize.clearOptions()
-
-        selectize.renderCache['option'] = {};
-        selectize.renderCache['item'] = {};
-
-        for (i = 0; i < new_options.length; i++) {
-            selectize.addOption({text:new_options[i],value: new_options[i]});
-        }
-        selectize.addOption(new_options)
-        $select[0].selectize.setValue(currentselect);
-    }
 
     add_options($select_season, {{seasons|safe}},"{{current_season|safe}}")
     add_options($select_game, {{games|safe}},"All")

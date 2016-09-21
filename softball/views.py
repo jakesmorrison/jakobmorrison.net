@@ -122,6 +122,9 @@ def index_updates(request):
         'seasons': ["All"] + sorted(list(set(df_for_sel["Season"].tolist()))),
         'players': ["All"] + sorted(list(set(df_for_sel[df_for_sel["Season"] == season]["Player"].tolist()))),
         'games': ["All"] + sorted(list(set(df_for_sel[df_for_sel["Season"] == season]["Date"].tolist()))),
+        'current_season': season,
+        'current_players': player,
+        'current_game': game
     }
     return JsonResponse(json.loads(json.dumps(context)))
 
