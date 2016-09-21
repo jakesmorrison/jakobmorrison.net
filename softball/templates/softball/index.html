@@ -140,19 +140,16 @@ function make_chart(url) {
     $("#regTitle").html("Hello World");
         $("#mytable").html(chart_data.table);
         setup_table();
+        console.log(chart_data.se)
         add_options($select_season, chart_data.seasons,chart_data.current_season)
-        add_options($select_game, chart_data.games,chart_data.current_players)
-        add_options($select_player, chart_data.players,chart_data.current_game)
+        add_options($select_game, chart_data.games,chart_data.current_game)
+        add_options($select_player, chart_data.players,chart_data.current_players)
     });
 }
 
 
 $("#submit").click( function(){
-
-    <!--var table = $('#table-custom-sort').DataTable();-->
-    <!--table.clear();-->
     $("#mytable").html("");
-    <!--$( "div.mytable" ).replaceWith("<div class='mytable'></div>");-->
 
     <!--Return data from server and make chart. -->
     var season = $('#select-season').val();

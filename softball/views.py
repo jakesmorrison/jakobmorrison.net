@@ -117,6 +117,10 @@ def index_updates(request):
             count += 1
         new_table = new_table + line+"\n"
 
+    # print(season)
+    # print(player)
+    print(game)
+
     context = {
         "table": new_table,
         'seasons': ["All"] + sorted(list(set(df_for_sel["Season"].tolist()))),
