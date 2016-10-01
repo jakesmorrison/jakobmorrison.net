@@ -6,7 +6,7 @@ function loadMapScript() {
   var script = document.createElement("script");
   script.type = "text/javascript";
   script.id = "googleMaps"
-  script.src = "https://maps.googleapis.com/maps/api/js?sensor=false&callback=initMap";
+  script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBUBP8yy2VTKSfllFyMKmh89_e5PiTCUo0?sensor=false&callback=initMap";
   document.body.appendChild(script);
 }
 
