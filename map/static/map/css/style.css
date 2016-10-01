@@ -29,6 +29,19 @@
   border:thick solid #797979;
 }
 
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+    height: 90% !important;
+    margin: -60% 0 0 -45% !important;
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    height: 90% !important;
+    margin: -60% 0 0 -45% !important;
+}
+
 #myheader{
 background: #2968ce;
 background: -webkit-linear-gradient(-45deg, #222222ce 0%,#222222 51%,#222222 100%);
