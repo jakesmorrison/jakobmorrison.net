@@ -246,29 +246,6 @@ function initMap() {
         $('.heading-1').html('SFO Airport');
         $('.def-loc').html(' <i class="fa fa-location-arrow" aria-hidden="true"></i> San Francisco, California');
         $('.def-date').html('<i class="fa fa-calendar" aria-hidden="true"></i> 10/05/2016');
-
-//        $('#mycontent').html(`
-//             <div class="row">
-//                <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
-//                    <h4 class="heading-4">What am I doing?</h4>
-//                    <hr>
-//                    <p class="paragraph-font">I purchased a one way, first class ticket to Bangkok Thailand. The first class part is important; I am going to be a king at 30,000 feet. In all honesty it could very well be the highlight of the trip. I will be flying Korean Air from San Fran to Seoul. I have a brief 5 day stopover in Seoul before I contiue to Bangkok. After that the details get fuzzy.</p>
-//                </div>
-//             </div>
-//            <br>
-//            <div class="row">
-//                <h4 class="heading-4">How did I get to this point?</h4>
-//                <hr>
-//                <div class="col-md-6 col-xs-10 col-xs-offset-1">
-//                    <p class="paragraph-font">I was at Micron for over 3 years. I worked on commodity DRAM when I first started. After a year or so our team was moved over to HMC (a new, high bandwidth, specialty DRAM). HMC was the highlight of my time at Micron. The learning curve was steep, and the pace was fast, but I wouldn’t have wanted to work on anything else.</p>
-//                    <p class="paragraph-font">In mid June Micron announced layoffs would be happening at the end of the month. Before the involuntary layoffs began they asked specific Micron locations for volunteers. Boise was one of the locations. My project was canceled the day before the layoffs were announced, so now seemed like an opportune time to make a change. I took the voluntary layoff and left Micron on September 1st 2016. </p>
-//                </div>
-//                <div class="col-md-4 col-md-offset-0 col-xs-10 col-xs-offset-1">
-//                    <img src="https://www.micron.com/~/media/track-2-images/media-kit/high_res_hmc.jpg?la=en" class="picture-resize" style="height:300px;width:350px;">
-//                </div>
-//            </div>
-//            <br>
-//            `);
     });
     var path = new google.maps.Polyline(pathOptions_flight);
     var start_point = new google.maps.LatLng(my_locations["pdx"]["lat"], my_locations["pdx"]["lng"]);
