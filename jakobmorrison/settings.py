@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',
     'resume.apps.ResumeConfig',
     'softball.apps.SoftballConfig',
+    'map.apps.MapConfig',
+
 ]
 
 MIDDLEWARE_CLASSES = [

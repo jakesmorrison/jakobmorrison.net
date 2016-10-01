@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^resume/',include('resume.urls')),
     url(r'^softball/', include('softball.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^map/', include('map.urls')),
 ]

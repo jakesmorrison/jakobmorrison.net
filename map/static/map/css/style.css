@@ -1,0 +1,79 @@
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  #map {
+    height: 100%;
+  }
+
+#mypage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  height: 600px;
+  margin: -300px 0 0 -45%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background:white;
+  border-radius:50px;
+  border:thick solid #797979;
+}
+
+.hidden { display: none; }
+.picture-resize {
+    padding:1px;
+    border:thick solid #797979;
+    border-radius:50px;
+}
+.myclose {
+    margin-right:30px;
+    color:#797979;
+    position:fixed;
+    right:100px;
+}
+.top-row{
+border-radius: 50px;
+}
+
+.heading-1{
+    color:black;
+    font-family: 'Lora', 'Times New Roman', serif;
+}
+
+.heading-4{
+    color:black;
+}
+
+.paragraph-font{
+align="right"
+font-size: 25px;
+}
+
+.navbar-header {
+  float: none;
+}
+.navbar-toggle {
+  display: block;
+}
+.navbar-collapse.collapse {
+  display: none!important;
+}
+.navbar-nav {
+  float: none!important;
+}
+.navbar-nav>li {
+  float: none;
+}
+.navbar-collapse.collapse.in{
+  display:block !important;
+}
