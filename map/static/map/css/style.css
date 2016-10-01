@@ -50,10 +50,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2968ce', end
     border-radius:50px;
 }
 .myclose {
-    margin-right:30px;
     color:#797979;
-    position:fixed;
-    right:100px;
+    position:absolute;
+    top:0;
+    right:0;
+    margin-right: 20px;
+    margin-top: 5px;
 }
 .myclose:hover {
     color: red; /*set the color you want here*/
