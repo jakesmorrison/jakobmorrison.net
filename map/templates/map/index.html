@@ -13,7 +13,7 @@
 
 <nav class="navbar navbar-inverse navbar-fixed-top" style="width: 50%; left: 25%; border-radius: 25px;">
   <div class="navbar-header">
-    <a class="navbar-brand" href="{% url 'homepage:homepage.views.home' %}">Past and Present Locations</a>
+    <a class="navbar-brand" href="{% url 'homepage:homepage.views.home' %}">Travel</a>
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
@@ -46,7 +46,7 @@
                <h1 class="heading-1">Title</h1>
                <div class="row">
                    <div class="col-md-4 col-md-offset-2">
-                      <h4 class="def-loc heading-4">Default Location</h4>
+                       <h4 class="def-loc heading-4">Default Location</h4>
                    </div>
                    <div class="col-md-4">
                       <h4 class="def-date heading-4">Default Date</h4>
@@ -76,6 +76,10 @@ $( ".myclose" ).click(function() {
     $( "#mypage" ).hide();
 });
 var marker_a = " {% static 'map/img/google_maps_markers/red_MarkerA.png' %}"
+var marker_b = " {% static 'map/img/google_maps_markers/blue_MarkerB.png' %}"
+var marker_c = " {% static 'map/img/google_maps_markers/blue_MarkerC.png' %}"
+var marker_d = " {% static 'map/img/google_maps_markers/blue_MarkerD.png' %}"
+
 </script>
 
 </body>
