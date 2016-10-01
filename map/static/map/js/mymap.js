@@ -1,12 +1,25 @@
 var geocoder;
 var map;
 
+var map, mapOptions, currentLocation, currentLocationMarker;
+function loadMapScript() {
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.id = "googleMaps"
+  script.src = "https://maps.googleapis.com/maps/api/js?sensor=false&callback=initMap";
+  document.body.appendChild(script);
+}
+
 var my_locations = {
 	"home": {"lat": 43.5734736,"lng": -116.4817242, "number": 1},
 	"boi": {"lat": 43.5658231,"lng": -116.222316},
 	"pdx": {"lat": 45.58976939999999,"lng": -122.5950942},
 	"sfo": {"lat": 37.6213129,"lng": -122.3789554},
 };
+
+// Shapes define the clickable region of the icon. The type defines an HTML
+// <area> element 'poly' which traces out a polygon as a series of X,Y points.
+// The final coordinate closes the poly by connecting to the first coordinate.
 var shape = {
   coords: [1, 1, 1, 20, 18, 20, 18, 1],
   type: 'poly'
@@ -111,7 +124,8 @@ function initMap() {
         map: map,
         shape: shape,
         title: "Home",
-        icon: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|FF0000|FFFFFF",
+        animation: google.maps.Animation.BOUNCE,
+        icon: marker_a,
         zIndex: my_locations["home"]["number"]
     });
 

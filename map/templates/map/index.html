@@ -61,8 +61,7 @@
 
 <!--Google maps api key-->
 <!--AIzaSyAkgIsC7qfy1DTFZFnGIoXkFPSGAu3SJ5Q-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUBP8yy2VTKSfllFyMKmh89_e5PiTCUo0&callback=initMap"async defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUBP8yy2VTKSfllFyMKmh89_e5PiTCUo0&callback=initMap"async defer></script>-->
 
 {% load staticfiles %}
 <script src=" {% static 'map/js/jquery.min.js' %}" rel="stylesheet"></script>
@@ -70,9 +69,12 @@
 <script src="{% static 'map/js/mymap.js' %}"></script>
 
 <script>
+loadMapScript();
+
 $( ".myclose" ).click(function() {
     $( "#mypage" ).hide();
 });
+var marker_a = " {% static 'map/img/google_maps_markers/red_MarkerA.png' %}"
 </script>
 
 </body>
