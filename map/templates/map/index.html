@@ -16,7 +16,7 @@
 
 <nav class="navbar navbar-inverse navbar-fixed-top" style="width: 50%; left: 25%; border-radius: 25px;">
   <div class="navbar-header">
-    <a class="navbar-brand" href="{% url 'homepage:homepage.views.home' %}">Travel</a>
+    <a class="navbar-brand" href="{% url 'homepage:homepage.views.home' %}">Travel <i>(Click Markers)</i></a>
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
@@ -72,8 +72,8 @@
 <script src="{% static 'map/js/mymap.js' %}"></script>
 
 <script>
-loadMapScript();
 
+loadMapScript();
 
 $( ".myclose" ).click(function() {
     $( "#mypage" ).hide();
@@ -82,6 +82,12 @@ var marker_a = " {% static 'map/img/google_maps_markers/red_MarkerA.png' %}"
 var marker_b = " {% static 'map/img/google_maps_markers/blue_MarkerB.png' %}"
 var marker_c = " {% static 'map/img/google_maps_markers/blue_MarkerC.png' %}"
 var marker_d = " {% static 'map/img/google_maps_markers/blue_MarkerD.png' %}"
+var marker_e = " {% static 'map/img/google_maps_markers/blue_MarkerE.png' %}"
+
+
+var image_1 = "{% static 'map/img/cent_breakfast.jpg' %}"
+console.log(image_1)
+var image_2 = "{% static 'map/img/cent_lunch.jpg' %}"
 
 </script>
 

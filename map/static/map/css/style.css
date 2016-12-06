@@ -78,7 +78,7 @@ border-radius: 50px;
 }
 
 .paragraph-font{
-    align="right";
+    text-align: left;
     font-size: 21px;
     font-family: Georgia,Times,"Times New Roman",serif;
 }
