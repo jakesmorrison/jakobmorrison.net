@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'resume.apps.ResumeConfig',
     'softball.apps.SoftballConfig',
     'map.apps.MapConfig',
+    'books.apps.BooksConfig',
 
 ]
 

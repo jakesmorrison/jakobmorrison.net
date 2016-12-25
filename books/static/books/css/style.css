@@ -1,0 +1,15 @@
+.dataTables_scroll td {
+  overflow: hidden; /* this is what fixes the expansion */
+  text-overflow: ellipsis; /* not supported in all browsers, but I accepted the tradeoff */
+  white-space: nowrap;
+}
+
+.demo {
+    margin: 0 auto;
+    width: 100%;
+    height: 300px;
+}
+
+.page-break{
+    margin-top:30px;
+}

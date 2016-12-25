@@ -25,3 +25,33 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'jakobmorrison.apache.override'
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
+
+
+# This bed is on fire with passion and love
+# This podcast is live with Jake and Amir
+#
+# The neighors complain about the noises above
+# The fans screem and shout when the smokeshows appear
+#
+# But she only comes when shes on top
+# But they only come a few times a year
+#
+# Oh you think your so pretty
+# Oh your such a coy diva
+#
+# My therapest says not to see you no more
+# My friends ask me why i listen at all
+#
+# She says your like a dieses without any cure
+# They say you are just two jews that had a web series show
+# I put them on blast and show them the starbucks stall
+# Shes says you might as well hangyour self in a starbucks stall
+#
+# She says i am so obsessed i am becoming a bore...no no not
+# They say i am obsessed
+#
+# Oh you think your so pretty
+# Oh your such a coy diva
+
+
+

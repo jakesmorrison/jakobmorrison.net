@@ -38,7 +38,7 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top">JM</a>
+            <a class="navbar-brand page-scroll" href="{% url 'homepage:homepage.views.home' %}">JM</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -47,14 +47,17 @@
                 <li>
                     <a class="page-scroll" href="{% url 'resume:resume.views.index' %}">Resume</a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="{% url 'homepage:homepage.views.projects' %}">Projects</a>
-                </li>
+                <!--<li>-->
+                    <!--<a class="page-scroll" href="{% url 'homepage:homepage.views.projects' %}">Projects</a>-->
+                <!--</li>-->
                 <li>
                     <a class="page-scroll" href="{% url 'softball:softball.views.index' %}">Softball</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="{% url 'map:map.views.index' %}">Travel</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="{% url 'books:books.views.home' %}">Books</a>
                 </li>
             </ul>
         </div>

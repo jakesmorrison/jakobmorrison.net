@@ -1,0 +1,310 @@
+/* UI Sortable */
+.ui-sortable .ibox-title {
+  cursor: move;
+}
+.ui-sortable-placeholder {
+  border: 1px dashed #cecece !important;
+  visibility: visible !important;
+  background: #e7eaec;
+}
+.ibox.ui-sortable-placeholder {
+  margin: 0 0 23px !important;
+}
+/* Resizable */
+.resizable-panels .ibox {
+  clear: none;
+  margin: 10px;
+  float: left;
+  overflow: hidden;
+}
+.resizable-panels .ibox .ibox-content {
+  height: calc(100% - 49px);
+}
+.ibox-content h1,
+.ibox-content h2,
+.ibox-content h3,
+.ibox-content h4,
+.ibox-content h5,
+.ibox-title h1,
+.ibox-title h2,
+.ibox-title h3,
+.ibox-title h4,
+.ibox-title h5 {
+  margin-top: 5px;
+}
+.ibox-content.text-box {
+  padding-bottom: 0;
+  padding-top: 15px;
+}
+.ui-draggable .ibox-title {
+  cursor: move;
+}
+.breadcrumb {
+  background-color: #ffffff;
+  padding: 0;
+  margin-bottom: 0;
+}
+.breadcrumb > li a {
+  color: inherit;
+}
+.breadcrumb > .active {
+  color: inherit;
+}
+code {
+  background-color: #F9F2F4;
+  border-radius: 4px;
+  color: #ca4440;
+  font-size: 90%;
+  padding: 2px 4px;
+  white-space: nowrap;
+}
+.ibox {
+  clear: both;
+  margin-bottom: 25px;
+  margin-top: 0;
+  padding: 0;
+}
+.ibox.collapsed .ibox-content {
+  display: none;
+}
+.ibox.collapsed .fa.fa-chevron-up:before {
+  content: "\f078";
+}
+.ibox.collapsed .fa.fa-chevron-down:before {
+  content: "\f077";
+}
+.ibox:after,
+.ibox:before {
+  display: table;
+}
+.ibox-title {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background-color: #3569f3;
+  border-color: #dddddd;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 0px 0 0;
+  color: #fff;
+  margin-bottom: 0;
+  padding: 14px 15px 7px;
+  min-height: 48px;
+  border-radius: 15px;
+  margin-right: 50%;
+}
+.ibox-content {
+  background-color: #ffffff;
+  color: inherit;
+  padding: 15px 20px 20px 20px;
+  border-color: #e7eaec;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 1px 0;
+}
+.ibox-footer {
+  color: inherit;
+  border-top: 1px solid #e7eaec;
+  font-size: 90%;
+  background: #ffffff;
+  padding: 10px 15px;
+}
+.ibox-content {
+  clear: both;
+  display:none;
+}
+.ibox-heading {
+  background-color: #f3f6fb;
+  border-bottom: none;
+}
+.ibox-heading h3 {
+  font-weight: 200;
+  font-size: 24px;
+}
+.ibox-title h5 {
+  display: inline-block;
+  font-size: 14px;
+  margin: 0 0 7px;
+  padding: 0;
+  text-overflow: ellipsis;
+  float: left;
+}
+.ibox-title .label {
+  float: left;
+  margin-left: 4px;
+}
+.ibox-tools {
+  display: block;
+  float: none;
+  margin-top: 0;
+  position: relative;
+  padding: 0;
+  text-align: right;
+}
+.ibox-tools a {
+  cursor: pointer;
+  margin-left: 5px;
+  color: #c4c4c4;
+}
+.ibox-tools a.btn-primary {
+  color: #fff;
+}
+.ibox-tools .dropdown-menu > li > a {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+.ibox .ibox-tools.open > .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+.fullscreen-ibox-mode .animated {
+  animation: none;
+}
+body.fullscreen-ibox-mode {
+  overflow-y: hidden;
+}
+.ibox.fullscreen {
+  z-index: 2030;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  margin-bottom: 0;
+}
+.ibox.fullscreen .collapse-link {
+  display: none;
+}
+.ibox.fullscreen .ibox-content {
+  min-height: calc(80% - 48px);
+  margin-left: 10px;
+  margin-right: calc(50% + 10px);
+  border-width: 10px;
+  border-color: #3569f3;
+  border-bottom: 20px;
+  border-radius: 15px;
+}
+.chat-view .ibox-content {
+  padding: 0;
+}
+.article .ibox-content {
+  padding: 40px;
+}
+.product-detail .ibox-content {
+  padding: 30px 30px 50px 30px;
+}
+body.rtls .ibox-title h5 {
+  float: right;
+}
+body.rtls .pull-right {
+  float: left !important;
+}
+body.rtls .pull-left {
+  float: right !important;
+}
+body.rtls .ibox-tools {
+  float: left;
+}
+.skin-1 .ibox-title,
+.skin-1 .ibox-content {
+  border-width: 1px;
+}
+.skin-1 .ibox-content:last-child {
+  border-style: solid solid solid solid;
+}
+.skin-2 .ibox-title {
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  margin-bottom: 1px;
+}
+.skin-2 .ibox-content {
+  background: rgba(255, 255, 255, 0.4);
+  border: none !important;
+}
+.skin-2 #page-wrapper {
+  background: #f6f6f6;
+  background: -webkit-radial-gradient(center, ellipse cover, #f6f6f6 20%, #d5d5d5 100%);
+  background: -o-radial-gradient(center, ellipse cover, #f6f6f6 20%, #d5d5d5 100%);
+  background: -ms-radial-gradient(center, ellipse cover, #f6f6f6 20%, #d5d5d5 100%);
+  background: radial-gradient(ellipse at center, #f6f6f6 20%, #d5d5d5 100%);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#f6f6f6, endColorstr=#d5d5d5)";
+}
+.skin-2 .ibox-title,
+.skin-2 .ibox-content {
+  border-width: 1px;
+}
+.skin-2 .ibox-content:last-child {
+  border-style: solid solid solid solid;
+}
+.skin-3 .ibox-title,
+.skin-3 .ibox-content {
+  border-width: 1px;
+}
+.skin-3 .ibox-content:last-child {
+  border-style: solid solid solid solid;
+}
+.md-skin .ibox {
+  clear: both;
+  margin-bottom: 25px;
+  margin-top: 0;
+  padding: 0;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.md-skin .ibox.border-bottom {
+  border-bottom: none !important;
+}
+.md-skin .ibox-title,
+.md-skin .ibox-content {
+  border-style: none;
+}
+.md-skin .ibox-title h5 {
+  font-size: 16px;
+  font-weight: 400;
+}
+  .ibox-tools {
+    float: none;
+    text-align: right;
+    display: block;
+  }
+}
+@media (max-width: 350px) {
+  .timeline-item .date {
+    text-align: left;
+    width: 110px;
+    position: relative;
+    padding-top: 30px;
+  }
+  .timeline-item .date i {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    padding: 5px;
+    width: 30px;
+    text-align: center;
+    border: 1px solid #e7eaec;
+    background: #f8f8f8;
+  }
+  .timeline-item .content {
+    border-left: none;
+    border-top: 1px solid #e7eaec;
+    padding-top: 10px;
+    min-height: 100px;
+  }
+  .nav.navbar-top-links li.dropdown {
+    display: none;
+  }
+  .ibox-tools {
+    float: none;
+    text-align: left;
+    display: inline-block;
+  }
+}
+
+.fa-expand{
+    color: #fff;
+}
+.fa-compress{
+    color: #fff;
+}
