@@ -11,7 +11,8 @@ import numpy as np
 cfg = cfg.Config
 
 import os
-book_path = os.getcwd()+"/books/static/books/book_list/"
+from jakobmorrison.settings import BASE_DIR
+book_path = os.path.join(BASE_DIR, 'books/static/books/book_list/')
 
 # Create your views here.
 
