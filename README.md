@@ -15,7 +15,7 @@ Find my site at jakobmorrison.net
 ## Cool stuff
 
 ## Books
-python manage.py book_to_db "1984" "George Orwell" "1984.txt" "Fiction" "Dystopian" "2016-11-19" "2016-11-25"
+python manage.py book_to_db "1984" "George Orwell" "1984.txt" "Fiction" "Dystopian" "2016-11-19" "2016-11-25" --settings=jakobmorrison.apache.override
 
 
 http://www.patternify.com/
