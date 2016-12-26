@@ -5,9 +5,12 @@ import random
 cfg = cfg.Config
 
 class Book_Methods():
-    def clean_up(book_file):
+    def clean_up(book_dir):
+        book_file = open(book_dir, 'r')
         book_string = ""
         for line in book_file:
+            line = line.encode('ascii', 'ignore')
+            line = str(line)
             line = line.lower()
             line = line.replace("\n", " ")
             line = line.replace(".", " ")
@@ -36,26 +39,21 @@ class Book_Methods():
 
     def get_stats(book_string):
         words = book_string.split(" ")
+        words = [x for x in words if len(x)>1]
+        temp_words = []
+        for x in words:
+            if "\\n" in x or "*" in x or "=" in x:
+                pass
+            else:
+                temp_words.append(x)
+        words = temp_words
         unique_words = set(words)
-        long_words = [x for x in unique_words if len(x)>=8]
-        vocab_density = len(words)/len(unique_words)
-        # print(len(words))
-        # print(len(unique_words))
-        # print(len(long_words))
+        vocab_density = float("%.2f"%(len(words)/len(unique_words)))
         return words, unique_words, vocab_density
 
 
     def word_cloud(words):
-        temp = []
-        for w in words:
-            if len(w) >= 6:
-                temp.append(w)
-
-        word_cloud = Counter(temp)
-        word_cloud = sorted(word_cloud.items())
-        word_cloud = random.sample(word_cloud, len(word_cloud))
-        word_cloud = dict(word_cloud)
-
+        word_cloud = dict(words)
         new_word_list = []
         less_than = 0
         greater_than = 0
@@ -63,11 +61,10 @@ class Book_Methods():
             if (len(key) > 10 and val>=10 and greater_than<=20):
                 new_word_list.append({'text': key, 'weight': val})
                 greater_than += 1
-            if (len(key) <= 10 and val>=10 and less_than<=20):
+            if (len(key) >=6 and len(key) <= 10 and val>=10 and less_than<=20):
                 new_word_list.append({'text': key, 'weight': val})
                 less_than += 1
 
-        # print(sorted(word_cloud.items()))
         return new_word_list
 
     def calculate_regresssion(x,y,max):

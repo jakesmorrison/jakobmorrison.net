@@ -5,22 +5,30 @@ from .management import methods
 from django.http import JsonResponse
 from collections import Counter
 
+from .models import Books
+
 import json
 import pandas as pd
 import numpy as np
-cfg = cfg.Config
 
-import os
-from jakobmorrison.settings import BASE_DIR
-book_path = os.path.join(BASE_DIR, 'books/static/books/book_list/')
+from .management import config as cfg
+cfg = cfg.Config
+cfg.SERIES=[]
+cfg.CAT = []
 
 # Create your views here.
-
 def home(request):
-    cfg.SERIES=[]
-    df = pd.DataFrame(cfg.BOOK_LIST)
-    df_display = df.drop("lookup",1)
-    cols  = "Title,Author,Type,Genre,Date Start,Date Finish,Word Count,Unique Words,Vocab Density".split(",")
+    db_books = Books.objects.all()
+    df = pd.DataFrame()
+    for x in db_books.values():
+        df_temp = pd.DataFrame.from_dict(dict(x.items()), orient='index')
+        df = df.append(df_temp.T, ignore_index=True)
+
+    df_display = df.drop("Lookup",1)
+    df_display = df_display.drop("id",1)
+    df_display = df_display.drop("Word_List",1)
+
+    cols  = "Title,Author,Type,Genre,Date_Start,Date_Finish,Word_Count,Unique_Words,Vocab_Density".split(",")
     df_display = df_display[cols]
     book_names = df_display["Title"].tolist()
 
@@ -38,51 +46,50 @@ def home(request):
 def quick_chart(request):
     params = request.GET
     book = (params["Title"])
-    df = pd.DataFrame(cfg.BOOK_LIST)
-    lookup_val = df[df["Title"] == book]["lookup"]
-    lookup_val = lookup_val.tolist()[0]
-    book_dir = book_path
-    book_file = open(book_dir + str(lookup_val), 'r')
-    book_string = methods.Book_Methods.clean_up(book_file)
-    words, unique_words, vocab_density = methods.Book_Methods.get_stats(book_string)
 
-    word_length = []
-    for w in words:
-        word_length.append(len(w))
+    # Converting db into df and dropping columns that arent needed.
+    db_books = Books.objects.all()
+    df = pd.DataFrame()
+    for x in db_books.values():
+        df_temp = pd.DataFrame.from_dict(dict(x.items()), orient='index')
+        df = df.append(df_temp.T, ignore_index=True)
+    df = df.drop("Lookup",1)
+    df = df.drop("id",1)
 
-    word_length = Counter(word_length)
-    word_length = sorted(word_length.items())
-    word_length, frequency = zip(*word_length)
-    probablity = [x / len(words) for x in frequency]
+    # Getting specific book details
+    df_book = df[df["Title"] == book]
 
+    # Need to un json dumps the data
+    words = json.loads(df_book["Word_List"].tolist()[0])
+
+    # Creating a dictionary of wordlength to frequency.
+    my_dict = {}
+    for x in words:
+        if len(str(x[0])) in my_dict:
+            my_dict[len(str(x[0]))] += x[1]
+        else:
+            my_dict[len(str(x[0]))] = x[1]
+    (word_length, frequency) = zip(*my_dict.items())
+
+    # CDF
+    probablity = [x / df_book["Word_Count"].tolist()[0] for x in frequency]
+
+    # Word Cloud
     word_cloud = methods.Book_Methods.word_cloud(words)
 
-    if cfg.SERIES:
-        cfg.SERIES = cfg.SERIES+[{'name':book, 'data':probablity}]
-        list_of_books = []
-        temp = []
-        for x in cfg.SERIES:
-            if x["name"] in list_of_books:
-                pass
-            else:
-                temp.append(x)
-            list_of_books.append(x["name"])
-        cfg.SERIES = temp
-        bins = list(set(cfg.CAT+list(word_length)))
-        bins = np.linspace(bins[0], bins[-1], bins[-1])
-        cfg.CAT = list(bins)
-    else:
-        cfg.SERIES = [{'name':book, 'data':probablity}]
-        cfg.CAT = list(word_length)
+    # Saving Series to config file
+    cfg.SERIES = [{'name':book, 'data':probablity}]
+    cfg.CAT = list(word_length)
 
-
-    scatter_data = [list(a) for a in zip(df["Word Count"].tolist(), df["Vocab Density"].tolist())]
+    # Creating scatter plot plot
+    scatter_data = [list(a) for a in zip(df["Word_Count"].tolist(), df["Vocab_Density"].tolist())]
     new_scatter = []
     for n,x in enumerate(scatter_data):
         new_scatter.append({'name': df["Title"].tolist()[n], 'x': float("%.2f"%x[0]), 'y': float("%.2f"%x[1])})
 
+    # Creating Regression Line
     x, y = zip(*scatter_data)
-    reg = methods.Book_Methods.calculate_regresssion(x,y,max(df["Word Count"].tolist()))
+    reg = methods.Book_Methods.calculate_regresssion(x,y,max(df["Word_Count"].tolist()))
     new_reg = []
     for n,x in enumerate(reg):
         new_reg.append([float("%.2f"%x[0]), float("%.2f"%x[1])])
