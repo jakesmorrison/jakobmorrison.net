@@ -1,5 +1,5 @@
 .dataTables_scroll td {
-  overflow: hidden; /* this is what fixes the expansion */
+  overflow: auto; /* this is what fixes the expansion */
   text-overflow: ellipsis; /* not supported in all browsers, but I accepted the tradeoff */
   white-space: nowrap;
 }
@@ -13,3 +13,8 @@
 .page-break{
     margin-top:30px;
 }
+
+.table th, .table td {
+    text-align: center !important;
+}
+
