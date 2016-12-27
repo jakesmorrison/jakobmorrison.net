@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- CSS -->
+    {% load staticfiles %}
+    <link href=" {% static 'definitions/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'definitions/css/notecard.css' %}" rel="stylesheet">
+    <link href=" {% static 'definitions/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="intro-header">
+    <div class="container round-border vertical-center">
+            <h4>{{id_count|safe}}/{{dictionary_count|safe}}</h4>
+
+        <div class="col-lg-8 col-lg-offset-2">
+            <h1 class="centered" style="">{{word|safe}}</h1>
+            <h3>{{ type|safe }}</h3>
+            {% for x in definition %}
+            <ul>
+              <li class="definition">{{x|safe}}</li>
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.intro-header -->
+
+<div class="navbar navbar-fixed-bottom" role="navigation">
+    <div class="col-lg-8 col-lg-offset-2 pagination-centered">
+        <form class="form-inline">
+            <input class="form-control" type="text" value="" id="word-input" style="width:300px; text-align: center;">
+            <button type="button" onclick="sendWord()" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+</div>
+
+<!-- jQuery -->
+{% load staticfiles %}
+<script src=" {% static 'definitions/js/jquery.min.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'definitions/js/bootstrap.min.js' %}" rel="stylesheet"></script>
+
+<script>
+function sendWord(){
+    var word = $('#word-input').val();
+    url_base = "{% url 'definitions:add_to_db' %}";
+    params = {'word': word};
+    url = url_base + "?" + $.param( params );
+    $.getJSON(url, function(data) {
+    });
+}
+</script>
+
+</body>
+</html>

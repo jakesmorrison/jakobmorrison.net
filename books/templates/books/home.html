@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!--<meta name="viewport" content="initial-scale=1">-->
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="viewport" content="initial-scale=1">
     <title>Books</title>
 
     <!-- Custom Fonts -->
@@ -14,7 +16,8 @@
     {% load staticfiles %}
     <link href=" {% static 'books/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href=" {% static 'books/css/style.css' %}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <link href=" {% static 'books/css/jquery.dataTables.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'books/css/fixedColumns.dataTables.min.css' %}" rel="stylesheet">
     <link href=" {% static 'books/font-awesome/css/font-awesome.css' %}" rel="stylesheet">
     <link href=" {% static 'books/css/jqcloud.min.css' %}" rel="stylesheet">
 
@@ -81,9 +84,11 @@
 
 <!-- jQuery -->
 {% load staticfiles %}
-<script src=" {% static 'books/js/jquery.min.js' %}" rel="stylesheet"></script>
+<!--<script src=" {% static 'books/js/jquery.min.js' %}" rel="stylesheet"></script>-->
+<script src=" {% static 'books/js/jquery-2.1.1.js' %}" rel="stylesheet"></script>
 <script src=" {% static 'books/js/bootstrap.min.js' %}" rel="stylesheet"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.12/r-2.1.0/sc-1.4.2/datatables.min.js"></script>
+<script src=" {% static 'books/js/datatables.min.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'books/js/dataTables.fixedColumns.min.js' %}" rel="stylesheet"></script>
 <script src="{% static 'books/js/highcharts.js' %}"></script>
 <script src="{% static 'books/js/jqcloud.min.js' %}"></script>
 
@@ -199,6 +204,10 @@ function make_chart(url) {
         var scatter =chart_data.scatter;
         var regression = chart_data.regression;
         plot_scatter("my_container_scatter", scatter, regression)
+
+        var word_cloud = [];
+        $('#demo').empty()
+        $('#demo').jQCloud('destroy');
 
         var word_cloud = chart_data.word_cloud;
         $('#demo').jQCloud(word_cloud)

@@ -53,15 +53,22 @@ class Book_Methods():
 
 
     def word_cloud(words):
+        x, y = zip(*words)
+        max_val = int((sum(list(y)) / float(len(list(y)))))
+        random.shuffle(words)
         word_cloud = dict(words)
         new_word_list = []
         less_than = 0
         greater_than = 0
+        middle = 0
         for key,val in word_cloud.items():
-            if (len(key) > 10 and val>=10 and greater_than<=20):
+            if (len(key) >= 12 and val>=max_val and greater_than<=20):
                 new_word_list.append({'text': key, 'weight': val})
                 greater_than += 1
-            if (len(key) >=6 and len(key) <= 10 and val>=10 and less_than<=20):
+            elif (len(key) >= 9 and len(key) <12 and val>=max_val and middle<=20):
+                new_word_list.append({'text': key, 'weight': val})
+                middle += 1
+            elif (len(key) >=6 and len(key) <9 and val>=max_val and less_than<=20):
                 new_word_list.append({'text': key, 'weight': val})
                 less_than += 1
 

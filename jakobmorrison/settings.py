@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'softball.apps.SoftballConfig',
     'map.apps.MapConfig',
     'books.apps.BooksConfig',
+    'definitions.apps.DefinitionsConfig',
 
 ]
 
