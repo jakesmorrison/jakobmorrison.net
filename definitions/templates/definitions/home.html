@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <title>Title</title>
 
@@ -15,9 +16,8 @@
 
 <div class="intro-header">
     <div class="container round-border vertical-center">
-            <h4>{{id_count|safe}}/{{dictionary_count|safe}}</h4>
-
-        <div class="col-lg-8 col-lg-offset-2">
+        <h4 style="">{{id_count|safe}}/{{dictionary_count|safe}}</h4>
+        <div class="col-lg-8 col-lg-offset-2 col-xs-12 col-xs-offset-0">
             <h1 class="centered" style="">{{word|safe}}</h1>
             <h3>{{ type|safe }}</h3>
             {% for x in definition %}
