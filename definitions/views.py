@@ -45,7 +45,7 @@ def add_to_db(request):
             pass
         else:
             s = Words(
-                word=word,
+                word=word[0].upper()+word[1:],
                 type=t,
                 definition=mydef,
                 frequency=0,

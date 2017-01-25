@@ -28,3 +28,9 @@
 
 .pagination-centered{text-align:center;}
 
+.h1, h1 {
+    font-size: 50px;
+}
+.h3, h3 {
+    font-size: 30px;
+}
