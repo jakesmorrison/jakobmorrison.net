@@ -26,6 +26,10 @@
             </ul>
             {% endfor %}
             <h4>{{id_count|safe}}/{{dictionary_count|safe}}</h4>
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <button type="button" onclick="refresh()" class="btn btn-primary text-center">Next</button>
+            </div>
+
         </div>
     </div>
     <!-- /.container -->
@@ -57,6 +61,9 @@ function sendWord(){
     url = url_base + "?" + $.param( params );
     $.getJSON(url, function(data) {
     });
+}
+function refresh(){
+    location.reload();
 }
 </script>
 
