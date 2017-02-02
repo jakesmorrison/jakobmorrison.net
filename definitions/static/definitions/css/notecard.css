@@ -28,9 +28,27 @@
 
 .pagination-centered{text-align:center;}
 
-.h1, h1 {
-    font-size: 50px;
+.submit-word{
+    width:300px;
+    text-align: center;
 }
-.h3, h3 {
-    font-size: 30px;
+
+
+@media screen and (min-width: 200px) and (max-width: 700px) {
+    .h1, h1 {
+        font-size: 150%;
+    }
+    .h3, h3 {
+        font-size: 120%;
+    }
+    .definition {
+        font-size: 100%;
+    }
+    .h4, h4 {
+        font-size: 80%;
+    }
+    .submit-word{
+        width: 100%;
+        text-align: center;
+    }
 }

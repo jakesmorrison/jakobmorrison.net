@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Vocab Builder</title>
 
@@ -17,7 +18,7 @@
 
 <div class="intro-header">
     <div class="container round-border vertical-center">
-        <div class="col-lg-10 col-lg-offset-1 col-xs-10 col-xs-offset-1">
+        <div style="overflow-y:scroll;" class="col-lg-10 col-lg-offset-1 col-xs-12 col-xs-offset-0">
             <h1 class="centered" style="">{{word|safe}}</h1>
             <h3>{{ type|safe }}</h3>
             {% for x in definition %}
@@ -39,7 +40,7 @@
 <div class="navbar navbar-fixed-bottom" role="navigation">
     <div class="col-lg-8 col-lg-offset-2 pagination-centered">
         <form class="form-inline">
-            <input class="form-control" type="text" value="" id="word-input" style="width:300px; text-align: center;">
+            <input class="submit-word form-control" type="text" value="" id="word-input">
             <button type="button" onclick="sendWord()" class="btn btn-primary">Submit</button>
         </form>
     </div>
