@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Jakob's Resume</title>
     {% load staticfiles %}
     <link href=" {% static 'resume/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -25,19 +26,21 @@
                     <div class="circle col-centered">
                         <i class="fa fa-paper-plane-o fa-2x" aria-hidden="true" style="top:12px; left:9px; position:absolute;"></i>
                     </div>
-                    <p class="subtext"><a href="tel:2083183228">(208)-318-3228</a><br><a href="mailto:jakesmorrison4@gmail.com?Subject=Jakob Morrison Resume">jakesmorrison4@gmail.com</a></p>
+                    <p class="subtext my-info"><a href="tel:2083183228">(208)-318-3228</a><br><a href="mailto:jakesmorrison4@gmail.com?Subject=Jakob Morrison Resume">jakesmorrison4@gmail.com</a></p>
                 </div>
                 <div class="col-lg-4">
                     <div class="circle col-centered">
                         <i class="fa fa-globe fa-3x" aria-hidden="true" style="top:6px; left:9px; position:absolute;"></i>
                     </div>
-                    <p class="subtext">7216 Lima Drive <br> Nampa, ID, 83687 </p>
+                    <p href="http://maps.google.com/maps?q=cupertino" class="subtext my-info">
+                        <a href="https://www.google.com/maps?q=7216+Lima+Drive+Nampa+Idaho+83687">7216 Lima Drive <br> Nampa, ID, 83687 </a>
+                    </p>
                 </div>
                 <div class="col-lg-4">
                     <div class="circle col-centered">
                         <i class="fa fa-desktop fa-2x" aria-hidden="true" style="top:14px; left:12px; position:absolute;"></i>
                     </div>
-                    <p class="subtext"><a href="{% url 'homepage:homepage.views.home' %}">jakobmorrison.net</a></p>
+                    <p class="subtext my-info"><a href="{% url 'homepage:homepage.views.home' %}">jakobmorrison.net</a></p>
                 </div>
             </div>
         </div>
@@ -60,15 +63,15 @@
                 </div>
                 <div class="row mybreak2"></div>
 
-                <div class="row">
-                    <div class="col-lg-3">
+                <div class="row pull-down">
+                    <div class="col-lg-3 col-xs-7">
                         <p class="subtext">Self-Employed <br> Web Developer</p>
                     </div>
-                    <div class="col-lg-2">
-                        <p class="subtext" style="color: #1100d6; font-size: 13px;">Sep 2016</p>
-                        <p class="subtext" style="color: #1100d6; font-size: 13px;">Feb 2017</p>
+                    <div class="col-lg-2 col-xs-5">
+                        <p class="subtext hire-dates">Sep 2016</p>
+                        <p class="subtext hire-dates">Feb 2017</p>
                     </div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-7 col-xs-12">
                         <p class="subtext" style="text-align: left;"><b>Design and create website for local floral shop.</b></p>
                         <ul>
                             <li class="subtext" style="text-align: left;">Front End development completed using Javascript, CSS, and HTML.</li>
@@ -77,17 +80,19 @@
 
                         </ul>
                     </div>
+                </div>
 
+                <div class="my-line"></div>
 
                 <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 col-xs-7">
                         <p class="subtext">Micron Technology <br> Product Engineer</p>
                     </div>
-                    <div class="col-lg-2">
-                        <p class="subtext" style="color: #1100d6; font-size: 13px;">Jun 2013</p>
-                        <p class="subtext" style="color: #1100d6; font-size: 13px;">Sep 2016</p>
+                    <div class="col-lg-2 col-xs-5">
+                        <p class="subtext hire-dates">Jun 2013</p>
+                        <p class="subtext hire-dates">Sep 2016</p>
                     </div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-7 col-xs-12">
                         <p class="subtext" style="text-align: left;"><b>Refine, debug and manage DRAM type devices from the design stage to HVM.</b></p>
                         <ul>
                             <li class="subtext" style="text-align: left;">Support initial silicon development, debug and analysis.</li>
@@ -97,15 +102,18 @@
                         </ul>
                     </div>
                 </div>
+
+                <div class="my-line"></div>
+
                 <div class="row">
-                    <div class="col-lg-3">
-                        <p class="subtext">Boise State University <br> Research Engineer</p>
+                    <div class="col-lg-3 col-xs-7">
+                        <p class="subtext">BSU <br> Research Engineer</p>
                     </div>
-                    <div class="col-lg-2">
-                        <p class="subtext" style="color: #1100d6; font-size: 13px;">Jan 2012</p>
-                        <p class="subtext" style="color: #1100d6; font-size: 13px;">Jun 2013</p>
+                    <div class="col-lg-2 col-xs-5">
+                        <p class="subtext hire-dates">Jan 2012</p>
+                        <p class="subtext hire-dates">Jun 2013</p>
                     </div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-7 col-xs-12">
                         <p class="subtext" style="text-align: left;"><b>Investigating ion plasma as a space propulsion system.</b></p>
                         <ul>
                             <li class="subtext" style="text-align: left;">Responsible for plasma ion thruster grid simulations (OOPIC and Java).</li>
@@ -124,14 +132,14 @@
                     <h3>Education</h3>
                 </div>
                 <div class="row mybreak2"></div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-xs-7">
                     <p class="subtext">Boise State University <br> GPA: 3.55</p>
                 </div>
-                <div class="col-lg-2">
-                    <p class="subtext" style="color: #1100d6; font-size: 13px;">Sep 2009</p>
-                    <p class="subtext" style="color: #1100d6; font-size: 13px;">May 2013</p>
+                <div class="col-lg-2 col-xs-5">
+                    <p class="subtext hire-dates">Sep 2009</p>
+                    <p class="subtext hire-dates">May 2013</p>
                 </div>
-                <div class="col-lg-7">
+                <div class="col-lg-7 col-xs-12">
                     <p class="subtext" style="text-align: left;"><b>Courses:</b> Integrated Circuits, Semiconductor Devices, Analog Circuit Design, Digital Logic Design, Electromagnetic Theory, Signals and Systems, RF Design, Microprocessors, Computational Mathematics, Java </p>
                 </div>
             </div>
