@@ -2,8 +2,8 @@
 
 from jakobmorrison.settings import *
 
-DEBUG = True
-ALLOWED_HOSTS = ['www.jakobmorrison.net', '192.241.228.71']
+DEBUG = False
+ALLOWED_HOSTS = ['www.jakobmorrison.net','jakobmorrison.net', '192.241.228.71']
 
 DATABASES = {
     'default': {
