@@ -32,7 +32,7 @@ def home(request):
     df_display = df_display[cols]
     book_names = df_display["Title"].tolist()
 
-    html_table = df_display.to_html(index=False, classes='table table-striped table-bordered table-hover table-responsive')
+    html_table = df_display.to_html(index=False, classes='table table-striped table-bordered table-hover table-responsive'  )
     for n in book_names:
         html_table = html_table.replace(n ,  "<a class=\"mylink\" href=\"#\">"+n+"</a>")
 
