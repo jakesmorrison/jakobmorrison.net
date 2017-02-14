@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Heart Rate</title>
+
+    {% load staticfiles %}
+    <link href=" {% static 'heartbeat/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'heartbeat/css/style.css' %}" rel="stylesheet">
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-xs-offset-0">
+            <svg class="heart" alt="Responsive image" viewBox="0 0 32 29.6" onclick="heart_click()">
+              <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+                c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+            </svg>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-xs-offset-0">
+            <h3 class="output centered">BPM</h3>
+        </div>
+    </div>
+</div>
+
+
+{% load staticfiles %}
+<script src=" {% static 'heartbeat/js/jquery-2.1.1.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'heartbeat/js/bootstrap.min.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'heartbeat/js/custom.js' %}" rel="stylesheet"></script>
+
+</body>
+</html>

@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'map.apps.MapConfig',
     'books.apps.BooksConfig',
     'definitions.apps.DefinitionsConfig',
-
+    'travel.apps.TravelConfig',
+    'heartbeat.apps.HeartbeatConfig',
 ]
 
 MIDDLEWARE_CLASSES = [

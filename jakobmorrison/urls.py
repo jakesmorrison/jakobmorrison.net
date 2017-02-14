@@ -24,5 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^map/', include('map.urls')),
     url(r'^books/', include('books.urls')),
-    url(r'^definitions/', include('definitions.urls'))
+    url(r'^definitions/', include('definitions.urls')),
+    url(r'^travel/', include('travel.urls')),
+    url(r'^heartbeat/', include('heartbeat.urls')),
 ]
