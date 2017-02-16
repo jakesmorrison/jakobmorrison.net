@@ -25,6 +25,7 @@ def home(request):
         "dictionary_count": len(dictionary_count),
         "id_count": dictionary_count.index(word),
     }
+    Config.current_context = context
     return render(request, 'definitions/home.html', context)
 
 def add_to_db(request):
@@ -61,14 +62,12 @@ from rest_framework.response import Response
 from rest_framework import permissions
 from .serializer import WordsSerializer
 
-
-
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.AllowAny,))
 def words_list(request):
-    print("list")
     if request.method == 'GET':
         w = Words.objects.all()
+        print(w)
         serializer = WordsSerializer(w, many=True)
         return Response(serializer.data)
 
@@ -79,17 +78,20 @@ def words_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(['GET', 'POST'])
+@permission_classes((permissions.AllowAny,))
+def words_current(request):
+    if request.method == 'GET':
+        w = Config.current_context
+        return Response(w)
+
+
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes((permissions.AllowAny,))
 def words_detail(request, pk1, pk2):
-    print(pk1)
-    print(pk2)
-
-    print("details")
-    print(request.method)
     try:
         w = Words.objects.all().filter(**{pk1:pk2}).values()
-        print(w)
     except Words.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -109,4 +111,6 @@ def words_detail(request, pk1, pk2):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class Config(object):
+    current_context = {}
 
