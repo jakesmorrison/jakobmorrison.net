@@ -12,5 +12,5 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^add_to_db/', views.add_to_db, name='add_to_db'),
     url(r'^api/$', views.words_list),
-    url(r'^myapi/(?P<pk1>.*)=(?P<pk2>.*)$', views.words_detail),
+    url(r'^api/(?P<pk1>.*)=(?P<pk2>.*)$', views.words_detail),
 ]
