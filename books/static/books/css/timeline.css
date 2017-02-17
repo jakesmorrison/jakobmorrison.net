@@ -33,4 +33,5 @@
     font-size: 15px;
     margin-top: 25px;
     font-family: 'Pangolin', cursive;
+    white-space: nowrap;
 }

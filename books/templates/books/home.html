@@ -250,18 +250,21 @@ $('.table').DataTable({
 });
 
 function spacing(xcomp,t,d){
-  $('.timeline').append('<div class="tick" onClick="tick_on_click(this)" onMouseOver="tick_on_mouseover(this)" onMouseOut="tick_on_mouseout(this)"><p class="timeline_labels">'+t[0]+'</p></div>');
+  $('.timeline').append('<div style="left:'+xcomp[0]+'%" class="tick" onClick="tick_on_click(this)" onMouseOver="tick_on_mouseover(this)" onMouseOut="tick_on_mouseout(this)"><p class="timeline_labels">'+t[0]+'</p></div>');
   total_width = $('.line').width();
   total_width_minus = $('.line').width()-$('.tick').width()-10;
   prev_val = 0;
-  for(i=0; i<xcomp.length; i++){
-    if(i==0){
-        $('.timeline').append('<div style="left:'+xcomp[i]+'%" class="tick" onClick="tick_on_click(this)" onMouseOver="tick_on_mouseover(this)" onMouseOut="tick_on_mouseout(this)"><p class="timeline_labels">'+t[i+1]+'</p></div>');
+  for(i=1; i<xcomp.length; i++){
+    if(i==1){
+        $('.timeline').append('<div style="left:'+xcomp[i]+'%" class="tick" onClick="tick_on_click(this)" onMouseOver="tick_on_mouseover(this)" onMouseOut="tick_on_mouseout(this)"><p class="timeline_labels">'+t[i]+'</p></div>');
         prev_val = xcomp[i];
+    }
+    else if(i==xcomp.length-1){
+        $('.timeline').append('<div style="left:100%" class="tick" onClick="tick_on_click(this)" onMouseOver="tick_on_mouseover(this)" onMouseOut="tick_on_mouseout(this)"><p class="timeline_labels">'+t[i]+'</p></div>');
     }
     else{
         temp = xcomp[i] + prev_val;
-        $('.timeline').append('<div style="left:'+temp+'%" class="tick" onClick="tick_on_click(this)" onMouseOver="tick_on_mouseover(this)" onMouseOut="tick_on_mouseout(this)"><p class="timeline_labels">'+t[i+1]+'</p></div>');
+        $('.timeline').append('<div style="left:'+temp+'%" class="tick" onClick="tick_on_click(this)" onMouseOver="tick_on_mouseover(this)" onMouseOut="tick_on_mouseout(this)"><p class="timeline_labels">'+t[i]+'</p></div>');
         prev_val = temp;
     }
   }
@@ -288,8 +291,8 @@ $( document ).ready(function() {
     t = {{ title|safe }};
     d = {{ date|safe }};
 
-    <!--d = ["2016-11-19","2016-12-19","2016-12-31","2017-01-19","2017-01-25","2017-01-30"];-->
-    <!--t = ["book1","book2","book3","book4","book5","book6"];-->
+    d = ["2016-11-19","2016-12-19","2016-12-31","2017-01-19","2017-01-25","2017-01-30"];
+    t = ["book1","book2","book3","book4","book5","book6"];
 
     mil = []
     prev = 0;
@@ -306,24 +309,27 @@ $( document ).ready(function() {
         }
     }
 
-    min = Math.min.apply(null, mil);
+    min = 0;
     max =  Math.max.apply(null, mil);
-    x_comp = [];
+    x_comp = [0];
 
     for(i=0; i<mil.length;i++){
         x_comp.push((mil[i]-min)/(max-min));
     }
+
     sum = 0;
     for(i=0; i<x_comp.length;i++){
         sum += x_comp[i];
     }
+
+
     x_comp_percent = []
     for(i=0; i<x_comp.length;i++){
         x_comp_percent.push((x_comp[i]/sum)*100);
     }
     x_comp_percent.pop();
     x_comp_percent.push(100);
-    console.log(x_comp_percent);
+
     spacing(x_comp_percent, t, d);
 });
 
