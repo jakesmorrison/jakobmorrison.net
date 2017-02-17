@@ -30,8 +30,17 @@
 }
 
 .timeline_labels{
-    font-size: 15px;
+    font-size: 13px;
     margin-top: 25px;
     font-family: 'Pangolin', cursive;
-    white-space: nowrap;
+    display:block;
+    width:60px;
+    word-wrap:break-word;
+
+}
+
+@media screen and (max-width: 800px) {
+    .timeline_outer {
+        display: none !important;
+    }
 }
