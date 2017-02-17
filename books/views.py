@@ -27,6 +27,8 @@ def home(request):
     df_display = df.drop("Lookup",1)
     df_display = df_display.drop("id",1)
     df_display = df_display.drop("Word_List",1)
+    df_display = df_display.sort_values(by='Date_Start')
+
 
     cols  = "Title,Author,Type,Genre,Date_Start,Date_Finish,Word_Count,Unique_Words,Vocab_Density".split(",")
     df_display = df_display[cols]
@@ -37,8 +39,10 @@ def home(request):
         html_table = html_table.replace(n ,  "<a class=\"mylink\" href=\"#\">"+n+"</a>")
 
     context = {
-        "default" : book_names[0],
+        "default" : book_names[len(book_names)-1],
         "html_table": html_table,
+        "title": df_display['Title'].tolist(),
+        "date": [str(dt) for dt in df_display['Date_Start'].tolist()]
     }
     return render(request, 'books/home.html', context)
 
