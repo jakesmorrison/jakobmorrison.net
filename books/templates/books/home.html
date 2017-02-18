@@ -252,21 +252,21 @@ $('.table').DataTable({
 });
 
 function spacing(xcomp,t,d){
-  $('.timeline').append('<div  id="'+t[0].replace(" ","_")+'" style="left:'+xcomp[0]+'%" class="tick" onClick="tick_on_click(this)" onMouseOver="tick_on_mouseover(this)" onMouseOut="tick_on_mouseout(this)"><p class="timeline_labels '+t[0].replace(" ","_")+'">'+t[0]+'</p></div>');
+  $('.timeline').append('<div  id="'+t[0].replace(/ /g,"_")+'" style="left:'+xcomp[0]+'%" class="tick" onClick="tick_on_click(this)" onMouseOver="tick_on_mouseover(this)" onMouseOut="tick_on_mouseout(this)"><p class="timeline_labels '+t[0].replace(/ /g,"_")+'">'+t[0]+'</p></div>');
   total_width = $('.line').width();
   total_width_minus = $('.line').width()-$('.tick').width()-10;
   prev_val = 0;
   for(i=1; i<xcomp.length; i++){
     if(i==1){
-        $('.timeline').append('<div id="'+t[i].replace(" ","_")+'" style="left:'+xcomp[i]+'%" class="tick" onClick="tick_on_click(this)" onMouseOver="tick_on_mouseover(this)" onMouseOut="tick_on_mouseout(this)"><p class="timeline_labels '+t[i].replace(" ","_")+'">'+t[i]+'</p></div>');
+        $('.timeline').append('<div id="'+t[i].replace(/ /g,"_")+'" style="left:'+xcomp[i]+'%" class="tick" onClick="tick_on_click(this)" onMouseOver="tick_on_mouseover(this)" onMouseOut="tick_on_mouseout(this)"><p class="timeline_labels '+t[i].replace(/ /g,"_")+'">'+t[i]+'</p></div>');
         prev_val = xcomp[i];
     }
     else if(i==xcomp.length-1){
-        $('.timeline').append('<div id="'+t[i].replace(" ","_")+'" style="left:100%" class="tick" onClick="tick_on_click(this)" onMouseOver="tick_on_mouseover(this)" onMouseOut="tick_on_mouseout(this)"><p class="timeline_labels '+t[i].replace(" ","_")+'">'+t[i]+'</p></div>');
+        $('.timeline').append('<div id="'+t[i].replace(/ /g,"_")+'" style="left:100%" class="tick" onClick="tick_on_click(this)" onMouseOver="tick_on_mouseover(this)" onMouseOut="tick_on_mouseout(this)"><p class="timeline_labels '+t[i].replace(/ /g,"_")+'">'+t[i]+'</p></div>');
     }
     else{
         temp = xcomp[i] + prev_val;
-        $('.timeline').append('<div id="'+t[i].replace(" ","_")+'" style="left:'+temp+'%" class="tick" onClick="tick_on_click(this)" onMouseOver="tick_on_mouseover(this)" onMouseOut="tick_on_mouseout(this)"><p class="timeline_labels '+t[i].replace(" ","_")+'">'+t[i]+'</p></div>');
+        $('.timeline').append('<div id="'+t[i].replace(/ /g,"_")+'" style="left:'+temp+'%" class="tick" onClick="tick_on_click(this)" onMouseOver="tick_on_mouseover(this)" onMouseOut="tick_on_mouseout(this)"><p class="timeline_labels '+t[i].replace(/ /g,"_")+'">'+t[i]+'</p></div>');
         prev_val = temp;
     }
   }
@@ -279,14 +279,14 @@ function tick_on_click(element){
 function tick_on_mouseover(element){
 	$(element).css("background", "#09f");
 	id_name = $(element).attr('id');
-	id_name = id_name.replace(" ","_");
+	id_name = id_name.replace(/ /g,"_");
 	$('.'+id_name).css("font-size", "20px");
 }
 
 function tick_on_mouseout(element){
 	$(element).css("background", "#fff");
     id_name = $(element).attr('id');
-	id_name = id_name.replace(" ","_");
+	id_name = id_name.replace(/ /g,"_");
 	$('.'+id_name).css("font-size", "10px");
 
 }
