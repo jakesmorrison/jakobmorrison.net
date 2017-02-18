@@ -22,4 +22,5 @@ python manage.py book_to_db "The Hitchhiker's Guide to the Galaxy" "Douglas Adam
 
 
 
+
 http://www.patternify.com/
