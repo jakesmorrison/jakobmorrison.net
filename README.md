@@ -18,5 +18,8 @@ Find my site at jakobmorrison.net
 python manage.py book_to_db "1984" "George Orwell" "1984.txt" "Fiction" "Dystopian" "2016-11-19" "2016-11-25" --settings=jakobmorrison.apache.override
 python manage.py book_to_db "Foundation" "Isaac Asimov" "foundation.txt" "Fiction" "Science Fiction" "2016-01-29" "2016-02-05" --settings=jakobmorrison.apache.override
 python manage.py book_to_db "The Sun Also Rises" "Ernest Hemingway" "thesunalsorises.txt" "Fiction" "Classics" "2016-02-07" "2016-02-17" --settings=jakobmorrison.apache.override
+python manage.py book_to_db "The Hitchhiker's Guide to the Galaxy" "Douglas Adams" "the_hitchhikers_guide_to_the_galaxy.txt" "Fiction" "Science Fiction" "2016-02-17" "2016-02-19" --settings=jakobmorrison.apache.override
+
+
 
 http://www.patternify.com/
