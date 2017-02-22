@@ -35,8 +35,15 @@ class Book_Methods():
                 clean = re.sub("[^a-zA-Z]", " ", raw_sentence)
                 sentences.append(clean.split())
 
-        self.build_w2v_model(sentences, lookup)
-        self.create_2d_word_vectors(lookup)
+        if not os.path.exists(trained_path):
+            os.makedirs(trained_path)
+        if not os.path.exists(vector_path):
+            os.makedirs(vector_path)
+
+        if not os.path.exists(os.path.join(trained_path, lookup+".w2v")):
+            self.build_w2v_model(sentences, lookup)
+        if not os.path.exists(os.path.join(vector_path, lookup+".pkl")):
+            self.create_2d_word_vectors(lookup)
         return sentences
 
     def build_w2v_model(self, sentences, lookup):
