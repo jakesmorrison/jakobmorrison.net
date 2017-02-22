@@ -8,7 +8,6 @@ import json
 from collections import Counter
 import os
 from jakobmorrison.settings import BASE_DIR
-book_path = os.path.join(BASE_DIR, 'books/static/books/book_list/')
 
 
 class Command(BaseCommand):
@@ -25,16 +24,12 @@ class Command(BaseCommand):
         self.book_to_db(options['title'],options['author'],options['lookup'],options['type'],options['genre'],options['ds'],options['df'])
 
     def book_to_db(self, title, author, lookup, type, genre, ds, df):
-        book_string = methods.Book_Methods.clean_up(book_path+lookup)
-        words, unique_words, vocab_density = methods.Book_Methods.get_stats(book_string)
+        m = methods.Book_Methods()
+        book_sentences = m.clean_up(lookup)
+        context = m.get_stats(book_sentences,lookup)
 
-        word_dict = []
-        for w in words:
-            word_dict.append(w)
-        word_dict = Counter(word_dict)
-        word_dict = json.dumps(list(sorted(word_dict.items())))
-
-        s = Books(
+        # s = Books(
+        (book_instance, new_book) = Books.objects.update_or_create(
             Title=title,
             Lookup= lookup,
             Author =author,
@@ -42,12 +37,17 @@ class Command(BaseCommand):
             Genre = genre,
             Date_Start = ds,
             Date_Finish = df,
-            Word_Count = len(words),
-            Unique_Words = len(unique_words),
-            Vocab_Density = vocab_density,
-            Word_List= word_dict,
+            Word_Count = context["word_count"],
+            Sentence_Count = context["sentence_count"],
+            Word_Per_Sentence = context["words_per_sentence"],
+            Unique_Words = context["unique_words"],
+            Average_Unique_Word_Length = context["average_unique_word_length"],
+            Vocab_Density = context["vocab_density"],
+            Unique_Word_list = json.dumps(context["unique_words_len_arr"].tolist()),
+            Occurance_Dict = json.dumps(context["occurance_dict"]),
         )
-        s.save()
+        # s.save()
+
     def test(self,title, author, lookup, type, genre, ds, df):
         book_string = methods.Book_Methods.clean_up(book_path+lookup)
         words, unique_words, vocab_density = methods.Book_Methods.get_stats(book_string)

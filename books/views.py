@@ -10,6 +10,7 @@ from .models import Books
 import json
 import pandas as pd
 import numpy as np
+import re
 
 from .management import config as cfg
 cfg = cfg.Config
@@ -26,11 +27,12 @@ def home(request):
 
     df_display = df.drop("Lookup",1)
     df_display = df_display.drop("id",1)
-    df_display = df_display.drop("Word_List",1)
+    df_display = df_display.drop("Unique_Word_list",1)
+    df_display = df_display.drop("Occurance_Dict",1)
     df_display = df_display.sort_values(by='Date_Start')
 
-
-    cols  = "Title,Author,Type,Genre,Date_Start,Date_Finish,Word_Count,Unique_Words,Vocab_Density".split(",")
+    cols  = "Title,Author,Type,Genre,Date_Start,Date_Finish,Word_Count,Sentence_Count,Word_Per_Sentence,Unique_Words," \
+            "Average_Unique_Word_Length,Vocab_Density".split(",")
     df_display = df_display[cols]
     book_names = df_display["Title"].tolist()
 
@@ -64,29 +66,19 @@ def quick_chart(request):
     df_book = df[df["Title"] == book]
 
     # Need to un json dumps the data
-    words = json.loads(df_book["Word_List"].tolist()[0])
-
-    # Creating a dictionary of wordlength to frequency.
-    my_dict = {}
-    for x in words:
-        if len(str(x[0])) in my_dict:
-            my_dict[len(str(x[0]))] += x[1]
-        else:
-            my_dict[len(str(x[0]))] = x[1]
-    (word_length, frequency) = zip(*my_dict.items())
-
-    # CDF
-    probablity = [x / df_book["Word_Count"].tolist()[0] for x in frequency]
-
-    # Word Cloud
-    word_cloud = methods.Book_Methods.word_cloud(words)
+    words = json.loads(df_book["Unique_Word_list"].tolist()[0])
+    histo = dict(Counter(words))
 
     # Saving Series to config file
-    cfg.SERIES = [{'name':book, 'data':probablity}]
-    cfg.CAT = list(word_length)
+    my_sum = sum(list(histo.values()))
+    cdf = [x/my_sum for x in list(histo.values())]
+    cfg.SERIES = [{'name':book, 'data':cdf}]
+    cfg.CAT = list(histo.keys())
+
 
     # Creating scatter plot plot
-    scatter_data = [list(a) for a in zip(df["Word_Count"].tolist(), df["Vocab_Density"].tolist())]
+    scatter = list(zip(df["Word_Count"].tolist(), df["Vocab_Density"].tolist()))
+    scatter_data = [list(a) for a in scatter]
     new_scatter = []
     for n,x in enumerate(scatter_data):
         new_scatter.append({'name': df["Title"].tolist()[n], 'x': float("%.2f"%x[0]), 'y': float("%.2f"%x[1])})
@@ -98,13 +90,21 @@ def quick_chart(request):
     for n,x in enumerate(reg):
         new_reg.append([float("%.2f"%x[0]), float("%.2f"%x[1])])
 
+    # word cloud
+    word_cloud = json.loads(df_book["Occurance_Dict"].tolist()[0])
+
+    word_cloud_new = []
+    for x in word_cloud:
+        key, value = list(x.items())[0]
+        word_cloud_new.append({'text':key,'weight':value})
+
     context = {
         "book": book,
         "cat": cfg.CAT,
         "series": cfg.SERIES,
         "scatter": new_scatter,
         "regression": new_reg,
-        "word_cloud": word_cloud
+        "word_cloud": word_cloud_new
     }
     return JsonResponse(json.loads(json.dumps(context)))
 

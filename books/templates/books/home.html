@@ -214,8 +214,9 @@ function make_chart(url) {
         $('#demo').jQCloud('destroy');
 
         var word_cloud = chart_data.word_cloud;
-        $('#demo').jQCloud(word_cloud)
-        $('#demo').jQCloud('update',word_cloud)
+        console.log(word_cloud);
+        $('#demo').jQCloud(word_cloud);
+        $('#demo').jQCloud('update',word_cloud);
         $('.title_change').text(chart_data.book);
     });
 }
