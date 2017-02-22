@@ -11,8 +11,15 @@ import json
 import pandas as pd
 import numpy as np
 import re
+import os
 
 from .management import config as cfg
+from jakobmorrison.settings import BASE_DIR
+
+vector_path = os.path.join(BASE_DIR, 'books/static/books/vector/')
+nltk_path = os.path.join(BASE_DIR, 'books/static/books/nltk/')
+
+
 cfg = cfg.Config
 cfg.SERIES=[]
 cfg.CAT = []
@@ -59,6 +66,9 @@ def quick_chart(request):
     for x in db_books.values():
         df_temp = pd.DataFrame.from_dict(dict(x.items()), orient='index')
         df = df.append(df_temp.T, ignore_index=True)
+    lookup = df[df["Title"] == book]
+    lookup = lookup["Lookup"].tolist()[0]
+
     df = df.drop("Lookup",1)
     df = df.drop("id",1)
 
@@ -98,13 +108,45 @@ def quick_chart(request):
         key, value = list(x.items())[0]
         word_cloud_new.append({'text':key,'weight':value})
 
+    df_vector = pd.read_pickle(os.path.join(vector_path,lookup+".pkl"))
+    vector_word =df_vector["word"]
+    x_word = df_vector["x"]
+    y_word = df_vector["y"]
+
+    # Creating vector plot
+    from nltk.corpus import wordnet as wn
+    import nltk
+    nltk.data.load(nltk_path + "averaged_perceptron_tagger/averaged_perceptron_tagger.pickle")
+
+    vector_scatter = []
+    for x in range(0,len(vector_word)):
+        t = wn.synsets(vector_word[x])
+        try:
+            t = (t[0].pos())
+        except:
+            t = "?"
+
+        if t == "a":
+            vector_scatter.append({'fillColor': 'red','name': vector_word[x] +" (Adjective)", 'x': x_word[x], 'y': y_word[x]})
+        elif t == "r":
+            vector_scatter.append({'fillColor': 'blue','name': vector_word[x] +" (Adverb)", 'x': x_word[x], 'y': y_word[x]})
+        elif t == "n":
+            vector_scatter.append({'fillColor': 'green','name': vector_word[x] +" (Noun)", 'x': x_word[x], 'y': y_word[x]})
+        elif t == "v":
+            vector_scatter.append({'fillColor': 'purple','name': vector_word[x] +" (Verb)", 'x': x_word[x], 'y': y_word[x]})
+        elif t == "s":
+            vector_scatter.append({'fillColor': 'orange','name': vector_word[x] +" (Adjective Sat)", 'x': x_word[x], 'y': y_word[x]})
+        elif t == "?":
+            vector_scatter.append({'fillColor': 'black','name': vector_word[x] +" (?)", 'x': x_word[x], 'y': y_word[x]})
+
     context = {
         "book": book,
         "cat": cfg.CAT,
         "series": cfg.SERIES,
         "scatter": new_scatter,
         "regression": new_reg,
-        "word_cloud": word_cloud_new
+        "word_cloud": word_cloud_new,
+        "vector_scatter": vector_scatter
     }
     return JsonResponse(json.loads(json.dumps(context)))
 

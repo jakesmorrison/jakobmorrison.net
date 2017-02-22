@@ -71,7 +71,12 @@
                 </div>
             </div>
 
-            <div class="page-break"></div>
+            <div class="row-fluid">
+                <div style="margin-top: 10px;" class="col-md-10 col-md-offset-1 col-xs-12">
+                    <br>
+                    <div id="my_vector" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+            </div>
 
             <div class="row-fluid">
                 <div style="margin-top: 10px;" class="col-md-5 col-md-offset-0 col-xs-12">
@@ -81,9 +86,7 @@
                 <div style="margin-top: 30px;"  class="col-md-7 col-md-offset-0 col-xs-12">
                     <div id="my_container_scatter" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                 </div>
-
             </div>
-
         </div>
     </div>
 </div>
@@ -200,6 +203,62 @@ function plot_data(container,cat,series) {
     var chart = new Highcharts.Chart(options);
 }
 
+function plot_vector(container,series) {
+    var options = {
+      chart: {
+        type: 'scatter',
+        zoomType: 'xy',
+        renderTo: container
+
+      },
+      title: {
+        text: 'Word Vector'
+      },
+      subtitle: {
+        text: 'Word Vector.'
+      },
+      xAxis: {
+      },
+      yAxis: {
+        title: {
+          text: 'Probablity'
+        }
+      },
+      plotOptions: {
+        series:{
+            turboThreshold:0
+        },
+        scatter: {
+          marker: {
+            radius: 4,
+            states: {
+              hover: {
+                enabled: true,
+                lineColor: 'rgb(100,100,100)'
+              }
+            }
+          },
+          states: {
+            hover: {
+              marker: {
+                enabled: false
+              }
+            }
+          }
+        }
+      },
+      series: [{
+        tooltip: {
+          headerFormat: '',
+          pointFormat: '<b>{point.name}</b><br/>x: {point.y}'
+        },
+        name: 'myScatter Serie',
+        data: series
+      }]
+    }
+    var chart = new Highcharts.Chart(options);
+}
+
 function make_chart(url) {
     $.getJSON(url, function(chart_data) {
         var cat = chart_data.cat;
@@ -208,6 +267,8 @@ function make_chart(url) {
         var scatter =chart_data.scatter;
         var regression = chart_data.regression;
         plot_scatter("my_container_scatter", scatter, regression)
+
+        plot_vector("my_vector", chart_data.vector_scatter)
 
         var word_cloud = [];
         $('#demo').empty()
