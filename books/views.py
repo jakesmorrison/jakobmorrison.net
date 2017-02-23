@@ -134,6 +134,7 @@ def vector_chart(request):
     from nltk.corpus import wordnet as wn
     import nltk
     nltk.download('averaged_perceptron_tagger')
+    nltk.download('wordnet')
 
     df_vector = pd.read_pickle(os.path.join(vector_path,lookup+".pkl"))
     vector_word =df_vector["word"]
