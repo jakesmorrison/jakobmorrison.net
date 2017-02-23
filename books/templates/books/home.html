@@ -88,6 +88,7 @@
                 </div>
                 <div style="margin-top: 10px;" class="col-md-10 col-md-offset-1 col-xs-12 hide_div picture-pop-css popPicture">
                     <br>
+                    <div class="loader">Loading...</div>
                     <div id="my_vector" style="min-width: 310px; height: 90%; margin: 0 auto"></div>
                     <button type="button" class="btn btn-primary close" style="float:left;">Close</button>
                 </div>
@@ -296,6 +297,7 @@ function make_chart(url) {
 function make_chart2(url) {
     $.getJSON(url, function(chart_data) {
         plot_vector("my_vector", chart_data.vector_scatter)
+        $('.loader').hide();
     });
 }
 
@@ -306,7 +308,7 @@ $('.mylink').click(function($e) {
     params = {'Title': this.text};
     url = url_base + "?" + $.param( params );
     make_chart(url);
-    $('.hide_div').html('');
+    $('#my_vector').html('');
     $('.hide_div').hide();
     $('#show_vector').show();
 });
@@ -379,18 +381,21 @@ function vector_button(element){
     params = {'Title': "{{default|safe}}", "lookup": lookup };
     url = url_base + "?" + $.param( params );
     make_chart2(url);
+    $('.loader').show();
     $('.hide_div').show();
     $('#show_vector').hide();
 }
 
 $('.close').on('click', function() {
     $('.hide_div').hide();
+    $('.loader').hide();
     $('#show_vector').show();
 });
 
 
 $( document ).ready(function() {
     $('.hide_div').hide();
+    $('.loader').hide();
 
     url_base = "{% url 'books:quick_chart' %}";
     params = {'Title': "{{default|safe}}"};
