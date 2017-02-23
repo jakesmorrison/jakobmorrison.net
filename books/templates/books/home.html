@@ -41,8 +41,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a style="cursor: pointer" id="show_vector" onclick="vector_button()">Show Book Vector Plot</a></li>
-            <li><a style="cursor: pointer" id="show_vector" onclick="vector_button()">Show Book Vector Plot</a></li>
+            <li><a style="cursor: pointer" class="show_vector" onclick="vector_button()">Book Vector Plot</a></li>
+            <!--<li><a style="cursor: pointer" class="show_vector" onclick="all_book_vector_button()">All Books Vector Plot</a></li>-->
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -235,36 +235,32 @@ function plot_vector(container,series) {
         }
       },
       plotOptions: {
-        series:{
+      series:{
             turboThreshold:0
         },
         scatter: {
-          marker: {
-            radius: 3,
+            marker: {
+                radius: 3,
+                states: {
+                    hover: {
+                        enabled: true
+                    }
+                }
+            },
             states: {
-              hover: {
-                enabled: true,
-                lineColor: 'rgb(100,100,100)'
-              }
+                hover: {
+                    marker: {
+                        enabled: false
+                    }
+                }
+            },
+            tooltip: {
+              headerFormat: ' ',
+              pointFormat: '<b>{point.name}</b><br>x:{point.x}<br>x:{point.x}'
             }
-          },
-          states: {
-            hover: {
-              marker: {
-                enabled: false
-              }
-            }
-          }
         }
       },
-      series: [{
-        tooltip: {
-          headerFormat: '',
-          pointFormat: '<b>{point.name}</b><br>x: {point.x}<br>y: {point.y}'
-        },
-        name: 'Vector Series',
-        data: series
-      }]
+      series: series
     }
     var chart = new Highcharts.Chart(options);
 }
@@ -294,6 +290,8 @@ function make_chart(url) {
 
 function make_chart2(url) {
     $.getJSON(url, function(chart_data) {
+        $('#my_vector').html('');
+
         plot_vector("my_vector", chart_data.vector_scatter)
         $('.loader').hide();
     });
@@ -308,7 +306,7 @@ $('.mylink').click(function($e) {
     make_chart(url);
     $('#my_vector').html('');
     $('.hide_div').hide();
-    $('#show_vector').show();
+    $('.show_vector').show();
 });
 
 $('.table').DataTable({
@@ -381,13 +379,22 @@ function vector_button(element){
     make_chart2(url);
     $('.loader').show();
     $('.hide_div').show();
-    $('#show_vector').hide();
+    $('.show_vector').hide();
+}
+
+function all_book_vector_button(element){
+    url = "{% url 'books:all_book_vector_chart' %}";
+    make_chart2(url);
+    $('.loader').show();
+    $('.hide_div').show();
+    $('.show_vector').hide();
 }
 
 $('.close').on('click', function() {
+    $('#my_vector').html('');
     $('.hide_div').hide();
     $('.loader').hide();
-    $('#show_vector').show();
+    $('.show_vector').show();
 });
 
 

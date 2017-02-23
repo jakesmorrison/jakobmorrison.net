@@ -143,6 +143,67 @@ def vector_chart(request):
     x_word = df_vector["x"]
     y_word = df_vector["y"]
 
+    a_arr = []
+    r_arr = []
+    n_arr = []
+    v_arr = []
+    s_arr = []
+    q_arr = []
+
+    for x in range(0,len(vector_word)):
+        t = wn.synsets(vector_word[x])
+        try:
+            t = (t[0].pos())
+        except:
+            t = "?"
+
+        if t == "a":
+            # a_arr.append([x_word[x],y_word[x],vector_word[x]])
+            a_arr.append({'fillColor': 'blue','name': vector_word[x], 'x': x_word[x], 'y': y_word[x]})
+        elif t == "r":
+            # r_arr.append([x_word[x],y_word[x],vector_word[x]])
+            r_arr.append({'fillColor': 'black','name': vector_word[x], 'x': x_word[x], 'y': y_word[x]})
+        elif t == "n":
+            # n_arr.append([x_word[x],y_word[x],vector_word[x]])
+            n_arr.append({'fillColor': '#90ed7d','name': vector_word[x], 'x': x_word[x], 'y': y_word[x]})
+        elif t == "v":
+            # v_arr.append([x_word[x],y_word[x],vector_word[x]])
+            v_arr.append({'fillColor': 'orange','name': vector_word[x], 'x': x_word[x], 'y': y_word[x]})
+        elif t == "s":
+            # s_arr.append([x_word[x],y_word[x],vector_word[x]])
+            s_arr.append({'fillColor': 'purple','name': vector_word[x], 'x': x_word[x], 'y': y_word[x]})
+        elif t == "?":
+            # q_arr.append([x_word[x],y_word[x],vector_word[x]])
+            q_arr.append({'fillColor': 'red','name': vector_word[x], 'x': x_word[x], 'y': y_word[x]})
+        # vector_scatter.append({'fillColor': 'black','name': vector_word[x], 'x': x_word[x], 'y': y_word[x]})
+
+    vector_scatter = [{'name':'Adjective','data':a_arr},
+                      {'name':'Adverb','data':r_arr},
+                      {'name': 'Noun', 'data': n_arr},
+                      {'name': 'Verb', 'data': v_arr},
+                      {'name': 'Adjective Sat', 'data': s_arr},
+                      {'name': '?', 'data': q_arr}]
+
+
+    context = {
+        "book": book,
+        "vector_scatter": vector_scatter
+    }
+    return JsonResponse(json.loads(json.dumps(context)))
+
+def all_book_vector_chart(request):
+    print("test")
+    # Creating vector plot
+    from nltk.corpus import wordnet as wn
+    import nltk
+    nltk.download('averaged_perceptron_tagger')
+    nltk.download('wordnet')
+
+    df_vector = pd.read_pickle(os.path.join(vector_path,"all_books.pkl"))
+    vector_word =df_vector["word"]
+    x_word = df_vector["x"]
+    y_word = df_vector["y"]
+
     vector_scatter = []
     for x in range(0,len(vector_word)):
         t = wn.synsets(vector_word[x])
@@ -166,7 +227,6 @@ def vector_chart(request):
         # vector_scatter.append({'fillColor': 'black','name': vector_word[x], 'x': x_word[x], 'y': y_word[x]})
 
     context = {
-        "book": book,
         "vector_scatter": vector_scatter
     }
     return JsonResponse(json.loads(json.dumps(context)))
