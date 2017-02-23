@@ -37,11 +37,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{% url 'books:books.views.home' %}">Book Stuff</a>
+          <a class="navbar-brand" href="{% url 'homepage:homepage.views.home' %}">JM</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="{% url 'homepage:homepage.views.home' %}">jakobmorrison.net</a></li>
+            <li><a style="cursor: pointer" id="show_vector" onclick="vector_button()">Show Book Vector Plot</a></li>
+            <li><a style="cursor: pointer" id="show_vector" onclick="vector_button()">Show Book Vector Plot</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -83,9 +84,6 @@
             </div>
 
             <div class="row-fluid ">
-                <div style="margin-top: 10px;" class="col-md-10 col-md-offset-1 col-xs-12" style="text-align:center;">
-                    <button id="show_vector" class="btn btn-primary hide_button" onclick="vector_button()" style="position: absolute; top: 50%;">Show Vector Plot</button>
-                </div>
                 <div style="margin-top: 10px;" class="col-md-10 col-md-offset-1 col-xs-12 hide_div picture-pop-css popPicture">
                     <br>
                     <div class="loader">Loading...</div>
