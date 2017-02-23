@@ -163,8 +163,6 @@ def vector_chart(request):
             vector_scatter.append({'fillColor': 'black','name': vector_word[x] +" (?)", 'x': x_word[x], 'y': y_word[x]})
         # vector_scatter.append({'fillColor': 'black','name': vector_word[x], 'x': x_word[x], 'y': y_word[x]})
 
-
-
     context = {
         "book": book,
         "vector_scatter": vector_scatter

@@ -82,8 +82,11 @@
                 </div>
             </div>
 
-            <div class="row-fluid">
-                <div style="margin-top: 10px;" class="col-md-10 col-md-offset-1 col-xs-12">
+            <div class="row-fluid ">
+                <div style="margin-top: 10px;" class="col-md-10 col-md-offset-1 col-xs-12" style="text-align:center;">
+                    <button id="show_vector" class="btn btn-primary hide_button" onclick="vector_button()" style="position: absolute; top: 50%;">Show Vector Plot</button>
+                </div>
+                <div style="margin-top: 10px;" class="col-md-10 col-md-offset-1 col-xs-12 hide_div">
                     <br>
                     <div id="my_vector" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                 </div>
@@ -223,7 +226,13 @@ function plot_vector(container,series) {
       },
       yAxis: {
         title: {
-          text: 'Probablity'
+          text: 'Probablity',
+          marker: {
+            enabled: true,
+            symbol: 'circle',
+            radius: 2
+        }
+
         }
       },
       plotOptions: {
@@ -298,10 +307,8 @@ $('.mylink').click(function($e) {
     url = url_base + "?" + $.param( params );
     make_chart(url);
 
-    url_base = "{% url 'books:vector_chart' %}";
-    params = {'Title': "{{default|safe}}", "lookup": "{{ lookup|safe }}" };
-    url = url_base + "?" + $.param( params );
-    make_chart2(url);
+    $('.hide_div').hide();
+    $('#show_vector').show();
 
 });
 
@@ -368,16 +375,22 @@ function tick_on_mouseout(element){
     $('.'+id_name).css("width", "80px");
 }
 
-$( document ).ready(function() {
-    url_base = "{% url 'books:quick_chart' %}";
-    params = {'Title': "{{default|safe}}"};
-    url = url_base + "?" + $.param( params );
-    make_chart(url);
-
+function vector_button(element){
     url_base = "{% url 'books:vector_chart' %}";
     params = {'Title': "{{default|safe}}", "lookup": "{{ lookup|safe }}" };
     url = url_base + "?" + $.param( params );
     make_chart2(url);
+    $('.hide_div').show();
+    $('#show_vector').hide();
+}
+
+$( document ).ready(function() {
+    $('.hide_div').hide();
+
+    url_base = "{% url 'books:quick_chart' %}";
+    params = {'Title': "{{default|safe}}"};
+    url = url_base + "?" + $.param( params );
+    make_chart(url);
 
     t = {{ title|safe }};
     d = {{ date|safe }};
@@ -412,7 +425,6 @@ $( document ).ready(function() {
     for(i=0; i<x_comp.length;i++){
         sum += x_comp[i];
     }
-
 
     x_comp_percent = []
     for(i=0; i<x_comp.length;i++){
