@@ -76,6 +76,7 @@ def quick_chart(request):
     lookup = df[df["Title"] == book]
     lookup = lookup["Lookup"].tolist()[0]
 
+
     df = df.drop("Lookup",1)
     df = df.drop("id",1)
 
@@ -122,6 +123,7 @@ def quick_chart(request):
         "scatter": new_scatter,
         "regression": new_reg,
         "word_cloud": word_cloud_new,
+        "lookup": lookup
     }
     return JsonResponse(json.loads(json.dumps(context)))
 
@@ -150,17 +152,17 @@ def vector_chart(request):
             t = "?"
 
         if t == "a":
-            vector_scatter.append({'fillColor': 'red','name': vector_word[x] +" (Adjective)", 'x': x_word[x], 'y': y_word[x]})
+            vector_scatter.append({'id':vector_word[x],'fillColor': 'red','name': vector_word[x] +" (Adjective)", 'x': x_word[x], 'y': y_word[x]})
         elif t == "r":
-            vector_scatter.append({'fillColor': 'blue','name': vector_word[x] +" (Adverb)", 'x': x_word[x], 'y': y_word[x]})
+            vector_scatter.append({'id':vector_word[x],'fillColor': 'blue','name': vector_word[x] +" (Adverb)", 'x': x_word[x], 'y': y_word[x]})
         elif t == "n":
-            vector_scatter.append({'fillColor': 'green','name': vector_word[x] +" (Noun)", 'x': x_word[x], 'y': y_word[x]})
+            vector_scatter.append({'id':vector_word[x],'fillColor': 'green','name': vector_word[x] +" (Noun)", 'x': x_word[x], 'y': y_word[x]})
         elif t == "v":
-            vector_scatter.append({'fillColor': 'purple','name': vector_word[x] +" (Verb)", 'x': x_word[x], 'y': y_word[x]})
+            vector_scatter.append({'id':vector_word[x],'fillColor': 'purple','name': vector_word[x] +" (Verb)", 'x': x_word[x], 'y': y_word[x]})
         elif t == "s":
-            vector_scatter.append({'fillColor': 'orange','name': vector_word[x] +" (Adjective Sat)", 'x': x_word[x], 'y': y_word[x]})
+            vector_scatter.append({'id':vector_word[x],'fillColor': 'orange','name': vector_word[x] +" (Adjective Sat)", 'x': x_word[x], 'y': y_word[x]})
         elif t == "?":
-            vector_scatter.append({'fillColor': 'black','name': vector_word[x] +" (?)", 'x': x_word[x], 'y': y_word[x]})
+            vector_scatter.append({'id':vector_word[x],'fillColor': 'black','name': vector_word[x] +" (?)", 'x': x_word[x], 'y': y_word[x]})
         # vector_scatter.append({'fillColor': 'black','name': vector_word[x], 'x': x_word[x], 'y': y_word[x]})
 
     context = {

@@ -86,9 +86,10 @@
                 <div style="margin-top: 10px;" class="col-md-10 col-md-offset-1 col-xs-12" style="text-align:center;">
                     <button id="show_vector" class="btn btn-primary hide_button" onclick="vector_button()" style="position: absolute; top: 50%;">Show Vector Plot</button>
                 </div>
-                <div style="margin-top: 10px;" class="col-md-10 col-md-offset-1 col-xs-12 hide_div">
+                <div style="margin-top: 10px;" class="col-md-10 col-md-offset-1 col-xs-12 hide_div picture-pop-css popPicture">
                     <br>
-                    <div id="my_vector" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    <div id="my_vector" style="min-width: 310px; height: 93%; margin: 0 auto"></div>
+                    <button type="button" class="btn btn-primary close" style="float:left;">Close</button>
                 </div>
             </div>
 
@@ -108,6 +109,8 @@
 
 <script type="text/javascript">
 
+
+var lookup = " "
 function plot_scatter(container, scatter, regression){
     var options = {
         chart: {
@@ -220,19 +223,16 @@ function plot_vector(container,series) {
         text: 'Word Vector'
       },
       subtitle: {
-        text: 'Word Vector.'
+        text: ''
       },
       xAxis: {
+        title: {
+          text: 'X'
+        }
       },
       yAxis: {
         title: {
-          text: 'Probablity',
-          marker: {
-            enabled: true,
-            symbol: 'circle',
-            radius: 2
-        }
-
+          text: 'Y'
         }
       },
       plotOptions: {
@@ -241,7 +241,7 @@ function plot_vector(container,series) {
         },
         scatter: {
           marker: {
-            radius: 4,
+            radius: 3,
             states: {
               hover: {
                 enabled: true,
@@ -261,9 +261,9 @@ function plot_vector(container,series) {
       series: [{
         tooltip: {
           headerFormat: '',
-          pointFormat: '<b>{point.name}</b><br/>x: {point.y}'
+          pointFormat: '<b>{point.name}</b><br>x: {point.x}<br>y: {point.y}'
         },
-        name: 'myScatter Serie',
+        name: 'Vector Series',
         data: series
       }]
     }
@@ -279,8 +279,6 @@ function make_chart(url) {
         var regression = chart_data.regression;
         plot_scatter("my_container_scatter", scatter, regression)
 
-        plot_vector("my_vector", chart_data.vector_scatter)
-
         var word_cloud = [];
         $('#demo').empty()
         $('#demo').jQCloud('destroy');
@@ -290,6 +288,8 @@ function make_chart(url) {
         $('#demo').jQCloud(word_cloud);
         $('#demo').jQCloud('update',word_cloud);
         $('.title_change').text(chart_data.book);
+
+        lookup = chart_data.lookup;
     });
 }
 
@@ -309,7 +309,6 @@ $('.mylink').click(function($e) {
 
     $('.hide_div').hide();
     $('#show_vector').show();
-
 });
 
 $('.table').DataTable({
@@ -377,12 +376,18 @@ function tick_on_mouseout(element){
 
 function vector_button(element){
     url_base = "{% url 'books:vector_chart' %}";
-    params = {'Title': "{{default|safe}}", "lookup": "{{ lookup|safe }}" };
+    params = {'Title': "{{default|safe}}", "lookup": lookup };
     url = url_base + "?" + $.param( params );
     make_chart2(url);
     $('.hide_div').show();
     $('#show_vector').hide();
 }
+
+$('.close').on('click', function() {
+    $('.hide_div').hide();
+    $('#show_vector').show();
+});
+
 
 $( document ).ready(function() {
     $('.hide_div').hide();
@@ -391,6 +396,8 @@ $( document ).ready(function() {
     params = {'Title': "{{default|safe}}"};
     url = url_base + "?" + $.param( params );
     make_chart(url);
+
+    lookup = "{{lookup|safe}}";
 
     t = {{ title|safe }};
     d = {{ date|safe }};

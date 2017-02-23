@@ -21,3 +21,40 @@
 .table.dataTable{
     table-layout:fixed;
 }
+
+.picture-pop-css {
+  background-color:white;
+  border:1px solid black;
+  cursor:default;
+  display:none;
+  margin-top: 15px;
+  position:absolute;
+  text-align:left;
+  width:394px;
+  z-index:50;
+}
+
+
+.picture-pop-css p, .picture-pop-css.div {
+  border-bottom: 1px solid #EFEFEF;
+  margin: 8px 0;
+  padding-bottom: 8px;
+}
+
+.picture-pop-css {
+    position: absolute;
+    bottom: 0;
+    left: 0%;
+    right: 0;
+    margin: auto;
+    background-color: white;
+    width: 80%;
+    height: 85%;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+
+.close{
+    color:black;
+    opacity: 1;
+}
