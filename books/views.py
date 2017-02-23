@@ -31,6 +31,7 @@ def home(request):
     for x in db_books.values():
         df_temp = pd.DataFrame.from_dict(dict(x.items()), orient='index')
         df = df.append(df_temp.T, ignore_index=True)
+    df_lookup = df
 
     df_display = df.drop("Lookup",1)
     df_display = df_display.drop("id",1)
@@ -47,11 +48,16 @@ def home(request):
     for n in book_names:
         html_table = html_table.replace(n ,  "<a class=\"mylink\" href=\"#\">"+n+"</a>")
 
+
+    lookup = df_lookup[df_lookup["Title"] == book_names[len(book_names)-1]]
+    lookup = lookup["Lookup"].tolist()[0]
+
     context = {
         "default" : book_names[len(book_names)-1],
         "html_table": html_table,
         "title": df_display['Title'].tolist(),
-        "date": [str(dt) for dt in df_display['Date_Start'].tolist()]
+        "date": [str(dt) for dt in df_display['Date_Start'].tolist()],
+        "lookup":lookup
     }
     return render(request, 'books/home.html', context)
 
@@ -59,6 +65,7 @@ def home(request):
 def quick_chart(request):
     params = request.GET
     book = (params["Title"])
+
 
     # Converting db into df and dropping columns that arent needed.
     db_books = Books.objects.all()
@@ -108,15 +115,30 @@ def quick_chart(request):
         key, value = list(x.items())[0]
         word_cloud_new.append({'text':key,'weight':value})
 
-    df_vector = pd.read_pickle(os.path.join(vector_path,lookup+".pkl"))
-    vector_word =df_vector["word"]
-    x_word = df_vector["x"]
-    y_word = df_vector["y"]
+    context = {
+        "book": book,
+        "cat": cfg.CAT,
+        "series": cfg.SERIES,
+        "scatter": new_scatter,
+        "regression": new_reg,
+        "word_cloud": word_cloud_new,
+    }
+    return JsonResponse(json.loads(json.dumps(context)))
+
+def vector_chart(request):
+    params = request.GET
+    book = (params["Title"])
+    lookup = (params["lookup"])
 
     # Creating vector plot
     from nltk.corpus import wordnet as wn
     import nltk
     nltk.data.load(nltk_path + "averaged_perceptron_tagger/averaged_perceptron_tagger.pickle")
+
+    df_vector = pd.read_pickle(os.path.join(vector_path,lookup+".pkl"))
+    vector_word =df_vector["word"]
+    x_word = df_vector["x"]
+    y_word = df_vector["y"]
 
     vector_scatter = []
     for x in range(0,len(vector_word)):
@@ -139,14 +161,9 @@ def quick_chart(request):
         elif t == "?":
             vector_scatter.append({'fillColor': 'black','name': vector_word[x] +" (?)", 'x': x_word[x], 'y': y_word[x]})
 
+
     context = {
         "book": book,
-        "cat": cfg.CAT,
-        "series": cfg.SERIES,
-        "scatter": new_scatter,
-        "regression": new_reg,
-        "word_cloud": word_cloud_new,
         "vector_scatter": vector_scatter
     }
     return JsonResponse(json.loads(json.dumps(context)))
-

@@ -71,12 +71,6 @@
                 </div>
             </div>
 
-            <div class="row-fluid">
-                <div style="margin-top: 10px;" class="col-md-10 col-md-offset-1 col-xs-12">
-                    <br>
-                    <div id="my_vector" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-                </div>
-            </div>
 
             <div class="row-fluid">
                 <div style="margin-top: 10px;" class="col-md-5 col-md-offset-0 col-xs-12">
@@ -87,6 +81,14 @@
                     <div id="my_container_scatter" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                 </div>
             </div>
+
+            <div class="row-fluid">
+                <div style="margin-top: 10px;" class="col-md-10 col-md-offset-1 col-xs-12">
+                    <br>
+                    <div id="my_vector" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -275,12 +277,19 @@ function make_chart(url) {
         $('#demo').jQCloud('destroy');
 
         var word_cloud = chart_data.word_cloud;
-        console.log(word_cloud);
+
         $('#demo').jQCloud(word_cloud);
         $('#demo').jQCloud('update',word_cloud);
         $('.title_change').text(chart_data.book);
     });
 }
+
+function make_chart2(url) {
+    $.getJSON(url, function(chart_data) {
+        plot_vector("my_vector", chart_data.vector_scatter)
+    });
+}
+
 
 $('.mylink').click(function($e) {
     $e.preventDefault();
@@ -288,6 +297,11 @@ $('.mylink').click(function($e) {
     params = {'Title': this.text};
     url = url_base + "?" + $.param( params );
     make_chart(url);
+
+    url_base = "{% url 'books:vector_chart' %}";
+    params = {'Title': "{{default|safe}}", "lookup": "{{ lookup|safe }}" };
+    url = url_base + "?" + $.param( params );
+    make_chart2(url);
 
 });
 
@@ -359,6 +373,11 @@ $( document ).ready(function() {
     params = {'Title': "{{default|safe}}"};
     url = url_base + "?" + $.param( params );
     make_chart(url);
+
+    url_base = "{% url 'books:vector_chart' %}";
+    params = {'Title': "{{default|safe}}", "lookup": "{{ lookup|safe }}" };
+    url = url_base + "?" + $.param( params );
+    make_chart2(url);
 
     t = {{ title|safe }};
     d = {{ date|safe }};
