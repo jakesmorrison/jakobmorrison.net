@@ -131,9 +131,15 @@ def vector_chart(request):
     lookup = (params["lookup"])
 
     # Creating vector plot
-    # from nltk.corpus import wordnet as wn
-    # import nltk
-    # nltk.data.load(nltk_path + "averaged_perceptron_tagger/averaged_perceptron_tagger.pickle")
+    from nltk.corpus import wordnet as wn
+    import nltk
+
+    try:
+        from django.conf import settings
+        nltk.data.load(settings.STATIC_ROOT + "/books/nltk/averaged_perceptron_tagger/averaged_perceptron_tagger.pickle")
+
+    except:
+        nltk.data.load(nltk_path + "averaged_perceptron_tagger/averaged_perceptron_tagger.pickle")
 
     df_vector = pd.read_pickle(os.path.join(vector_path,lookup+".pkl"))
     vector_word =df_vector["word"]
@@ -142,25 +148,25 @@ def vector_chart(request):
 
     vector_scatter = []
     for x in range(0,len(vector_word)):
-        # t = wn.synsets(vector_word[x])
-        # try:
-        #     t = (t[0].pos())
-        # except:
-        #     t = "?"
-        #
-        # if t == "a":
-        #     vector_scatter.append({'fillColor': 'red','name': vector_word[x] +" (Adjective)", 'x': x_word[x], 'y': y_word[x]})
-        # elif t == "r":
-        #     vector_scatter.append({'fillColor': 'blue','name': vector_word[x] +" (Adverb)", 'x': x_word[x], 'y': y_word[x]})
-        # elif t == "n":
-        #     vector_scatter.append({'fillColor': 'green','name': vector_word[x] +" (Noun)", 'x': x_word[x], 'y': y_word[x]})
-        # elif t == "v":
-        #     vector_scatter.append({'fillColor': 'purple','name': vector_word[x] +" (Verb)", 'x': x_word[x], 'y': y_word[x]})
-        # elif t == "s":
-        #     vector_scatter.append({'fillColor': 'orange','name': vector_word[x] +" (Adjective Sat)", 'x': x_word[x], 'y': y_word[x]})
-        # elif t == "?":
-        #     vector_scatter.append({'fillColor': 'black','name': vector_word[x] +" (?)", 'x': x_word[x], 'y': y_word[x]})
-        vector_scatter.append({'fillColor': 'black','name': vector_word[x], 'x': x_word[x], 'y': y_word[x]})
+        t = wn.synsets(vector_word[x])
+        try:
+            t = (t[0].pos())
+        except:
+            t = "?"
+
+        if t == "a":
+            vector_scatter.append({'fillColor': 'red','name': vector_word[x] +" (Adjective)", 'x': x_word[x], 'y': y_word[x]})
+        elif t == "r":
+            vector_scatter.append({'fillColor': 'blue','name': vector_word[x] +" (Adverb)", 'x': x_word[x], 'y': y_word[x]})
+        elif t == "n":
+            vector_scatter.append({'fillColor': 'green','name': vector_word[x] +" (Noun)", 'x': x_word[x], 'y': y_word[x]})
+        elif t == "v":
+            vector_scatter.append({'fillColor': 'purple','name': vector_word[x] +" (Verb)", 'x': x_word[x], 'y': y_word[x]})
+        elif t == "s":
+            vector_scatter.append({'fillColor': 'orange','name': vector_word[x] +" (Adjective Sat)", 'x': x_word[x], 'y': y_word[x]})
+        elif t == "?":
+            vector_scatter.append({'fillColor': 'black','name': vector_word[x] +" (?)", 'x': x_word[x], 'y': y_word[x]})
+        # vector_scatter.append({'fillColor': 'black','name': vector_word[x], 'x': x_word[x], 'y': y_word[x]})
 
 
 
