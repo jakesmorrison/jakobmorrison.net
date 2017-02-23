@@ -88,7 +88,7 @@
                 </div>
                 <div style="margin-top: 10px;" class="col-md-10 col-md-offset-1 col-xs-12 hide_div picture-pop-css popPicture">
                     <br>
-                    <div id="my_vector" style="min-width: 310px; height: 93%; margin: 0 auto"></div>
+                    <div id="my_vector" style="min-width: 310px; height: 90%; margin: 0 auto"></div>
                     <button type="button" class="btn btn-primary close" style="float:left;">Close</button>
                 </div>
             </div>
@@ -306,7 +306,7 @@ $('.mylink').click(function($e) {
     params = {'Title': this.text};
     url = url_base + "?" + $.param( params );
     make_chart(url);
-
+    $('.hide_div').html('');
     $('.hide_div').hide();
     $('#show_vector').show();
 });
