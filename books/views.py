@@ -133,13 +133,7 @@ def vector_chart(request):
     # Creating vector plot
     from nltk.corpus import wordnet as wn
     import nltk
-
-    try:
-        from django.conf import settings
-        nltk.data.load(settings.STATIC_ROOT + "/books/nltk/averaged_perceptron_tagger/averaged_perceptron_tagger.pickle")
-
-    except:
-        nltk.data.load(nltk_path + "averaged_perceptron_tagger/averaged_perceptron_tagger.pickle")
+    nltk.download('averaged_perceptron_tagger')
 
     df_vector = pd.read_pickle(os.path.join(vector_path,lookup+".pkl"))
     vector_word =df_vector["word"]
