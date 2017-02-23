@@ -21,7 +21,7 @@ python manage.py book_to_db "1984" "George Orwell" "1984" "Fiction" "Dystopian" 
 python manage.py book_to_db "A Short History Of Nearly Everything" "Bill Bryson" "ashorthistoryofnearlyeverything" "Non-Fiction" "Science" "2016-12-19" "2017-01-02" --settings=jakobmorrison.apache.override
 python manage.py book_to_db "Foundation" "Isaac Asimov" "foundation" "Fiction" "Science Fiction" "2017-01-29" "2017-02-05" --settings=jakobmorrison.apache.override
 python manage.py book_to_db "The Sun Also Rises" "Ernest Hemingway" "thesunalsorises" "Fiction" "Classics" "2017-02-07" "2017-02-17" --settings=jakobmorrison.apache.override
-python manage.py book_to_db "The Hitchhiker's Guide to the Galaxy" "Douglas Adams" "the_hitchhikers_guide_to_the_galaxy" "Fiction" "Science Fiction" "2017-02-17" "2017-02-19" --settings=jakobmorrison.apache.override
+python manage.py book_to_db "The Hitchhikers Guide to the Galaxy" "Douglas Adams" "the_hitchhikers_guide_to_the_galaxy" "Fiction" "Science Fiction" "2017-02-17" "2017-02-19" --settings=jakobmorrison.apache.override
 
 
 ## Travel
