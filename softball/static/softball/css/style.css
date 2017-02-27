@@ -78,3 +78,10 @@ td.lowest_pos {background-color:green;}
 .footer-jake{
    color: #9d9d9d;
 }
+
+.dataTables_scroll td {
+  overflow: auto; /* this is what fixes the expansion */
+  text-overflow: ellipsis; /* not supported in all browsers, but I accepted the tradeoff */
+  white-space: nowrap;
+}
+

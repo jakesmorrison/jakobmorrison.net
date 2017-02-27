@@ -17,7 +17,7 @@ class Command(BaseCommand):
         for index, row in df.iterrows():
             s = Stats(
                 season=row["Season"],
-                date= row["Date"],
+                date= str(row["Date"].split("/")[2]+"-"+row["Date"].split("/")[0]+"-"+row["Date"].split("/")[1]),
                 player =row["Player"],
                 games = row["Games"],
                 pa = row["PA"],
