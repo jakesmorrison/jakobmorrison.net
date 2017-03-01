@@ -28,13 +28,13 @@ def index(request):
     df_for_sel.columns = cfg.COLUMN_NAMES
     df_for_sel = df_for_sel[cfg.COLUMN_NAMES_ORDER]
 
-
     df_plot = methods.Softball_Methods.plot_data(df)
 
     # Getting season stats
     df_season = methods.Softball_Methods.season_stats(df)
 
     df_table = df_season.to_html(index=False,classes='table table-striped table-bordered table-hover table-responsive" id="table-custom-sort')
+
     count = 0
     cat_list = []
     new_table = ""
@@ -51,13 +51,12 @@ def index(request):
             count += 1
         new_table = new_table + line+"\n"
 
-
     context = {
         'table': new_table,
         'current_season': cfg.CURRENT_SEASON,
         'seasons': ["All"]+sorted(list(set(df_for_sel["Season"].tolist()))),
-        'players': ["All"] + sorted(list(set(df_for_sel[df_for_sel["Season"] == cfg.CURRENT_SEASON]["Player"].tolist()))),
-        'games': ["All"]+sorted(list(set(df_for_sel[df_for_sel["Season"]==cfg.CURRENT_SEASON]["Date"].tolist()))),
+        'players': ["All"] + sorted(list(set(df_for_sel[df_for_sel["Season"] == cfg.CURRENT_SEASON]["Player"].tolist())), ),
+        'games': ["All"]+sorted(list(set(df_for_sel[df_for_sel["Season"]==cfg.CURRENT_SEASON]["Date"].apply(lambda x: str(x)).tolist()))),
     }
     return(render(request, 'softball/index.html',context))
 
@@ -72,26 +71,21 @@ def index_updates(request):
     df =df.drop("id",1)
     df.columns = cfg.COLUMN_NAMES
     df = df[cfg.COLUMN_NAMES_ORDER]
-
-
-
-    db_for_sel = Stats.objects.all()
-    df_for_sel = pd.DataFrame(list(db_for_sel.values()))
-    df_for_sel =df_for_sel.drop("id",1)
-    df_for_sel.columns = cfg.COLUMN_NAMES
-    df_for_sel = df_for_sel[cfg.COLUMN_NAMES_ORDER]
-
+    df_self = df
 
     if season != "All":
         df = df[df["Season"]==season]
     if game != "All":
-        df = df[df["Date"]==game]
+        df["Date"] = df["Date"].apply(lambda x: str(x))
+        df = df[df["Date"] == game]
     if player != "All":
         df = df[df["Player"]==player]
 
     if season == "All" and game == "All" and player=="All":
-        df_season = methods.Softball_Methods.stats_calc(df)
-        df_season = df_season[df_season["Games"]==1]
+        df_season = df.drop("Season", 1)
+        df_season = df_season.groupby(["Player"]).sum().reset_index()
+        df_season = df_season[df_season["Games"]>5]
+        df_season = methods.Softball_Methods.stats_calc(df_season)
     elif game != "All":
         df_season = methods.Softball_Methods.stats_calc(df)
         df_season = df_season[df_season["Games"]==1]
@@ -99,6 +93,7 @@ def index_updates(request):
         df_season = methods.Softball_Methods.game_stats(df)
     else:
         df_season = methods.Softball_Methods.season_stats(df)
+
 
     df_table = df_season.to_html(index=False,classes='table table-striped table-bordered table-hover table-responsive" id="table-custom-sort')
     count = 0
@@ -117,18 +112,29 @@ def index_updates(request):
             count += 1
         new_table = new_table + line+"\n"
 
-    # print(season)
-    # print(player)
-    print(game)
-
     context = {
         "table": new_table,
-        'seasons': ["All"] + sorted(list(set(df_for_sel["Season"].tolist()))),
-        'players': ["All"] + sorted(list(set(df_for_sel[df_for_sel["Season"] == season]["Player"].tolist()))),
-        'games': ["All"] + sorted(list(set(df_for_sel[df_for_sel["Season"] == season]["Date"].tolist()))),
+        'seasons': ["All"] + sorted(list(set(df_self["Season"].tolist()))),
+        'players': ["All"] + sorted(list(set(df_self[df_self["Season"] == season]["Player"].tolist()))),
+        'games': ["All"] + sorted(list(set(df_self[df_self["Season"] == season]["Date"].apply(lambda x: str(x)).tolist()))),
         'current_season': season,
         'current_players': player,
-        'current_game': game
+        'current_game': game,
     }
     return JsonResponse(json.loads(json.dumps(context)))
 
+def change_season(request):
+    params = request.GET
+    season = params["season"]
+
+    db_stats = Stats.objects.all()
+    df = pd.DataFrame(list(db_stats.values()))
+    df =df.drop("id",1)
+    df.columns = cfg.COLUMN_NAMES
+    df = df[cfg.COLUMN_NAMES_ORDER]
+    df_self = df
+
+    context = {
+        "game_list": ["All"] + sorted(list(set(df_self[df_self["Season"] == season]["Date"].apply(lambda x: str(x)).tolist())))
+    }
+    return JsonResponse(json.loads(json.dumps(context)))
