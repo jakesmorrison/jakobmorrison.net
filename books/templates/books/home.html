@@ -74,15 +74,17 @@
 
 
             <div class="row-fluid">
-                <div style="margin-top: 10px;" class="col-md-5 col-md-offset-0 col-xs-12">
+                <div class="col-md-3 col-md-offset-0 col-xs-12" style="position: relative; text-align: center;">
+                  <div class="plot1"></div>
+                </div>
+                <div style="margin-top: 10px;" class="col-md-3 col-md-offset-0 col-xs-12">
                     <br>
                     <div id="my_container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                 </div>
-                <div style="margin-top: 30px;"  class="col-md-7 col-md-offset-0 col-xs-12">
+                <div style="margin-top: 30px;"  class="col-md-6 col-md-offset-0 col-xs-12">
                     <div id="my_container_scatter" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                 </div>
             </div>
-
             <div class="row-fluid ">
                 <div style="margin-top: 10px;" class="col-md-10 col-md-offset-1 col-xs-12 hide_div picture-pop-css popPicture">
                     <br>
@@ -105,6 +107,8 @@
 <script src=" {% static 'books/js/dataTables.fixedColumns.min.js' %}" rel="stylesheet"></script>
 <script src="{% static 'books/js/highcharts.js' %}"></script>
 <script src="{% static 'books/js/jqcloud.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+<script src="{% static 'books/js/piechart.js' %}"></script>
 
 <script type="text/javascript">
 
@@ -285,15 +289,16 @@ function make_chart(url) {
         $('.title_change').text(chart_data.book);
 
         lookup = chart_data.lookup;
+        piechart(chart_data.piechart);
     });
 }
 
 function make_chart2(url) {
     $.getJSON(url, function(chart_data) {
         $('#my_vector').html('');
-
         plot_vector("my_vector", chart_data.vector_scatter)
         $('.loader').hide();
+        piechart(chart_data.piechart);
     });
 }
 
@@ -361,6 +366,7 @@ function tick_on_mouseover(element){
 	id_name = $(element).attr('id');
 	id_name = id_name.replace(/ /g,"_");
 	$('.'+id_name).css("font-size", "20px");
+    $('.'+id_name).css("z-index", 2);
     $('.'+id_name).css("width", "100px");
 }
 
@@ -451,6 +457,7 @@ $( document ).ready(function() {
     x_comp_percent.push(100);
 
     spacing(x_comp_percent, t, d);
+
 });
 
 </script>

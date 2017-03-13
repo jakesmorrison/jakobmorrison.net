@@ -12,6 +12,7 @@ import pandas as pd
 import numpy as np
 import re
 import os
+from collections import OrderedDict
 
 from .management import config as cfg
 from jakobmorrison.settings import BASE_DIR
@@ -110,11 +111,18 @@ def quick_chart(request):
 
     # word cloud
     word_cloud = json.loads(df_book["Occurance_Dict"].tolist()[0])
-
     word_cloud_new = []
     for x in word_cloud:
         key, value = list(x.items())[0]
         word_cloud_new.append({'text':key,'weight':value})
+
+    piechart = []
+    for x in ([tuple(x) for x in df[["Title","Word_Count","Type"]].values]):
+        if x[2] == "Fiction":
+            foo = {"text":x[0],"value":x[1],"color":"rgba(0,153,255,.5)"}
+        else:
+            foo = {"text":x[0],"value":x[1],"color":"rgba(144,153,255,1)"}
+        piechart.append(foo)
 
     context = {
         "book": book,
@@ -123,7 +131,8 @@ def quick_chart(request):
         "scatter": new_scatter,
         "regression": new_reg,
         "word_cloud": word_cloud_new,
-        "lookup": lookup
+        "lookup": lookup,
+        "piechart": piechart
     }
     return JsonResponse(json.loads(json.dumps(context)))
 
