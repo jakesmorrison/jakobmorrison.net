@@ -289,6 +289,8 @@ function make_chart(url) {
         $('.title_change').text(chart_data.book);
 
         lookup = chart_data.lookup;
+
+        $(".plot1").html("")
         piechart(chart_data.piechart);
     });
 }
@@ -298,7 +300,6 @@ function make_chart2(url) {
         $('#my_vector').html('');
         plot_vector("my_vector", chart_data.vector_scatter)
         $('.loader').hide();
-        piechart(chart_data.piechart);
     });
 }
 
