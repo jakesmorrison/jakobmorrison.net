@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^definitions/', include('definitions.urls')),
     url(r'^travel/', include('travel.urls')),
     url(r'^heartbeat/', include('heartbeat.urls')),
+    url(r'^loveletter/', include('loveletter.urls')),
 ]

@@ -1,0 +1,178 @@
+{% extends "loveletter/index.html" %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header" style="margin-top:80px">{{name|safe}}
+            <small>{{gameId|safe}}</small>
+            <small id="players_in_game" style="font-size: 50%">[{{players|safe}}]</small>
+            <span> <button type="button" class="btn btn-success" id="refresh_button">Refresh Status</button></span>
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12"
+      <h3></h3>
+      <ul class="nav nav-pills nav-justified">
+        <li id="card_pill" class="active"><a >{{name|safe}} Cards</a></li>
+        <li id="board_pill" ><a>Game Board</a></li>
+      </ul>
+
+    </div>
+</div>
+
+<div id="player_cards" class="row">
+    <div class="col-lg-12">
+        <br>
+        <div class="row">
+        {% load staticfiles %}
+            <div id="actions" class="col-lg-4">
+                <button type="button" class="btn btn-primary centered" id="deal_button">Deal</button>
+            </div>
+            <div id="card1" class="centered col-lg-4">
+                <h2 class="centered">Card 1</h2>
+            </div>
+
+            <div id="card2" class="centered col-lg-4">
+                <h2 class="centered">Card 2</h2>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="game_board" class="row">
+    <div class="col-lg-12">
+        <div id="player1" class="col-lg-3">
+        </div>
+        <div id="player2" class="col-lg-3">
+        </div>
+        <div id="player3" class="col-lg-3">
+        </div>
+        <div id="player4" class="col-lg-3">
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block customjs %}
+<script>
+$( document ).ready(function() {
+    $('#game_board').hide();
+    $("#deal_button").hide();
+    if("{{name|safe}}" === "{{leader|safe}}"){
+        $("#deal_button").show();
+    }
+
+});
+$("#card_pill").click(function(){
+    console.log("test");
+    $("#board_pill").removeClass("active");
+    $("#card_pill").addClass("active");
+    $('#game_board').hide();
+    $('#player_cards').show();
+});
+$("#board_pill").click(function(){
+    console.log("board");
+    $("#card_pill").removeClass("active");
+    $("#board_pill").addClass("active");
+    $('#player_cards').hide();
+    $('#game_board').show();
+});
+
+$("#refresh_button").click(function(){
+    url_base = "{% url 'loveletter:refresh_status' %}";
+    data = {'gameId': {{gameId|safe}}, 'name': "{{name|safe}}" };
+    $.ajax({
+      type: "GET",
+      url: url_base,
+      data: data,
+      success: function (msg) {
+            $('#players_in_game').text("["+msg.players+"]");
+            if(msg.gameStarted === false){}
+            else{
+                setup_player_cards(msg.card1,msg.card2);
+                setup_board_cards(msg.playedCards, msg.playerList, msg.playerNumber)
+            }
+        }
+    });
+});
+
+$("#deal_button").click(function(){
+    url_base = "{% url 'loveletter:deal' %}";
+    data = {'gameId': {{gameId|safe}} };
+    $.ajax({
+      type: "GET",
+      url: url_base,
+      data: data,
+      success: function (msg) {
+        $("#deal_button").hide();
+        }
+    });
+});
+
+function get_new_card(){
+    url_base = "{% url 'loveletter:get_new_card' %}";
+    data = {'gameId': {{gameId|safe}}, 'name': "{{name|safe}}" };
+    $.ajax({
+      type: "GET",
+      url: url_base,
+      data: data,
+      success: function (msg) {
+        setup_player_cards(msg.card1,msg.card2);
+        }
+    });
+};
+
+function play_card(cardNumber){
+    url_base = "{% url 'loveletter:play_card' %}";
+    data = {'gameId': {{gameId|safe}}, 'name': "{{name|safe}}", 'cardNumber': cardNumber};
+    $.ajax({
+      type: "GET",
+      url: url_base,
+      data: data,
+      success: function (msg) {
+            setup_player_cards(msg.card1,msg.card2);
+            setup_board_cards(msg.playedCards, msg.playerList, msg.playerNumber)
+      }
+    });
+};
+
+function setup_player_cards(card1, card2){
+    img_base = "{% static 'loveletter/img' %}";
+    img1= img_base +"/"+ card1;
+    img2= img_base +"/"+ card2;
+
+    $('.card1').remove();
+    $('.card2').remove();
+    if(card1 != "na") $('#card1').append("<img class='card1 centered' src="+img1+" style='width:50%;height:50%;margin-top: 20px;'>");
+    if(card2 != "na") $('#card2').append("<img class='card2 centered' src="+img2+" style='width:50%;height:50%;margin-top: 20px;'>");
+    $('#actions').html("");
+    $('#actions').append('<button type="button" class="btn btn-primary centered" id="get_new_card" onclick="get_new_card()">Get New Card</button>');
+    $('#actions').append('<button type="button" class="btn btn-primary centered" id="playCard1" onclick="play_card(1)">Play Card 1</button>');
+    $('#actions').append('<button type="button" class="btn btn-primary centered" id="playCard2" onclick="play_card(2)">Play Card 2</button>');
+}
+
+function setup_board_cards(myDict, playerList, currentPlayerNum){
+    console.log(myDict)
+    console.log(playerList)
+    console.log(currentPlayerNum)
+    for(i=0; i<playerList.length; i++){
+        $('#player'+(i+1).toString()).html("");
+        $('#player'+(i+1).toString()).append('<h3>'+playerList[i]+'</h3>');
+
+        if (playerList[i] in myDict){
+            card = myDict[playerList[i]];
+            for(j=0; j<card.length; j++){
+                $('#player'+(i+1).toString()).append('<p>Card Number: '+card[j]+'</p>');
+            }
+        }
+    }
+}
+
+</script>
+{% endblock %}

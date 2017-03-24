@@ -1,0 +1,86 @@
+{% extends "loveletter/index.html" %}
+
+{% block body %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header" style="margin-top:80px">Love Letter
+            <small>Firefly Edition</small>
+        </h1>
+        <p>Text about love letter</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+        <div class="row">
+            <div class="col-lg-5 col-lg-offset-1 centered">
+                <h2>
+                    New Game
+                </h2>
+                <hr>
+                <h4 style="margin-top:28px;">
+                    Game ID: {{ gameId|safe}}
+                </h4>
+                <div class="form-group" style="margin-top: 23px;">
+                  <input type="text" class="form-control" id="new_game_name" placeholder="Name">
+                </div>
+                <button type="button" class="btn btn-primary" id="new_button">Start New Game</button>
+            </div>
+            <div class="col-lg-5 centered">
+                <h2>
+                    Join Game
+                </h2>
+                <hr>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="join_game_ID" placeholder="Game ID">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="join_game_name" placeholder="Name">
+                </div>
+                <button type="button" class="btn btn-primary" id="join_button">Join Game</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block customjs %}
+<script>
+    $("#new_button").click(function(){
+        url_base = "{% url 'loveletter:init_game' %}";
+        data = {'name': $('#new_game_name').val(), 'gameId': {{ gameId|safe}}};
+        $.ajax({
+          type: "GET",
+          url: url_base,
+          data: data,
+          success: function (msg) {
+                params = {'name': msg.name, 'gameId': msg.gameId};
+                window.location.href = "{% url 'loveletter:play_game' %}"+"?"+$.param(params);
+            }
+        });
+    });
+
+    $("#join_button").click(function(){
+        url_base = "{% url 'loveletter:join_game' %}";
+        data = {'name': $('#join_game_name').val(), 'gameId': $('#join_game_ID').val()};
+        $.ajax({
+          type: "GET",
+          url: url_base,
+          data: data,
+          success: function (msg) {
+                params = {'name': msg.name, 'gameId': msg.gameId};
+                window.location.href = "{% url 'loveletter:play_game' %}"+"?"+$.param(params);
+            }
+        });
+    });
+</script>
+{% endblock %}
+
+
+<!--$.ajax({-->
+    <!--url: my_url,-->
+    <!--type: 'GET',-->
+    <!--success: function (msg) {-->
+        <!--window.location.href = "{% url 'country_floral_app:confirm' %}?order_number="+msg.order_number;-->
+    <!--}-->
+<!--});-->

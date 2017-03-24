@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'definitions.apps.DefinitionsConfig',
     'travel.apps.TravelConfig',
     'heartbeat.apps.HeartbeatConfig',
+    'loveletter.apps.LoveletterConfig',
     'rest_framework',
 ]
 
