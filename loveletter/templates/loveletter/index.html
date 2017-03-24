@@ -188,8 +188,6 @@
     <!-- Bootstrap Core JavaScript -->
     <script src=" {% static 'loveletter/js/bootstrap.min.js' %}" rel="stylesheet"></script>
 
-    {% block customjs %}
-    {% endblock %}
     <script>
         $(document).ready(function(){
             $(".popup").hide();
@@ -200,7 +198,10 @@
         function close_rules(){
            $(".popup").hide();
         }
-
     </script>
+
+
+    {% block customjs %}
+    {% endblock %}
 </body>
 </html>
