@@ -44,7 +44,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Rules</a>
+                        <a id="rules" onclick="show_rules()" >Rules</a>
                     </li>
                     <li>
                         <a href="#">Card Gallery</a>
@@ -58,9 +58,124 @@
         </div>
         <!-- /.container -->
     </nav>
-
+    <div>
     <!-- Page Content -->
     <div class="container">
+        <div class="col-lg-10 popup">
+            <button onclick="close_rules()" type="button" class="col-lg-12 col-xs-12 btn btn-primary" style="margin-top: 10px; background-color:#0085A1; text-align:center;">Close</button>
+            <!--<h2 class="post-title">Love Letter Rules</h2>-->
+                <!--<div class="col-lg-12"-->
+                  <!--<h3></h3>-->
+                  <!--<ul class="nav nav-pills nav-justified">-->
+                    <!--<li id="card_pill" class="active"><a >Card Rules</a></li>-->
+                    <!--<li id="board_pill" ><a>Gameplay</a></li>-->
+                  <!--</ul>-->
+                <!--</div>-->
+            <div id="card_rules" class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-6 centered">
+                            <h3>Jayne</h3>
+                            <p>Choose another player. Give them the Jayne Token. If they win this round, you gain a Token. (1)</p>
+                        </div>
+                        <div class="col-lg-6 centered">
+                            <img class='centered' src="{% static 'loveletter/img' %}/_jayne_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 centered">
+                            <h3>Saffron</h3>
+                            <p>If you have this card in your hand when another player chooses you as part of a Mal effect, they are out of the round. (1)</p>
+                        </div>
+                        <div class="col-lg-6 centered">
+                            <img class='centered' src="{% static 'loveletter/img' %}/0_saffron_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 centered">
+                            <h3>Mal</h3>
+                            <p>Name a non-Mal card and choose another player. If that player has that card he or she is out of the round. (5)</p>
+                        </div>
+                        <div class="col-lg-6 centered">
+                            <img class='centered' src="{% static 'loveletter/img' %}/1_mal_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 centered">
+                            <h3>Book</h3>
+                            <p>Look at another player’s hand. (2)</p>
+                        </div>
+                        <div class="col-lg-6 centered">
+                            <img class='centered' src="{% static 'loveletter/img' %}/2_book_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 centered">
+                            <h3>Zoe</h3>
+                            <p>Look at another player’s hand. (2)</p>
+                        </div>
+                        <div class="col-lg-6 centered">
+                            <img class='centered' src="{% static 'loveletter/img' %}/3_zoe_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 centered">
+                            <h3>Kaylee</h3>
+                            <p>Until your next turn, ignore all effects from other player’s cards. Or peek at the Hidden Card. (2)</p>
+                        </div>
+                        <div class="col-lg-6 centered">
+                            <img class='centered' src="{% static 'loveletter/img' %}/4_kaylee_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 centered">
+                            <h3>Wash</h3>
+                            <p>Wash: Choose any player (including yourself) to discard his or her hand and draw a new card. (2)</p>
+                        </div>
+                        <div class="col-lg-6 centered">
+                            <img class='centered' src="{% static 'loveletter/img' %}/5_wash_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 centered">
+                            <h3>Inara</h3>
+                            <p>Choose two players (can include yourself). They must trade hands. Look at one of their hands. (1)</p>
+                        </div>
+                        <div class="col-lg-6 centered">
+                            <img class='centered' src="{% static 'loveletter/img' %}/6_inara_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 centered">
+                            <h3>Simon</h3>
+                            <p>If you have this card and the Wash or Inara card in your hand, you must discard this card. (1)</p>
+                        </div>
+                        <div class="col-lg-6 centered">
+                            <img class='centered' src="{% static 'loveletter/img' %}/7_simon_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 centered">
+                            <h3>River</h3>
+                            <p>If you discard this card you are out of the round. unless you guess the Hidden Card correctly. If you do the round is over and you win. (1)</p>
+                        </div>
+                        <div class="col-lg-6 centered">
+                            <img class='centered' src="{% static 'loveletter/img' %}/8_river_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 centered">
+                            <h3>Reavers</h3>
+                            <p>Name a non-Mal card and choose another player. If they have that card in their hand, gain a Token. River beats the Alliance at the end of the round.</p>
+                        </div>
+                        <div class="col-lg-6 centered">
+                            <img class='centered' src="{% static 'loveletter/img' %}/9_reavers_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
+                        </div>
+                    </div>
+                    <button onclick="close_rules()" type="button" class="col-lg-12 col-xs-12 btn btn-primary" style="margin-top: 10px; background-color:#0085A1; text-align:center;">Close</button>
+                </div>
+            </div>
+        </div>
         {%block body %}
         {% endblock %}
     </div>
@@ -75,7 +190,17 @@
 
     {% block customjs %}
     {% endblock %}
+    <script>
+        $(document).ready(function(){
+            $(".popup").hide();
+        });
+        function show_rules(){
+           $(".popup").show();
+        }
+        function close_rules(){
+           $(".popup").hide();
+        }
 
+    </script>
 </body>
-
 </html>

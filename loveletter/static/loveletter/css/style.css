@@ -2,3 +2,33 @@
     text-align: center;
 }
 li { cursor: pointer; cursor: hand; }
+
+
+.popup {
+  background-color:white;
+  border:1px solid white;
+  cursor:default;
+  display:none;
+  margin-top: 15px;
+  position:absolute;
+  text-align:left;
+  z-index:50;
+  padding: 0px 25px 20px;
+}
+
+.popup p, .popup.div {
+  border-bottom: 1px solid #EFEFEF;
+  margin: 8px 0;
+  padding-bottom: 8px;
+}
+
+.popup {
+    position: absolute;
+    margin: auto;
+    margin-top: 60px;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 3px;
+    left: 10%;
+    width: 80%;
+}

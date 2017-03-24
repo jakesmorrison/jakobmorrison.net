@@ -59,6 +59,9 @@
                 <li>
                     <a class="page-scroll" href="{% url 'books:books.views.home' %}">Books</a>
                 </li>
+                <li>
+                    <a class="page-scroll" href="{% url 'loveletter:loveletter.views.main_window' %}">Love Letter</a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -98,7 +101,7 @@
 
 
 <div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
-    <p class="footer-jake">&copy; 2016 Jake Morrison.</p>
+    <p class="footer-jake">&copy; .</p>
 </div>
 
     <!-- jQuery -->
@@ -113,3 +116,7 @@
 </body>
 
 </html>
+
+<script>
+    $(".footer-jake").text(new Date().getFullYear()+" Jake Morrison")
+</script>
