@@ -61,17 +61,17 @@
 {% block customjs %}
 <script>
 var cardDictionary = {
-    "x": "Jayne: Choose another player. Give them the Jayne Token. If they win this round, you gain a Token. (1)",
-    "0": "Saffron: If you have this card in your hand when another player chooses you as part of a Mal effect, they are out of the round. (1)",
-    "1": "Mal: Name a non-Mal card and choose another player. If that player has that card he or she is out of the round. (5)",
-    "2": "Book: Look at another player’s hand. (2)",
-    "3": "Zoe: You and another player secretly compare hands. The player with the lower value is out of the round. (2)",
-    "4": "Kaylee: Until your next turn, ignore all effects from other player’s cards. Or peek at the Hidden Card. (2)",
-    "5": "Wash: Choose any player (including yourself) to discard his or her hand and draw a new card. (2)",
-    "6": "Inara: Choose two players (can include yourself). They must trade hands. Look at one of their hands. (1)",
-    "7": "Simon: If you have this card and the Wash or Inara card in your hand, you must discard this card. (1)",
-    "8": "River: If you discard this card you are out of the round. (1)",
-    "9": "Reaver: Name a non-Mal card and choose another player. If they have that card in their hand, gain a Token. River beats the Alliance at the end of the round. (1)"
+    "x": "Jayne X: Choose another player. Give them the Jayne Token. If they win this round, you gain a Token. (1)",
+    "0": "Saffron 0: If you have this card in your hand when another player chooses you as part of a Mal effect, they are out of the round. (1)",
+    "1": "Mal 1: Name a non-Mal card and choose another player. If that player has that card he or she is out of the round. (5)",
+    "2": "Book 2: Look at another player’s hand. (2)",
+    "3": "Zoe 3: You and another player secretly compare hands. The player with the lower value is out of the round. (2)",
+    "4": "Kaylee 4: Until your next turn, ignore all effects from other player’s cards. Or peek at the Hidden Card. (2)",
+    "5": "Wash 5: Choose any player (including yourself) to discard his or her hand and draw a new card. (2)",
+    "6": "Inara 6: Choose two players (can include yourself). They must trade hands. Look at one of their hands. (1)",
+    "7": "Simon 7: If you have this card and the Wash or Inara card in your hand, you must discard this card. (1)",
+    "8": "River 8: If you discard this card you are out of the round. (1)",
+    "9": "Reaver 9: Name a non-Mal card and choose another player. If they have that card in their hand, gain a Token. River beats the Alliance at the end of the round. (1)"
 };
 
 $( document ).ready(function() {
@@ -83,14 +83,12 @@ $( document ).ready(function() {
 
 });
 $("#card_pill").click(function(){
-    console.log("test");
     $("#board_pill").removeClass("active");
     $("#card_pill").addClass("active");
     $('#game_board').hide();
     $('#player_cards').show();
 });
 $("#board_pill").click(function(){
-    console.log("board");
     $("#card_pill").removeClass("active");
     $("#board_pill").addClass("active");
     $('#player_cards').hide();
@@ -171,9 +169,9 @@ function setup_player_cards(card1, card2){
 }
 
 function setup_board_cards(myDict, playerList, currentPlayerNum){
-    console.log(myDict)
-    console.log(playerList)
-    console.log(currentPlayerNum)
+    <!--console.log(myDict)-->
+    <!--console.log(playerList)-->
+    <!--console.log(currentPlayerNum)-->
     for(i=0; i<playerList.length; i++){
         $('#player'+(i+1).toString()).html("");
         $('#player'+(i+1).toString()).append('<h3>'+playerList[i]+'</h3>');
@@ -185,6 +183,24 @@ function setup_board_cards(myDict, playerList, currentPlayerNum){
         }
     }
 }
+
+setInterval(function() {
+    url_base = "{% url 'loveletter:refresh_status' %}";
+    data = {'gameId': {{gameId|safe}}, 'name': "{{name|safe}}" };
+    $.ajax({
+      type: "GET",
+      url: url_base,
+      data: data,
+      success: function (msg) {
+            $('#players_in_game').text("["+msg.players+"]");
+            if(msg.gameStarted === false){}
+            else{
+                setup_player_cards(msg.card1,msg.card2);
+                setup_board_cards(msg.playedCards, msg.playerList, msg.playerNumber)
+            }
+        }
+    });
+}, 2000);
 
 </script>
 {% endblock %}

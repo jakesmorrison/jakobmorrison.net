@@ -102,8 +102,7 @@ class LoveLetter(object):
         possibleOptions = []
         for key,val in deck.items():
             possibleOptions = possibleOptions + [key]*val
-        for x in range(5):
-            random.shuffle(possibleOptions)
+        random.shuffle(possibleOptions)
         for player in players:
             playerObj = Player.objects.get(gameId = obj, playerName = player)
             playerObj.card1 = possibleOptions.pop()
@@ -148,8 +147,7 @@ class LoveLetter(object):
         possibleOptions = []
         for key, val in deck.items():
             possibleOptions = possibleOptions + [key] * val
-        for x in range(5):
-            random.shuffle(possibleOptions)
+        random.shuffle(possibleOptions)
 
         playerObj = Player.objects.get(gameId=obj, playerName=name)
         if playerObj.card1 == '-1':

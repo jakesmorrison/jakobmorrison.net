@@ -46,12 +46,6 @@
                     <li>
                         <a id="rules" onclick="show_rules()" >Rules</a>
                     </li>
-                    <!--<li>-->
-                        <!--<a href="#">Card Gallery</a>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<a href="#">Stats</a>-->
-                    <!--</li>-->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -61,16 +55,17 @@
     <div>
     <!-- Page Content -->
     <div class="container">
+
         <div class="col-lg-10 popup">
-            <!--<h2 class="post-title">Love Letter Rules</h2>-->
-                <!--<div class="col-lg-12"-->
-                  <!--<h3></h3>-->
-                  <!--<ul class="nav nav-pills nav-justified">-->
-                    <!--<li id="card_pill" class="active"><a >Card Rules</a></li>-->
-                    <!--<li id="board_pill" ><a>Gameplay</a></li>-->
-                  <!--</ul>-->
-                <!--</div>-->
-            <div id="card_rules" class="row">
+            <h2 class="post-title">Love Letter Rules</h2>
+                <div class="col-lg-12"
+                  <h3></h3>
+                  <ul class="nav nav-pills nav-justified">
+                    <li id="card_rules_1_container" class="active"><a >Cards 0-4</a></li>
+                    <li id="card_rules_2_container" ><a>Cards 5-9</a></li>
+                  </ul>
+                </div>
+            <div id="card_rules1" class="row">
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="col-lg-6 centered">
@@ -126,55 +121,60 @@
                             <img class='centered' src="{% static 'loveletter/img' %}/4_kaylee_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-6 centered">
-                            <h3>Wash</h3>
-                            <p>Wash: Choose any player (including yourself) to discard his or her hand and draw a new card. (2)</p>
-                        </div>
-                        <div class="col-lg-6 centered">
-                            <img class='centered' src="{% static 'loveletter/img' %}/5_wash_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 centered">
-                            <h3>Inara</h3>
-                            <p>Choose two players (can include yourself). They must trade hands. Look at one of their hands. (1)</p>
-                        </div>
-                        <div class="col-lg-6 centered">
-                            <img class='centered' src="{% static 'loveletter/img' %}/6_inara_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 centered">
-                            <h3>Simon</h3>
-                            <p>If you have this card and the Wash or Inara card in your hand, you must discard this card. (1)</p>
-                        </div>
-                        <div class="col-lg-6 centered">
-                            <img class='centered' src="{% static 'loveletter/img' %}/7_simon_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 centered">
-                            <h3>River</h3>
-                            <p>If you discard this card you are out of the round.</p>
-                        </div>
-                        <div class="col-lg-6 centered">
-                            <img class='centered' src="{% static 'loveletter/img' %}/8_river_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 centered">
-                            <h3>Reavers</h3>
-                            <p>Name a non-Mal card and choose another player. If they have that card in their hand, gain a Token. River beats the Alliance at the end of the round.</p>
-                        </div>
-                        <div class="col-lg-6 centered">
-                            <img class='centered' src="{% static 'loveletter/img' %}/9_reavers_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
-                        </div>
-                    </div>
                     <button onclick="close_rules()" type="button" class="col-lg-12 col-xs-12 btn btn-primary" style="margin-top: 10px; background-color:#0085A1; text-align:center;">Close</button>
                 </div>
             </div>
+            <div id="card_rules2" class="row">
+                <div class="row">
+                    <div class="col-lg-6 centered">
+                        <h3>Wash</h3>
+                        <p>Wash: Choose any player (including yourself) to discard his or her hand and draw a new card. (2)</p>
+                    </div>
+                    <div class="col-lg-6 centered">
+                        <img class='centered' src="{% static 'loveletter/img' %}/5_wash_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 centered">
+                        <h3>Inara</h3>
+                        <p>Choose two players (can include yourself). They must trade hands. Look at one of their hands. (1)</p>
+                    </div>
+                    <div class="col-lg-6 centered">
+                        <img class='centered' src="{% static 'loveletter/img' %}/6_inara_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 centered">
+                        <h3>Simon</h3>
+                        <p>If you have this card and the Wash or Inara card in your hand, you must discard this card. (1)</p>
+                    </div>
+                    <div class="col-lg-6 centered">
+                        <img class='centered' src="{% static 'loveletter/img' %}/7_simon_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 centered">
+                        <h3>River</h3>
+                        <p>If you discard this card you are out of the round.</p>
+                    </div>
+                    <div class="col-lg-6 centered">
+                        <img class='centered' src="{% static 'loveletter/img' %}/8_river_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 centered">
+                        <h3>Reavers</h3>
+                        <p>Name a non-Mal card and choose another player. If they have that card in their hand, gain a Token. River beats the Alliance at the end of the round.</p>
+                    </div>
+                    <div class="col-lg-6 centered">
+                        <img class='centered' src="{% static 'loveletter/img' %}/9_reavers_card.jpg" style='width:25%;height:25%;margin-top: 20px;'>
+                    </div>
+                </div>
+                <button onclick="close_rules()" type="button" class="col-lg-12 col-xs-12 btn btn-primary" style="margin-top: 10px; background-color:#0085A1; text-align:center;">Close</button>
+            </div>
         </div>
+
+
         {%block body %}
         {% endblock %}
     </div>
@@ -190,6 +190,8 @@
     <script>
         $(document).ready(function(){
             $(".popup").hide();
+            $('#card_rules2').hide();
+
         });
         function show_rules(){
            $(".popup").show();
@@ -197,6 +199,19 @@
         function close_rules(){
            $(".popup").hide();
         }
+
+        $("#card_rules_1_container").click(function(){
+            $("#card_rules_2_container").removeClass("active");
+            $("#card_rules_1_container").addClass("active");
+            $('#card_rules2').hide();
+            $('#card_rules1').show();
+        });
+        $("#card_rules_2_container").click(function(){
+            $("#card_rules_1_container").removeClass("active");
+            $("#card_rules_2_container").addClass("active");
+            $('#card_rules1').hide();
+            $('#card_rules2').show();
+        });
     </script>
 
 
