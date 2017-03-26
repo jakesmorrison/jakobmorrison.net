@@ -103,6 +103,9 @@ class LoveLetter(object):
         for key,val in deck.items():
             possibleOptions = possibleOptions + [key]*val
         random.shuffle(possibleOptions)
+
+        hiddenCard = possibleOptions.pop()
+
         for player in players:
             playerObj = Player.objects.get(gameId = obj, playerName = player)
             playerObj.card1 = possibleOptions.pop()
@@ -165,6 +168,7 @@ class LoveLetter(object):
         obj.gameDeck = newDict
         obj.gameStarted = True
         obj.save()
+        return len(possibleOptions)
 
     def play_card(self, gameId, name, cardNum):
         obj = Game.objects.get(gameId=gameId)

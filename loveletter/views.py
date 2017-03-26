@@ -99,13 +99,14 @@ def get_new_card(request):
     name = params["name"]
     gameStarted = LoveLetter().game_started(gameId)
 
-    LoveLetter().get_new_card(gameId,name)
+    cardsLeft = LoveLetter().get_new_card(gameId,name)
     mycards = LoveLetter().get_current_card(gameId, name)
     card1 = mycards[0]
     card2 = mycards[1]
     context = {'players': name,
                'card1': card1,
                'card2': card2,
+               'cardsLeft': cardsLeft,
                "gameStarted": gameStarted
                }
 
