@@ -28,6 +28,4 @@ urlpatterns = [
     url(r'^travel/', include('travel.urls')),
     url(r'^heartbeat/', include('heartbeat.urls')),
     url(r'^loveletter/', include('loveletter.urls')),
-    url(r'^pandemic/', include('pandemic.urls')),
-
 ]
