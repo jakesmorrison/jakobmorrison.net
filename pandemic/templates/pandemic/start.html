@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pandemic</title>
+
+    <!--CSS-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+    <!--JS-->
+    <script src="https://fb.me/react-15.0.0.js"></script>
+    <script src="https://fb.me/react-dom-15.0.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    {% load staticfiles %}
+    <script src="{% static 'pandemic/js/interact.js' %}"></script>
+    <script src="{% static 'pandemic/js/start.js' %}" type="text/babel"></script>
+
+<div class="container">
+    <div class="row">
+    </div>
+</div>
+
+
+<script>
+var element = document.getElementById('infectionDeck'), x = 0, y = 0;
+
+interact(element)
+    .draggable({
+        snap: {
+          targets: [
+            interact.createSnapGrid({ x: 30, y: 30 })
+          ],
+          range: Infinity,
+          relativePoints: [ { x: 0, y: 0 } ]
+        },
+        inertia: true,
+        restrict: {
+          restriction: element.parentNode,
+          elementRect: { top: 0, left: 0, bottom: 1, right: 1 },
+          endOnly: true
+        }
+    })
+    .on('dragmove', function (event) {
+        x += event.dx;
+        y += event.dy;
+        event.target.style.webkitTransform =
+        event.target.style.transform =
+            'translate(' + x + 'px, ' + y + 'px)';
+    });
+</script>
+</body>
+</html>

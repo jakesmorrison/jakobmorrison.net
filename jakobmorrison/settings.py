@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'heartbeat.apps.HeartbeatConfig',
     'loveletter.apps.LoveletterConfig',
     'rest_framework',
+    'pandemic.apps.PandemicConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
