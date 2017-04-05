@@ -9,3 +9,8 @@ def index(request):
 def developer(request):
     context = {}
     return render(request, 'resume/developer.html', context)
+
+
+def applications(request):
+    context = {}
+    return render(request, 'resume/applications.html', context)
