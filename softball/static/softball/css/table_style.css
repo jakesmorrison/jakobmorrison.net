@@ -5,7 +5,7 @@
 }
 
 .table-hover>tbody>tr:hover {
-    background-color: black;
+    background-color: transparent;
     color: #ddd;
     font-weight: 700;
 }
