@@ -1,6 +1,7 @@
 .table {
     color: black;
     background-color: grey;
+    max-width: none;
 }
 
 .table-hover>tbody>tr:hover {
