@@ -74,7 +74,7 @@
     </nav>
 
     <!-- Intro Header -->
-    <header class="intro">
+    <header style="height:100%" class="intro">
         <div class="intro-body">
             <div class="container">
                 <div class="row">
@@ -278,6 +278,12 @@ $('#select-season').change(function() {
 });
 
 
+$(document).on('click','.navbar-collapse.in',function(e) {
+    if( $(e.target).is('a') ) {
+        $(this).collapse('hide');
+    }
+});
+
 $(document).ready(function() {
     setup_table();
 
@@ -286,6 +292,8 @@ $(document).ready(function() {
     add_options($select_player, {{players|safe}},"All")
 
 });
+
+
 </script>
 
 

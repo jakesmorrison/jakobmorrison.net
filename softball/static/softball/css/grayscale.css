@@ -250,6 +250,17 @@ a:focus {
     margin-top: 250px;
   }
 }
+
+@media (max-width: 500px) {
+  .download-section {
+    padding: 0px 0;
+    margin-top: -40px;
+  }
+  #map {
+    height: 400px;
+    margin-top: 250px;
+  }
+}
 .btn {
   text-transform: uppercase;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
