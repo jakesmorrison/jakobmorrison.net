@@ -58,7 +58,7 @@ def index(request):
         'players': ["All"] + sorted(list(set(df_for_sel[df_for_sel["Season"] == cfg.CURRENT_SEASON]["Player"].tolist())), ),
         'games': ["All"]+sorted(list(set(df_for_sel[df_for_sel["Season"]==cfg.CURRENT_SEASON]["Date"].apply(lambda x: str(x)).tolist()))),
     }
-    return(render(request, 'softball/index.html',context))
+    return(render(request, 'softball/index2.html',context))
 
 def index_updates(request):
     params = request.GET

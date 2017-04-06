@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Project 57</title>
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+
+    <!-- CSS -->
+    {% load staticfiles %}
+    <link href=" {% static 'softball/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'softball/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'softball/css/landing-page.css' %}" rel="stylesheet">
+    <link href=" {% static 'softball/css/style.css' %}" rel="stylesheet">
+    <link href=" {% static 'softball/css/table_style.css' %}" rel="stylesheet">
+    <link href=" {% static 'softball/css/jquery.dataTables.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'softball/css/fixedColumns.dataTables.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'softball/css/selectize_default.css' %}" rel="stylesheet">
+    <link href=" {% static 'softball/css/grayscale.css' %}" rel="stylesheet" type="text/css" />
+
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!-- jQuery -->
+    <script src=" {% static 'softball/js/jquery-2.1.1.js' %}" rel="stylesheet"></script>
+    <script src=" {% static 'softball/js/bootstrap.min.js' %}" rel="stylesheet"></script>
+    <script src=" {% static 'softball/js/selectize.js' %}" rel="stylesheet"></script>
+
+    <script src=" {% static 'softball/js/datatables.min.js' %}" rel="stylesheet"></script>
+    <script src=" {% static 'softball/js/dataTables.fixedColumns.min.js' %}" rel="stylesheet"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src=" {% static 'poo/js/grayscale.js' %}" rel="stylesheet"></script>
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a style="" class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-play-circle"></i> <span class="light">Project</span> 57
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a style="" class="page-scroll" href="#stats">Stats</a>
+                    </li>
+                    <li>
+                        <a style="" class="page-scroll" href="#chart">Charts</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">Project 57</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- stats Section -->
+    <section id="stats" class="content-section text-center">
+        <div class="download-section">
+            <div class="container">
+            <div>
+                <h2>Project 57 Stats</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-12" id="top_selectors" style="margin-top: 25px;">
+                        <div class="btn-group setting-min-width" role="group">
+                            <label class="mylabel">Season</label>
+                            <input type="text" class="input_selectize setting-min-width" name="select-season" id="select-season">
+                        </div>
+                        <div class="btn-group" role="group">
+                            <label class="mylabel">Game</label>
+                            <input type="text" class="input_selectize setting-min-width" name="select-game" id="select-game">
+                        </div>
+                        <div class="btn-group" role="group">
+                            <label class="mylabel">Player</label>
+                            <input type="text" class="input_selectize setting-min-width" name="select-player" id="select-player">
+                        </div>
+                        <div class="btn-group" role="group">
+                            <input class="btn btn-default mybutton btn-sm hover" style="width: 40px !important; margin-top: 22px;" value="Go" name="submit" id="submit" readonly>
+                        </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <br>
+                <div class="col-md-12">
+                    <div class="mytable" id="mytable">
+                        {{ table|safe }}
+                    </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Chart Section -->
+    <section id="chart" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <div id="map"></div>
+
+<script>
+function highlight_high(arr){
+    arr.sort(function(a,b){
+        return parseFloat($(a).text()) - parseFloat($(b).text());
+    });
+    $(arr[arr.length-1]).addClass('highest');
+}
+
+function highlight_low(arr){
+    arr.sort(function(a,b){
+        return parseFloat($(a).text()) - parseFloat($(b).text());
+    });
+    if ($(arr[arr.length-1]).text() != "0") {
+        $(arr[arr.length-1]).addClass('lowest');
+    }
+}
+
+function make_chart(url) {
+    $.getJSON(url, function(chart_data) {
+    $("#regTitle").html("Hello World");
+        $("#mytable").html(chart_data.table);
+        setup_table();
+        add_options($select_season, chart_data.seasons,chart_data.current_season)
+        add_options($select_game, chart_data.games,chart_data.current_game)
+        add_options($select_player, chart_data.players,chart_data.current_players)
+    });
+}
+
+$("#submit").click( function(){
+    $("#mytable").html("");
+
+    <!--Return data from server and make chart. -->
+    var season = $('#select-season').val();
+    var game = $("#select-game").val();
+    var player = $('#select-player').val();
+
+    url_base = "{% url 'softball:index_updates' %}";
+    params = {'season': season, 'game': game,'player': player};
+    url = url_base + "?" + $.param( params );
+    make_chart(url);
+});
+
+function setup_table(){
+    var index = $('#table-custom-sort').find('th:last').index();
+    var table = $('#table-custom-sort').DataTable({
+        order:          [[ index, "asc" ]],
+        scrollY:        "300px",
+        scrollX:        true,
+        scrollCollapse: true,
+        paging:         false,
+        bFilter:        false,
+        bAutoWidth:     false,
+        fixedColumns:   {
+            leftColumns: 0,
+            rightColumns: 0
+        },
+        bSort:          true,
+        bAutoWidth:     true,
+        bInfo:          false,
+        bJQueryUI:      true,
+        bLengthChange:  true,
+        bPaginate:      true,
+        bProcess:       true,
+        bScrollInfinite:false,
+    });
+
+    var labels_high = ["Games", "PA", "AB", "BB", "SB", "H", "1B", "2B", "3B", "4B", "HR", "R", "RBI", "TB", "AVG", "OBP", "SLG", "OPS"];
+    for (var i = 0; i < labels_high.length; i++) {
+        var tds = $('td.'+labels_high[i]);
+        var arr = $.makeArray(tds);
+        highlight_high(arr);
+    }
+
+    var labels_high = ["SO", "HIDP", "CS", "DBO"];
+    for (var i = 0; i < labels_high.length; i++) {
+        var tds = $('td.'+labels_high[i]);
+        var arr = $.makeArray(tds);
+        highlight_low(arr);
+    }
+
+    var tds = $('td.Ranking');
+    var arr = $.makeArray(tds);
+    arr.sort(function(a,b){
+        return parseFloat($(b).text()) - parseFloat($(a).text());
+    });
+    $(arr[arr.length-1]).addClass('lowest_pos');
+}
+
+var $select_season = $('#select-season').selectize({
+    plugins: ['remove_button'],
+    maxItems: 1,
+    readOnly: true,
+    onDelete: function() { return false }
+});
+var $select_game = $('#select-game').selectize({
+    plugins: ['remove_button'],
+    maxItems: 1,
+    readOnly: true,
+    onDelete: function() { return false }
+});
+var $select_player = $('#select-player').selectize({
+    plugins: ['remove_button'],
+    maxItems: 1,
+    readOnly: true,
+    onDelete: function() { return false }
+});
+
+
+
+function add_options($select, somelist, currentselect){
+    var selectize = $select[0].selectize;
+    new_options = somelist
+
+    selectize.clear()
+    selectize.clearOptions()
+
+    selectize.renderCache['option'] = {};
+    selectize.renderCache['item'] = {};
+
+    for (i = 0; i < new_options.length; i++) {
+        selectize.addOption({text:new_options[i],value: new_options[i]});
+    }
+    selectize.addOption(new_options)
+    $select[0].selectize.setValue(currentselect);
+}
+
+
+$('#select-season').change(function() {
+    url_base = "{% url 'softball:change_season' %}";
+    params = {'season': $("#select-season").val()};
+    my_url = url_base + "?" + $.param( params );
+    $.ajax({
+        url: my_url,
+        type: 'GET',
+        success: function (msg) {
+            add_options($select_game, msg.game_list,"All");
+        }
+    });
+});
+
+
+$(document).ready(function() {
+    setup_table();
+
+    add_options($select_season, {{seasons|safe}},"{{current_season|safe}}")
+    add_options($select_game, {{games|safe}},"All")
+    add_options($select_player, {{players|safe}},"All")
+
+});
+</script>
+
+
+</body>
+</html>
