@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label class="intro-text"></label>
                         <div class="form-group">
                           <label for="sel1">Name</label>
@@ -80,7 +80,13 @@
                           </select>
                         </div>
                     </div>
-                    <div style="margin-top: 30px;" class="col-md-4">
+                    <div class="col-md-3">
+                        <div style="margin-top: 19px;" class="form-group">
+                          <label for="loc">Location</label>
+                          <input type="text" class="form-control" id="loc">
+                        </div>
+                    </div>
+                    <div style="margin-top: 30px;" class="col-md-3">
                         <form id="myForm">
                             <div class="radio">
                               <label><input id="radio1" type="radio" checked="checked" name="optradio" value="Poo" onchange="radioChange()">Poo</label>
@@ -90,7 +96,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label class="intro-text"></label>
                         <div class="form-group">
                           <label for="sel1">Type</label>
@@ -156,6 +162,7 @@
         url = "{% url 'poo:add_data' %}";
         data = {
             'name': $('#sel1').find(":selected").text(),
+            'location': $('#loc').val(),
             "peepoo": $('input[name=optradio]:checked').val(),
             "type": $('#pee_poo').find(":selected").text()
             };
