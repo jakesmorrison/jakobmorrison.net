@@ -51,12 +51,29 @@ def index(request):
             count += 1
         new_table = new_table + line+"\n"
 
+
+    # high charts data
+    '''
+    array of dictionary objects.
+    [{name: "Game1", data[all game 1 ops data]},{}]
+    '''
+    series = []
+    roster = sorted(cfg.CURRENT_SEASON_ROSTER)
+    dates = list(sorted(set(df_plot["Date"].tolist())))
+    for date in dates:
+        df_temp = df_plot[df_plot["Date"] == date]
+        df_temp = df_temp.sort(["Player"])
+        series.append({"name":str(date),"data":df_temp["OPS"].tolist()})
+
     context = {
         'table': new_table,
         'current_season': cfg.CURRENT_SEASON,
         'seasons': ["All"]+sorted(list(set(df_for_sel["Season"].tolist()))),
         'players': ["All"] + sorted(list(set(df_for_sel[df_for_sel["Season"] == cfg.CURRENT_SEASON]["Player"].tolist())), ),
         'games': ["All"]+sorted(list(set(df_for_sel[df_for_sel["Season"]==cfg.CURRENT_SEASON]["Date"].apply(lambda x: str(x)).tolist()))),
+        'dataType': "OPS",
+        'rosterCats': roster,
+        'seriesData': series,
     }
     return(render(request, 'softball/index2.html',context))
 
