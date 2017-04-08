@@ -92,3 +92,28 @@ td.lowest_pos {background-color:green;}
     padding-right: 0px;
     padding-left: 0px;
 }
+
+.unica-font{
+    font-family: 'Unica One', cursive;
+    font-size: 160%;
+}
+
+.schedule{
+    text-align:left;
+}
+
+@media (min-width: 768px) {
+    .schedule{
+        text-align:left;
+        margin-left: 120px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+    .unica-font{
+        font-family: 'Unica One', cursive;
+        font-size: 130%;
+    }
+}

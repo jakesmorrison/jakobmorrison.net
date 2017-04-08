@@ -5,7 +5,9 @@ function plot_stats(type,myContainer, rosterCats,seriesData){
             type: 'column',
             zoomType: 'x'
         },
-
+        credits: {
+            enabled: false
+        },
         title: {
             text: type+' vs. Player'
         },

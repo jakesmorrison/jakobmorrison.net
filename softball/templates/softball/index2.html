@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Unica+One">
 
 
     <!-- CSS -->
@@ -51,8 +52,8 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a style="" class="navbar-brand page-scroll" href="#page-top">
-                    <i class="fa fa-play-circle"></i> <span class="light">Project</span> 57
+                <a style="" class="navbar-brand page-scroll unica-font" href="#page-top">
+                    <i class="fa fa-play-circle"></i> <span class=" unica-fontlight">Project</span> 57
                 </a>
             </div>
 
@@ -64,13 +65,13 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a style="" class="page-scroll" href="#stats">Stats</a>
+                        <a style="" class="page-scroll unica-font" href="#stats">Stats</a>
                     </li>
                     <li>
-                        <a style="" class="page-scroll" href="#chart">Charts</a>
+                        <a style="" class="page-scroll unica-font" href="#chart">Charts</a>
                     </li>
                     <li>
-                        <a style="" class="page-scroll" href="#schedule">Schedule</a>
+                        <a style="" class="page-scroll unica-font" href="#schedule">Schedule</a>
                     </li>
 
                 </ul>
@@ -86,7 +87,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">Project 57</h1>
+                        <h1 class="brand-heading unica-font">Project 57</h1>
                     </div>
                 </div>
             </div>
@@ -98,20 +99,20 @@
         <div class="download-section">
             <div class="container">
             <div>
-                <h2>Project 57 Stats</h2>
+                <h2 class="unica-font">Project 57 Stats</h2>
             </div>
             <div class="row">
                 <div class="col-lg-12" id="top_selectors" style="margin-top: 0px;">
                         <div class="btn-group setting-min-width" role="group">
-                            <label class="mylabel">Season</label>
+                            <label class="mylabel unica-font">Season</label>
                             <input type="text" class="input_selectize setting-min-width" name="select-season" id="select-season">
                         </div>
                         <div class="btn-group" role="group">
-                            <label class="mylabel">Game</label>
+                            <label class="mylabel unica-font">Game</label>
                             <input type="text" class="input_selectize setting-min-width" name="select-game" id="select-game">
                         </div>
                         <div class="btn-group" role="group">
-                            <label class="mylabel">Player</label>
+                            <label class="mylabel unica-font">Player</label>
                             <input type="text" class="input_selectize setting-min-width" name="select-player" id="select-player">
                         </div>
                         <div class="btn-group" role="group">
@@ -134,16 +135,35 @@
     </section>
 
     <!-- Chart Section -->
-    <section id="chart" class="container content-section text-center">
+    <section style="height:100%" id="chart" class="container content-section text-center">
         <div class="row">
-            <div style=" padding-top: 12%; " id="myContainer" class="col-lg-12 col-lg-offset-0">
+            <div style="padding-top: 12%;" id="myContainer" class="col-lg-12 col-lg-offset-0">
 
             </div>
         </div>
     </section>
 
-    <!-- Map Section -->
-    <div id="map"></div>
+        <!-- Schedule Section -->
+    <section style="padding-top: 12%; height:100%;" id="schedule" class="container content-section text-center">
+        <div  class="row">
+            <h2 class="unica-font" style="text-align:center;">Spring 2017 Schedule</h2>
+            <br>
+            <div class="col-lg-6">
+                <p class="unica-font schedule" >Game 1: Wednesday 04/19 - 7:45 WL6</p>
+                <p class="unica-font schedule" >Game 2: Wednesday 05/03 - 7:45 WL5</p>
+                <p class="unica-font schedule" >Game 3: Friday 05/05 - 9:00 WL3</p>
+                <p class="unica-font schedule" >Game 4: Friday 05/12 - 6:30 WL1</p>
+                <p class="unica-font schedule" >Game 5: Wednesday 05/17 - 9:00 WL5</p>
+            </div>
+            <div class="col-lg-6">
+                <p class="unica-font schedule">Game 6: Wednesday 05/31 - 9:00 AM1</p>
+                <p class="unica-font schedule">Game 7: Friday 06/16 - 7:45 WL1</p>
+                <p class="unica-font schedule">Game 8: Wednesday 06/21 - 7:45 WL2</p>
+                <p class="unica-font schedule">Game 9: Wednesday 06/28 - 6:30 WL1</p>
+                <p class="unica-font schedule">Game 10: Wednesday 06/28 - 9:00 WL1</p>
+            </div>
+        </div>
+    </section>
 
 <script>
 function highlight_high(arr){
