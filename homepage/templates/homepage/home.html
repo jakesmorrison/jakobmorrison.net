@@ -44,9 +44,19 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="page-scroll" href="{% url 'resume:resume.views.index' %}">Resume</a>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Resume
+                    <span class="caret"></span></a>
+                    <ul style="border-radius: 3px; background: #222;" class="dropdown-menu">
+                        <li><a style="color: #9d9d9d;" href="{% url 'resume:resume.views.index' %}">Electrical Engineering</a></li>
+                        <li><a style="color: #9d9d9d;" href="{% url 'resume:resume.views.developer' %}">Developer</a></li>
+                        <li><a style="color: #9d9d9d;" href="{% url 'resume:resume.views.applications' %}">Applications</a></li>
+                    </ul>
                 </li>
+
+                <!--<li>-->
+                    <!--<a class="page-scroll" href="{% url 'resume:resume.views.index' %}">Resume</a>-->
+                <!--</li>-->
                 <!--<li>-->
                     <!--<a class="page-scroll" href="{% url 'homepage:homepage.views.projects' %}">Projects</a>-->
                 <!--</li>-->
