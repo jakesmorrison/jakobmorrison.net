@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button onclick="get_data()">Send Data</button>
+{% load staticfiles %}
+<script src=" {% static 'map/js/jquery.min.js' %}" rel="stylesheet"></script>
+<script>
+var map;
+var geocoder;
+var locationDictionary;
+var long_lat = [];
+
+function create_map(lD){
+    locationDictionary = lD;
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.id = "googleMaps"
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyANF9WHGyuGTULtEZnwJtilBIOe_AV6XVo&callback=init_map";
+    document.body.appendChild(script);
+};
+
+function init_map() {
+    var geocoder = new google.maps.Geocoder();
+    for (var i = 0; i < locationDictionary.length; i++) {
+        geocodeAddress(geocoder,locationDictionary[i]["location"],i);
+    }
+};
+
+function geocodeAddress(geocoder, address, n) {
+  setTimeout(function() {
+    console.log(n);
+    geocoder.geocode({
+      'address': address
+    }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        var latitude = results[0].geometry.location.lat();
+        var longitude = results[0].geometry.location.lng();
+        long_lat.push({
+          "address": address,
+          "long": results[0].geometry.location.lng(),
+          "lat": results[0].geometry.location.lat(),
+          "index": n
+        });
+      } else {
+        console.log(status);
+      }
+    });
+  }, 1000 * n)
+};
+
+
+create_map({{locationDictionary|safe}});
+
+function get_data(){
+    console.log(long_lat);
+    <!--for(i=0;i<long_lat;i++){-->
+        $.ajax({
+            url: "{% url 'map:send_long_lat' %}",
+            type: 'GET',
+            contentType: 'application/json',
+            data: JSON.stringify(long_lat)
+        });
+    <!--}-->
+}
+
+</script>
+</body>
+</html>

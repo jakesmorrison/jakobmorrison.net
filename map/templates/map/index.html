@@ -14,32 +14,32 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top" style="width: 50%; left: 25%; border-radius: 25px;">
-  <div class="navbar-header">
-    <a class="navbar-brand" href="{% url 'homepage:homepage.views.home' %}">Travel <i>(Click Markers)</i></a>
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-  </div>
-  <div class="navbar-collapse collapse">
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            <a class="page-scroll" href="{% url 'resume:resume.views.index' %}">Resume</a>
-        </li>
-        <li>
-            <a class="page-scroll" href="{% url 'homepage:homepage.views.projects' %}">Projects</a>
-        </li>
-        <li>
-            <a class="page-scroll" href="{% url 'softball:softball.views.index' %}">Softball</a>
-        </li>
-        <li>
-            <a class="page-scroll" href="{% url 'map:map.views.index' %}">Travel</a>
-        </li>
-    </ul>
-  </div>
-</nav>
+<!--<nav class="navbar navbar-inverse navbar-fixed-top" style="width: 50%; left: 25%; border-radius: 25px;">-->
+  <!--<div class="navbar-header">-->
+    <!--<a class="navbar-brand" href="{% url 'homepage:homepage.views.home' %}">Travel <i>(Click Markers)</i></a>-->
+    <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">-->
+      <!--<span class="icon-bar"></span>-->
+      <!--<span class="icon-bar"></span>-->
+      <!--<span class="icon-bar"></span>-->
+    <!--</button>-->
+  <!--</div>-->
+  <!--<div class="navbar-collapse collapse">-->
+    <!--<ul class="nav navbar-nav navbar-right">-->
+        <!--<li>-->
+            <!--<a class="page-scroll" href="{% url 'resume:resume.views.index' %}">Resume</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a class="page-scroll" href="{% url 'homepage:homepage.views.projects' %}">Projects</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a class="page-scroll" href="{% url 'softball:softball.views.index' %}">Softball</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a class="page-scroll" href="{% url 'map:map.views.index' %}">Travel</a>-->
+        <!--</li>-->
+    <!--</ul>-->
+  <!--</div>-->
+<!--</nav>-->
 
    <div id="map"></div>
    <div class="hidden md-col-12 col-xs-12" id="mypage">
@@ -58,8 +58,7 @@
            </div>
        </div>
    <br>
-        <div class="row" id="mycontent">
-        </div>
+        <div class="row" id="mycontent"></div>
    </div>
 
 <!--Google maps api key-->
@@ -73,7 +72,7 @@
 
 <script>
 
-loadMapScript();
+create_map({{locationDictionary|safe}});
 
 $( ".myclose" ).click(function() {
     $( "#mypage" ).hide();
