@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'',include('homepage.urls')),
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^resume/',include('resume.urls')),
     url(r'^softball/', include('softball.urls')),
     url(r'^admin/', admin.site.urls),
@@ -29,5 +32,5 @@ urlpatterns = [
     url(r'^heartbeat/', include('heartbeat.urls')),
     url(r'^loveletter/', include('loveletter.urls')),
     url(r'^justpooped/', include('poo.urls')),
-
+    url(r'^travelbuddies/', include('travelbuddies.urls')),
 ]

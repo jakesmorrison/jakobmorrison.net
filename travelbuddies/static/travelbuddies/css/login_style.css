@@ -1,0 +1,94 @@
+body {
+    overflow-x: hidden;
+ }
+
+ #wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    height:100%;
+    position: absolute;
+}
+
+.centered{
+    text-align:center;
+    vertical-align: middle;
+    height:50%;
+    position:absolute;
+    top:30%;
+}
+
+.loginbutton{
+    width: 100px;
+}
+
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.custom_font{
+    font-family: 'PT Sans Narrow', sans-serif;
+    color: white;
+}
+
+.login_background {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  padding: 50px 0;
+  color: white;
+  background: url(../img/background1.jpg) no-repeat;
+  background-color: black;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.login_background_blur {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  padding: 50px 0;
+  color: white;
+  background: url(../img/background1.jpg) no-repeat;
+  background-color: white;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  -webkit-filter: blur(10px); /* Safari */
+  filter: blur(10px);
+}
+
+.main_header_font{
+    font-size:50px;
+}

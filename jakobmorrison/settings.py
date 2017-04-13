@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'heartbeat.apps.HeartbeatConfig',
     'loveletter.apps.LoveletterConfig',
     'poo.apps.PooConfig',
+    'travelbuddies.apps.TravelbuddiesConfig',
     'rest_framework',
 ]
 
@@ -66,7 +67,7 @@ ROOT_URLCONF = 'jakobmorrison.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'travelbuddies/templates/travelbuddies/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,6 +126,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+LOGIN_URL = '/login/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
