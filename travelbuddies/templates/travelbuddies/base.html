@@ -2,9 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{% block title %} {% endblock %}</title>
+
+    {% load staticfiles %}
+    <!--CSS-->
+    <link rel="stylesheet" href="{% static 'travelbuddies/css/bootstrap.min.css' %}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{% static 'travelbuddies/css/base_style.css' %}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{% static 'travelbuddies/css/stick_footer.css' %}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{% static 'travelbuddies/css/sidebar_style.css' %}" type="text/css" media="screen" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    {% block css %} {% endblock %}
+
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
+
 </head>
 <body>
+    <!--JS-->
+    <script src="{% static 'travelbuddies/js/jquery.min.js' %}"></script>
+    <script src="{% static 'travelbuddies/js/bootstrap.min.js' %}"></script>
 
+    <div id="wrapper" class="intro container">
+    {% block container %}
+    {% endblock %}
+
+    {% block sidebar %}
+    {% endblock %}
+
+    {% block footer %}
+    {% endblock %}
+
+    {% block javascript %}
+    {% endblock %}
+
+
+    </div>
 </body>
 </html>

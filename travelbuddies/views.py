@@ -20,6 +20,7 @@ def log(request):
     else:
         context = {}
         return render(request, "game/invalid_user.html", context)
+
 def signup(request):
     username = request.POST['new_user']
     password = request.POST['new_password']

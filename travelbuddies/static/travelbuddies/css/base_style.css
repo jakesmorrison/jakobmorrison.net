@@ -1,0 +1,45 @@
+.container {
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+body {
+     margin: 0;
+     padding: 0;
+     text-align: center;
+}
+.custom_container{
+    margin: 0 auto;
+    position: absolute;
+    width: 100%;
+    height: 100%:
+    background-color: #9ea9b9;
+}
+
+.custom_container.toggled{
+    margin: 0 auto;
+    position: absolute;
+    width: calc(100% - 250px);
+}
+
+
+@media only screen and (max-device-width : 667px) {
+    .custom_container.toggled{
+        margin: 0 auto;
+        position: absolute;
+        width: 50%;
+    }
+}
+
+.menu_buttons{
+    width: 100%;
+    background-color:blue;
+    border-radius: 20px;
+}
+
+.menu_icon{
+    float:left;
+    margin-left: 20px;
+}

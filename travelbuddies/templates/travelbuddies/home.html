@@ -1,12 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
+{%extends "travelbuddies/base.html" %}
 
-Add to this page next ;)
+{% load staticfiles %}
 
-</body>
-</html>
+{% block title %}Home{% endblock %}
+
+{% block container %}
+<div class="custom_container col-lg-12">
+    <div class="row">
+        <h1>Sticky footer</h1>
+    </div>
+</div>
+{% endblock %}
+
+{% block sidebar %}
+<div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block footer %}
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+      <div class="col-lg-12 col-xs-12">
+          <div class="row">
+              <divs class="col-xs-3"><h1>Hello</h1></divs>
+              <divs class="col-xs-3"><h1>Hello</h1></divs>
+              <divs class="col-xs-3"><h1>Hello</h1></divs>
+              <divs class="col-xs-3"><h1>Hello</h1></divs>
+          <div class="row">
+              <div>
+                  <a id="menu-toggle" href="""> <i class="fa fa-bars fa-4x menu_icon" aria-hidden="true"></i> </a>
+              </div>
+          </div>
+
+      </div>
+</nav>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+        $(".custom_container").toggleClass("toggled");
+
+    });
+
+</script>
+{% endblock %}
+
+
+nav bar
+
+
+#9ea9b9
+#a0a8a9
