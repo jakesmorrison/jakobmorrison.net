@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
+
 
 # Create your views here.
 
@@ -16,7 +18,7 @@ def log(request):
     user = authenticate(username=username, password=password)
     if user is not None:
         login(request, user)
-        return home(request)
+        return HttpResponseRedirect("/")
     else:
         context = {}
         return render(request, "game/invalid_user.html", context)
@@ -29,4 +31,4 @@ def signup(request):
     user.save()
     user = authenticate(username=username, password=password)
     login(request, user)
-    return home(request)
+    return HttpResponseRedirect("/")

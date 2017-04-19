@@ -3,7 +3,7 @@
 html {
   position: relative;
   min-height: 100%;
-  background-color: #9ea9b9;
+  background-color: #e9ebec;
 }
 body {
   /* Margin bottom by footer height */
@@ -16,4 +16,43 @@ body {
   /* Set the fixed height of the footer here */
   height: 60px;
   background-color: #f5f5f5;
+}
+
+.menu-button{
+    position: absolute;
+    top: 25%;
+    z-index: 1000;
+}
+
+.icons-text{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.icon_label{
+margin-bottom: 0px;
+}
+
+
+.fa:hover{
+color: yellow;
+}
+
+.menu_buttons{
+    width: 100%;
+    background-color:blue;
+    border-radius: 20px;
+}
+
+.menu_icon{
+    float:left;
+    margin-left: 20px;
+}
+.menu_icon:hover {
+    color: yellow;
+}
+
+.navbar-default {
+    background-color: #62fdd5;
+    border-color: #62fdd5;
 }

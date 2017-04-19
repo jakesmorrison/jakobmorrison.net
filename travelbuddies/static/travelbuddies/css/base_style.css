@@ -32,14 +32,3 @@ body {
         width: 50%;
     }
 }
-
-.menu_buttons{
-    width: 100%;
-    background-color:blue;
-    border-radius: 20px;
-}
-
-.menu_icon{
-    float:left;
-    margin-left: 20px;
-}
