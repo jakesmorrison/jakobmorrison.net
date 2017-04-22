@@ -18,7 +18,7 @@ class Softball_Methods():
         return df
 
     def stats_calc(df):
-        df["TB"] = 1*df["1B"]+2*df["2B"]+3*df["3B"]+4*df["4B"]+5*df["HR"]
+        df["TB"] = 1*df["1B"]+2*df["2B"]+3*df["3B"]+4*df["4B"]+4*df["HR"]
         df["AVG"] = (df["H"]/df["AB"]).apply(lambda x: float('%.3f'%x))
         df["OBP"] = ((df["H"]+df["BB"])/(df["AB"]+df["BB"])).apply(lambda x: float('%.3f'%x))
         df["SLG"] = (df["TB"]/df["AB"]).apply(lambda x: float('%.3f'%x))

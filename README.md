@@ -12,6 +12,9 @@ Find my site at jakobmorrison.net
 
 ### Resume
 
+### Softball
+python manage.py csv_to_db /Users/jakesmorrison/Dropbox/Pycharm/jakobmorrison.net/softball/static/softball/csv/last_game.csv
+
 ## Cool stuff
 
 ## Books

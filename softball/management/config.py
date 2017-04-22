@@ -7,5 +7,5 @@ class Config(object):
     Fall_2016_Roster = "Matt,Grak,Jack,Jake,Josh,Lucas,Sean,Nic,Stubbs,Nuggets,Ty".split(",")
     Spring_2017_Roster = "Stubbs,Jack,Tony,Matt,Grak,Ty,Sean,Lucas,Nuggets,Jake,Nic".split(",")
 
-    CURRENT_SEASON_ROSTER = Fall_2016_Roster
-    CURRENT_SEASON = "2016 Fall"
+    CURRENT_SEASON_ROSTER = Spring_2017_Roster
+    CURRENT_SEASON = "2017 Spring"
