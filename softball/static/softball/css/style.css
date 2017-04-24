@@ -40,9 +40,9 @@
     background-color: black;
 }
 
-td.highest {background-color:green;}
+td.highest {background-color:rgba(0, 255, 20, 0.56)}
 td.lowest {background-color:red;}
-td.lowest_pos {background-color:green;}
+td.lowest_pos {background-color:rgba(0, 255, 20, 0.56)}
 
 .setting-min-width{
     width: 120px !important;
@@ -110,10 +110,13 @@ td.lowest_pos {background-color:green;}
 
 }
 
-
 @media (max-width: 500px) {
     .unica-font{
         font-family: 'Unica One', cursive;
         font-size: 130%;
     }
+}
+
+.dropdown-menu li:hover {
+    cursor: pointer;
 }

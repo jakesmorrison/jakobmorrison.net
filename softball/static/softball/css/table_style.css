@@ -5,7 +5,7 @@
 }
 
 .table-hover>tbody>tr:hover {
-    background-color: #00ff0c;
+    background-color: white;
     color: #black;
     font-weight: 700;
 }
@@ -17,4 +17,8 @@ margin-right: 0 !important;
 
 .table th, .table td {
 text-align: center !important;
+}
+
+.selectize-input input{
+    display:none;
 }
