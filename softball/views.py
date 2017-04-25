@@ -6,6 +6,7 @@ import pandas as pd
 import re
 from .management import methods
 import json
+from collections import Counter, OrderedDict
 
 from .management import config as cfg
 cfg = cfg.Config
@@ -153,5 +154,66 @@ def change_season(request):
 
     context = {
         "game_list": ["All"] + sorted(list(set(df_self[df_self["Season"] == season]["Date"].apply(lambda x: str(x)).tolist())))
+    }
+    return JsonResponse(json.loads(json.dumps(context)))
+
+def player_dash(request):
+    params = request.GET
+    name = params['name']
+    db_stats = Stats.objects.all().filter(player=name)
+    df = pd.DataFrame(list(db_stats.values()))
+    df =df.drop("id",1)
+    df.columns = cfg.COLUMN_NAMES
+    df = df[cfg.COLUMN_NAMES_ORDER]
+    df = methods.Softball_Methods.stats_calc(df)
+    df = df.sort_values(by='Date')
+
+    pa = df["PA"].sum()
+    bb = df["BB"].sum()
+    fb = df["1B"].sum()
+    sb = df["2B"].sum()
+    tb = df["3B"].sum()
+    fourb = df["4B"].sum()
+    hr = df["HR"].sum()
+    outs = pa - (bb+fb+sb+tb+fourb+hr)
+
+    pie_chart = [
+                {"text":"Out","value":(outs/pa)*100,"color":"rgb(255, 144, 144)",},
+                {"text":"Walk","value":(bb/pa)*100,"color":"white",},
+                {"text":"1B","value":(fb/pa)*100,"color":"rgba(144,153,255,1)",},
+                {"text":"2B","value":(sb/pa)*100,"color":"rgb(255, 144, 248)",},
+                {"text":"3B","value":(tb/pa)*100,"color":"rgb(255, 225, 144)",},
+                {"text":"4B","value":(fourb/pa)*100,"color":"rgb(157, 255, 144)",},
+                {"text":"HR","value":(hr/pa)*100,"color":"rgb(144, 255, 233)",},
+            ]
+
+    pie_chart = [x for x in pie_chart if x["value"]>0]
+
+    df_bands = df.drop_duplicates(['Date'])
+    season_color = ['rgba(68, 170, 213, .2)','rgba(68, 100, 213, .2)','rgba(68, 170, 12, .2)']
+    start = -.5
+    bands = []
+    season = ""
+    counter = 0
+    color_counter = 0
+    for index,row in df_bands.iterrows():
+        if index == 0:
+            season = row["Season"]
+            counter = 1
+        elif season == row["Season"]:
+            counter = counter +1
+        else:
+            bands.append( {"from": start, "to": start+counter, "color": season_color[color_counter]})
+            start = counter + start
+            counter = 1
+            color_counter +=1
+            season = row["Season"]
+    bands.append({"from": start, "to": start + counter, "color": season_color[color_counter]})
+
+    context = {
+        "player_game_stat_data": [{"name":name,"data":df["OPS"].tolist()}],
+        "player_game_stat_cat": [str(x) for x in df["Date"].tolist()],
+        "player_game_stat_bands": bands,
+        "pie_chart":pie_chart
     }
     return JsonResponse(json.loads(json.dumps(context)))

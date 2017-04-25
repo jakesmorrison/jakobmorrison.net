@@ -43,6 +43,9 @@
     <script src=" {% static 'softball/js/highcharts.js' %}" rel="stylesheet"></script>
     <script src=" {% static 'softball/js/hc_theme.js' %}" rel="stylesheet"></script>
     <script src=" {% static 'softball/js/plot_stats.js' %}" rel="stylesheet"></script>
+    <script src=" {% static 'softball/js/player-game-stat.js' %}" rel="stylesheet"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+    <script src="{% static 'softball/js/piechart.js' %}"></script>
 
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -68,6 +71,9 @@
                     </li>
                     <li>
                         <a style="" class="page-scroll unica-font" href="#chart">Charts</a>
+                    </li>
+                    <li>
+                        <a style="" class="page-scroll unica-font" href="#dashboard">Dashboard</a>
                     </li>
                     <li>
                         <a style="" class="page-scroll unica-font" href="#schedule">Schedule</a>
@@ -147,6 +153,38 @@
 
             </div>
         </div>
+    </section>
+
+    <!-- Player History -->
+    <section style="height:100%" id="dashboard" class="container content-section text-center">
+        <div class="download-section">
+            <div class="container">
+            <div>
+                <h2 class="unica-font">
+                <span>
+                    <select style="width: 200px; color:black; background-color: white;" id="select-dash" class="demo-default" placeholder="Select Player...">
+                        <option value="">Select Player...</option>
+                        {% for x in rosterCats %}
+                            <option value={{ x }}>{{x}}</option>
+                        {%endfor%}
+                    </select>
+                </span>
+                    </h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-8" id="top_selectors" style="margin-top: 0px;">
+                    <div style="" id="container" class="col-lg-12 col-lg-offset-0">
+                    </div>
+                </div>
+                <div class="col-lg-4" id="pie_chart" style="margin-top: -20px;">
+                    <div style="margin-left: 20px;" class="plot1 col-lg-12 col-lg-offset-0">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
     </section>
 
         <!-- Schedule Section -->
@@ -327,6 +365,23 @@ $(document).on('click','.navbar-collapse.in',function(e) {
     }
 });
 
+
+
+$('#select-dash').change(function() {
+    url_base = "{% url 'softball:player_dash' %}";
+    params = {'name': $("#select-dash").val()};
+    my_url = url_base + "?" + $.param( params );
+    $(".plot1").html("");
+    $.ajax({
+        url: my_url,
+        type: 'GET',
+        success: function (msg) {
+            player_game_stat(msg["player_game_stat_data"],msg["player_game_stat_cat"],msg["player_game_stat_bands"]);
+            piechart(msg["pie_chart"]);
+        }
+    });
+})
+
 $(document).ready(function() {
     setup_table();
 
@@ -335,6 +390,11 @@ $(document).ready(function() {
     add_options($select_player, {{players|safe}},"All")
 
     plot_stats("{{ dataType|safe }}","myContainer",{{ rosterCats|safe }},{{ seriesData|safe }})
+
+    <!--$('#select-dash').selectize({-->
+        <!--allowEmptyOption: true,-->
+        <!--create: true-->
+    <!--});-->
 
 });
 

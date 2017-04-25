@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'index_updates/', views.index_updates, name='index_updates'),
     url(r'change_season/', views.change_season, name='change_season'),
+    url(r'player_dash/', views.player_dash, name='player_dash'),
 ]

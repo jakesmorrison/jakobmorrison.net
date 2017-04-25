@@ -120,3 +120,9 @@ td.lowest_pos {background-color:rgba(0, 255, 20, 0.56)}
 .dropdown-menu li:hover {
     cursor: pointer;
 }
+
+@media screen and (max-width: 1220px) {
+    #pie_chart {
+        display: none !important;
+    }
+}
