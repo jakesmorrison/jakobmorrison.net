@@ -47,7 +47,9 @@ def home(request):
 
     html_table = df_display.to_html(index=False, classes='table table-striped table-bordered table-hover table-responsive'  )
     for n in book_names:
-        html_table = html_table.replace(n ,  "<a class=\"mylink\" href=\"#\">"+n+"</a>")
+        print(n)
+        html_table = html_table.replace(n , "<a class=\"mylink\" href=\"#\">"+n+"</a>", 1)
+        print(html_table)
 
 
     lookup = df_lookup[df_lookup["Title"] == book_names[len(book_names)-1]]

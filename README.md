@@ -28,6 +28,7 @@ python manage.py book_to_db "The Hitchhikers Guide to the Galaxy" "Douglas Adams
 python manage.py book_to_db "The Road" "Cormac McCarthy" "theroad" "Fiction" "Post-Apocalyptic" "2017-03-7" "2017-03-19" --settings=jakobmorrison.apache.override
 python manage.py book_to_db "Being Mortal" "Atul Gawande" "beingmortal" "Non-Fiction" "Medicine" "2017-03-10" "2017-03-19" --settings=jakobmorrison.apache.override
 python manage.py book_to_db "East Of Eden" "John Steinbeck" "eastofeden" "Fiction" "Classics" "2017-04-01" "2017-04-25" --settings=jakobmorrison.apache.override
+python manage.py book_to_db "Foundation and Empire" "Isaac Asimov" "foundationandempire" "Fiction" "Science Fiction" "2017-04-28" "2017-05-05" --settings=jakobmorrison.apache.override
 
 
 ## Travel
