@@ -10,8 +10,8 @@ from .models import Stats
 admin.site.register(Stats, StatsModelAdmin)
 
 
-class PollsModelAdmin(admin.ModelAdmin):
-    list_display=["question","poss"]
-    search_fields = list_display
-from .models import Polls
-admin.site.register(Polls, PollsModelAdmin)
+# class PollsModelAdmin(admin.ModelAdmin):
+#     list_display=["question","poss"]
+#     search_fields = list_display
+# from .models import Polls
+# admin.site.register(Polls, PollsModelAdmin)
