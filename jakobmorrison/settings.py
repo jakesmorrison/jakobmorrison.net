@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'loveletter.apps.LoveletterConfig',
     'poo.apps.PooConfig',
     'travelbuddies.apps.TravelbuddiesConfig',
+    'asia.apps.AsiaConfig',
     'rest_framework',
 ]
 

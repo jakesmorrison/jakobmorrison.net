@@ -33,4 +33,5 @@ urlpatterns = [
     url(r'^loveletter/', include('loveletter.urls')),
     url(r'^justpooped/', include('poo.urls')),
     url(r'^travelbuddies/', include('travelbuddies.urls')),
+    url(r'^asiatrip/', include('asia.urls')),
 ]

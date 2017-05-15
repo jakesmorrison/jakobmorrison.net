@@ -1,0 +1,94 @@
+[
+	{
+		"code": "AW",
+		"value": 597,
+		"name": "Aruba",
+		"color": "black"
+	},
+	{
+		"code": "BZ",
+		"value": 15,
+		"name": "Belize",
+		"color": "black"
+	},
+	{
+		"code": "KH",
+		"value": 80,
+		"name": "Cambodia"
+	},
+	{
+		"code": "CR",
+		"value": 91,
+		"name": "Costa Rica"
+	},
+	{
+		"code": "HR",
+		"value": 79,
+		"name": "Croatia"
+	},
+	{
+		"code": "FR",
+		"value": 118,
+		"name": "France"
+	},
+	{
+		"code": "DE",
+		"value": 234,
+		"name": "Germany"
+	},
+	{
+		"code": "IE",
+		"value": 65,
+		"name": "Ireland"
+	},
+	{
+		"code": "KR",
+		"value": 504,
+		"name": "Korea, Rep."
+	},
+	{
+		"code": "LA",
+		"value": 27,
+		"name": "Lao PDR"
+	},
+	{
+		"code": "PR",
+		"value": 449,
+		"name": "Puerto Rico"
+	},
+	{
+		"code": "SG",
+		"value": 7252,
+		"name": "Singapore"
+	},
+	{
+		"code": "ES",
+		"value": 92,
+		"name": "Spain"
+	},
+	{
+		"code": "TH",
+		"value": 135,
+		"name": "Thailand"
+	},
+	{
+		"code": "TW",
+		"value": 131,
+		"name": "Taiwan"
+	},
+	{
+		"code": "GB",
+		"value": 257,
+		"name": "United Kingdom"
+	},
+	{
+		"code": "US",
+		"value": 34,
+		"name": "United States"
+	},
+	{
+		"code": "VN",
+		"value": 280,
+		"name": "Vietnam"
+	}
+]

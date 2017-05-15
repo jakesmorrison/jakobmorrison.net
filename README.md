@@ -14,6 +14,7 @@ Find my site at jakobmorrison.net
 
 ### Softball
 python manage.py csv_to_db /Users/jakesmorrison/Dropbox/Pycharm/jakobmorrison.net/softball/static/softball/csv/last_game.csv
+python manage.py csv_to_db /root/jakobmorrison/softball/static/softball/csv/last_game.csv --settings=jakobmorrison.apache.override
 
 ## Cool stuff
 

@@ -1,0 +1,179 @@
+/* ===== Initializr Styles ==================================================
+   Author: Jake Morrison
+   ========================================================================== */
+body {
+  width: 100%;
+  height: 100%;
+  font-family: "Lora", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: black;
+  background-color: white;
+}
+html {
+  width: 100%;
+  height: 100%;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+/* Intro */
+#intro {
+    height: 100vh;
+    background: radial-gradient(circle, #74A6EE 0%, #485CB2 100%);
+    text-align: center;
+    color: #fff;
+}
+
+#intro .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#intro img { width: 100%; height: auto; }
+
+
+/* Main */
+.project {
+    height: 100vh;
+    text-align: center;
+    opacity: 0;
+    transition: all 1s ease-out;
+}
+
+.project.fade-in {
+    opacity: 1;
+}
+
+.project.fade-out {
+    opacity: 0;
+}
+
+/* Country Animations */
+.country-svg{
+    width: 250px;
+    text-align:center;
+    margin: auto;"
+}
+
+.country-fade {
+    opacity: 0;
+}
+
+
+#korea1{
+    position:absolute;
+    top:0px;
+    left:0px;
+    animation: move1 2s 2s forwards infinite alternate, spin .5s .1s ease;
+}
+
+@keyframes move1{
+    from{
+        transform: translate(0px,0px);
+        transition-delay: 10s;
+    }
+    to{
+        transform: translate(100px, -50px);
+        transition-delay: 10s;
+    }
+}
+@keyframes spin{
+    0%{
+        rotateZ(0deg);
+    }
+    10%{
+        rotateZ(150deg);
+    }
+}
+
+#korea2{
+    position:absolute;
+    top:0px;
+    left:0px;
+    animation-name: move2;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes move2{
+    from{ transform: translate(0px,0px) }
+    to{ transform: translate(-100px, 0px) }
+}
+
+#korea3{
+    position:absolute;
+    top:0px;
+    left:0px;
+    animation-name: move3;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes move3{
+    from{ transform: translate(0px,0px) }
+    to{ transform: translate(-200px, -20px) }
+}
+
+#korea4{
+    position:absolute;
+    top:0px;
+    left:0px;
+    animation-name: move4;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes move4{
+    from{ transform: translate(0px,0px) }
+    to{ transform: translate(30px, 150px) }
+}
+
+#korea5{
+    position:absolute;
+    top:0px;
+    left:0px;
+    animation-name: move5;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes move5{
+    from{ transform: translate(0px,0px) }
+    to{ transform: translate(-30px, 120px) }
+}
+
+#korea6{
+    position:absolute;
+    top:0px;
+    left:0px;
+    animation-name: move6;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes move6{
+    from{ transform: translate(0px,0px) }
+    to{ transform: translate(150px, 0px) }
+}

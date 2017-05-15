@@ -1,4 +1,5 @@
 from django.db import models
+from picklefield.fields import PickledObjectField
 
 # Create your models here.
 
@@ -28,3 +29,9 @@ class Stats(models.Model):
                            self.cs,self.dbo,self.sb,self.h,self.firstb,self.secondb,self.thirdb,self.fourthb,
                            self.hr,self.r,self.rbi)
 
+
+class Polls(models.Model):
+    question = models.CharField(max_length=1000, default='x')
+    poss = PickledObjectField(default={})
+    def __str__(self):
+        return "{} {}".format(self.question,self.poss)

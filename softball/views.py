@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import JsonResponse
 
 from .models import Stats
+from .models import Polls
+
 import pandas as pd
 import re
 from .management import methods
@@ -66,6 +68,9 @@ def index(request):
         df_temp = df_temp.sort(["Player"])
         series.append({"name":str(date),"data":df_temp["OPS"].tolist()})
 
+
+    polls = Polls.objects.all().values()
+    poll = polls[len(polls)-1]
     context = {
         'table': new_table,
         'current_season': cfg.CURRENT_SEASON,
@@ -75,6 +80,8 @@ def index(request):
         'dataType': "OPS",
         'rosterCats': roster,
         'seriesData': series,
+        'pollQuestion': poll["question"],
+        'possibilities': list(poll["poss"])
     }
     return(render(request, 'softball/index2.html',context))
 
@@ -217,3 +224,16 @@ def player_dash(request):
         "pie_chart":pie_chart
     }
     return JsonResponse(json.loads(json.dumps(context)))
+
+
+def submit_poll(request):
+    # print(request)
+    # polls = Polls.objects.all().values()
+    # poll = polls[len(polls)-1]
+    #
+    # overwrite_polls = Polls.object.all().filter(question=polls["question"])
+    # print(overwrite_polls)
+    pass
+
+def poll_chart(request):
+    pass
