@@ -30,8 +30,8 @@ class Stats(models.Model):
                            self.hr,self.r,self.rbi)
 
 
-class Polls(models.Model):
-    question = models.CharField(max_length=1000, default='x')
-    poss = PickledObjectField(default={})
-    def __str__(self):
-        return "{} {}".format(self.question,self.poss)
+# class Polls(models.Model):
+#     question = models.CharField(max_length=1000, default='x')
+#     poss = PickledObjectField(default={})
+#     def __str__(self):
+#         return "{} {}".format(self.question,self.poss)
