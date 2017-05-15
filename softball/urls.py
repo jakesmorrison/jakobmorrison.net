@@ -9,5 +9,5 @@ urlpatterns = [
     url(r'player_dash/', views.player_dash, name='player_dash'),
     url(r'submit_poll/', views.submit_poll, name='submit_poll'),
     url(r'poll_chart/', views.poll_chart, name='poll_chart'),
-
+    url(r'^api/$', views.all_stats),
 ]
