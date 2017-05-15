@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 
 from .models import Stats
-from .models import Polls
+# from .models import Polls
 
 import pandas as pd
 import re
