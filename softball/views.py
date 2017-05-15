@@ -69,8 +69,8 @@ def index(request):
         series.append({"name":str(date),"data":df_temp["OPS"].tolist()})
 
 
-    polls = Polls.objects.all().values()
-    poll = polls[len(polls)-1]
+    # polls = Polls.objects.all().values()
+    # poll = polls[len(polls)-1]
     context = {
         'table': new_table,
         'current_season': cfg.CURRENT_SEASON,
@@ -80,9 +80,9 @@ def index(request):
         'dataType': "OPS",
         'rosterCats': roster,
         'seriesData': series,
-        'pollQuestion': poll["question"],
-        'possibilities': list(poll["poss"])
     }
+    # 'pollQuestion': poll["question"],
+    # 'possibilities': list(poll["poss"])
     return(render(request, 'softball/index2.html',context))
 
 def index_updates(request):
