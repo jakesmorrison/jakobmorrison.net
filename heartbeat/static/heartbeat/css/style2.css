@@ -1,0 +1,104 @@
+.container {
+    width: 100%;
+    background-color: #bbbbbb;
+}
+
+.my-block{
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    /*border: 1px solid white;*/
+}
+
+.my-row{
+    height: 20vh;
+}
+
+.my-block1{
+    background-color: white;
+    top: -100vh;
+    left: 50vh;
+    opacity:0;
+    animation: move1 .25s 1.5s ease-in-out forwards;
+}
+
+@keyframes move1{
+    0%{top: -100vh; left: 50vh; opacity: 0;}
+    100%{top: 0vh; left: 0vh; opacity: 1;}
+}
+
+.my-block2{
+    background-color: white;
+    opacity: 0;
+    animation: move2 .25s 1.75s ease-in-out forwards;
+}
+
+@keyframes move2{
+    0%{top: -100vh; left: 50vh; opacity: 0;}
+    100%{top: 0vh; left: 0vh; opacity: 1;}
+}
+
+.my-block3{
+    background-color: white;
+    opacity: 0;
+    animation: move3 .25s 1.25s ease-in-out forwards;
+}
+
+@keyframes move3{
+    0%{top: -100vh; left: -50vh; opacity: 0;}
+    100%{top: 0vh; left: 0vh; opacity: 1;}
+}
+
+.my-block4{
+    background-color: white;
+    opacity: 0;
+    animation: move4 .25s .75s ease-in-out forwards;
+}
+
+@keyframes move4{
+    0%{top: -100vh; left: -50vh; opacity: 0;}
+    100%{top: 0vh; left: 0vh; opacity: 1;}
+}
+
+.my-block5{
+    background-color: white;
+    opacity: 0;
+    animation: move5 .25s .5s ease-in-out forwards;
+}
+
+@keyframes move5{
+    0%{top: -100vh; left: 50vh; opacity: 0;}
+    100%{top: 0vh; left: 0vh; opacity: 1;}
+}
+
+.my-block6{
+    background-color: white;
+    opacity: 0;
+    animation: move6 .25s 1s ease-in-out forwards;
+}
+
+@keyframes move6{
+    0%{top: -100vh; left: 0vh; opacity: 0;}
+    100%{top: 0vh; left: 0vh; opacity: 1;}
+}
+
+.my-block7{
+    background-color: white;
+    opacity: 0;
+    animation: move7 .25s .25s ease-in-out forwards;
+}
+
+@keyframes move7{
+    0%{top: -100vh; left: -50vh; opacity: 0;}
+    100%{top: 0vh; left: 0vh; opacity: 1;}
+}
+
+.my-block8{
+    background-color: white;
+    opacity: 0;
+    animation: move8 .25s ease-in-out forwards;
+}
+
+@keyframes move8{
+    0%{top: -100vh; left: -50vh; opacity: 0;}
+    100%{top: 0vh; left: 0vh; opacity: 1;}
+}
