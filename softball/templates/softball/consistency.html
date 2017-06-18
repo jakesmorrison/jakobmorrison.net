@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- CSS -->
+    {% load staticfiles %}
+    <link href=" {% static 'softball/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'softball/css/grayscale.css' %}" rel="stylesheet" type="text/css" />
+    <link href=" {% static 'softball/css/style.css' %}" rel="stylesheet">
+
+
+    <title>Consistency Study</title>
+
+
+</head>
+<body>
+    <!-- jQuery -->
+    <script src=" {% static 'softball/js/jquery-2.1.1.js' %}" rel="stylesheet"></script>
+    <script src=" {% static 'softball/js/bootstrap.min.js' %}" rel="stylesheet"></script>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1">
+                <h1 style="text-align:center;">Consistency Study</h1>
+                <hr>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div style="text-align:center;" class="col-lg-10 col-lg-offset-1">
+                <div>
+                    <p>
+                    Consistency is interesting because it doesn't mean you are the best hitter.
+                    It just means that you do the same thing a lot; in this case you get around the same OPS each game.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div style="text-align:center;" class="col-lg-7 col-lg-offset-1">
+                <img style="border-radius:3px;" src="{% static 'softball/img/ops_cont.png' %}"></img>
+            </div>
+           <div style="text-align:center;" class="col-lg-3 col-lg-offset-0">
+                <div>some textsome textsome textsome textsome textsome textsome textsome textsome textsome textsome textsome text
+                some textsome textsome textsome textsome textsome textsome textsome textsome textsome textsome textsome textsome text
+                some textsome textsome textsome textsome textsome textsome textsome textsome textsome textsome textsome textsome text</div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
