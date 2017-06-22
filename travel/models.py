@@ -62,7 +62,7 @@ class TravelStats(models.Model):
     miles_train = models.IntegerField(default=0)
     miles_car = models.IntegerField(default=0)
     miles_bus = models.IntegerField(default=0)
-    miles_walk = models.IntegerField(default=0)
+    miles_walk = models.DecimalField(max_digits=5, decimal_places=2)
 
     housing_cost = models.DecimalField(max_digits=5, decimal_places=2)
     housing_name = models.CharField(max_length=100)
