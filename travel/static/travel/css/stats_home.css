@@ -1,0 +1,70 @@
+.container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #bbbbbb;
+}
+
+.my-block{
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    border: 2px solid #908080;
+    height: 100%;
+    text-align:center;
+}
+
+.my-row{
+    height: 33.33%;
+}
+
+.title-block{
+    background-color: white;
+}
+
+.my-block-1{
+    background-color: #ff5f5f;
+}
+
+.my-block-2{
+    background-color: #6b6bf5;
+}
+
+.my-block-3{
+    background-color: #ffff63;
+}
+
+.my-block-4{
+    background-color: #4ebf4e;
+}
+
+.my-block-5{
+    background-color: #af3daf;
+}
+
+.my-block-6{
+    background-color: #97ecff;
+}
+
+.custom-block-text{
+    color: white;
+    font-family: 'Patrick Hand SC', cursive;
+    transform: scale(1);
+    transition: all .3s ease-in-out 0.2s;
+    cursor: pointer;
+}
+
+.custom-block-text:hover{
+  transform: scale(1.5);
+  transition: all 0.3s ease-in-out 0.1s;
+}
+
+.custom-title-text{
+    color: black;
+    font-family: 'Patrick Hand SC', cursive;
+}
+
+.btn{
+    background: transparent;
+}
+
+
