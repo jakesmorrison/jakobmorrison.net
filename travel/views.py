@@ -17,7 +17,8 @@ def home(request):
 
 def general(request):
     df = pd.DataFrame(list(TravelStats.objects.all().values()))
-    city_day_counter = OrderedDict(Counter(df["city"].tolist())).items()
+    temp_dict = Counter(df["city"].tolist())
+    city_day_counter = sorted(temp_dict.items(), key=lambda x: x[1])
 
     city_list = [x[0] for x in city_day_counter]
     city_day_count = [x[1] for x in city_day_counter]
