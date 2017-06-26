@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import TravelStats
 import pandas as pd
-from collections import Counter
+from collections import Counter, OrderedDict
 # Create your views here.
 
 def home(request):
@@ -17,7 +17,7 @@ def home(request):
 
 def general(request):
     df = pd.DataFrame(list(TravelStats.objects.all().values()))
-    city_day_counter = Counter(df["city"].tolist()).items()
+    city_day_counter = OrderedDict(Counter(df["city"].tolist())).items()
 
     city_list = [x[0] for x in city_day_counter]
     city_day_count = [x[1] for x in city_day_counter]
