@@ -42,7 +42,7 @@ def sleep(request):
     wake_list = []
     for x in df_wake_time:
         wake_time = (str(x).split(":"))
-        if int(wake_time[1]) == 23 and int(wake_time[1])>=30:
+        if int(wake_time[0]) == 23 and int(wake_time[1])>=30:
             wake_time = 0
         elif int(wake_time[1])>=30:
             wake_time=int(wake_time[0]) + 1
@@ -59,7 +59,7 @@ def sleep(request):
     sleep_list = []
     for x in df_sleep_time:
         sleep_time = (str(x).split(":"))
-        if int(sleep_time[1]) == 23 and int(sleep_time[1])>=30:
+        if int(sleep_time[0]) == 23 and int(sleep_time[1])>=30:
             sleep_time = 0
         elif int(sleep_time[1])>=30:
             sleep_time=int(sleep_time[0]) + 1
