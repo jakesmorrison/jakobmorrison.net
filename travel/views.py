@@ -34,8 +34,29 @@ def media(request):
     return render(request, 'travel/general_info.html', context)
 
 def sleep(request):
-    context = {}
-    return render(request, 'travel/general_info.html', context)
+
+    df = pd.DataFrame(list(TravelStats.objects.all().values()))
+
+
+    df_wake_time = df["wake_time"].tolist()
+    wake_list = []
+    for x in df_wake_time:
+        wake_time = (str(x).split(":"))
+        if int(wake_time[1])>=30:
+            wake_time=int(wake_time[0]) + 1
+        else:
+            wake_time = int(wake_time[0])
+        wake_list.append(wake_time)
+
+    wake_dict = Counter(wake_list)
+    radial_wake_list = []
+    for key,val in wake_dict.items():
+        radial_wake_list.append({'type':'line','name':'Line','data':[0,val],'pointStart':0,'pointInterval':key,'color':'black'})
+
+    context = {
+        'radial_wake': radial_wake_list
+    }
+    return render(request, 'travel/sleep_info.html', context)
 
 def food(request):
     context = {}

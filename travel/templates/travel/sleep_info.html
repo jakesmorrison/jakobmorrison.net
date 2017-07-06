@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    {% load staticfiles %}
+    <link href=" {% static 'heartbeat/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'travel/css/stats_home.css' %}" rel="stylesheet">
+    <link href=" {% static 'travel/css/stats_pages.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
+
+    <title>Sleep</title>
+</head>
+<body>
+
+<div style="background-color: #6b6bf5" class="container">
+    <div style="font-family: 'Patrick Hand SC', cursive;" class="col-lg-5 col-xs-12 my_data_col">
+        <div class="row">
+            <div class="col-xs-3"><h3 style="text-align:center;"><b>Country</b> </h3></div>
+            <div class="col-xs-3"><h3 style="text-align:center;"><b>Wake Time</b> </h3></div>
+            <div class="col-xs-3"><h3 style="text-align:center;"><b>Bed Time</b> </h3></div>
+            <div class="col-xs-3"><h3 style="text-align:center;"><b>Sleep Time</b> </h3></div>
+        </div>
+        <!--Start Loop Here-->
+        <div class="row">
+            <div class="col-xs-3"><h5 style="text-align:center;"><b>Spain</b> </h5></div>
+            <div class="col-xs-3"><h5 style="text-align:center;"><b>11:00AM</b> </h5></div>
+            <div class="col-xs-3"><h5 style="text-align:center;"><b>2:30AM</b> </h5></div>
+            <div class="col-xs-3"><h5 style="text-align:center;"><b>9.5 Hours</b> </h5></div>
+        </div>
+        <!--End Loop Here-->
+
+        <div class="row">
+                        <div class="col-xs-12 centered">NAPS</div>
+        </div>
+    </div>
+    <div class="col-lg-7 col-xs-12 my_data_col">
+        <div class="row">
+            <div id="wake_radial" style="min-width: 310px; max-width: 400px; height: 400px; margin: 0 auto" class="col-xs-6 centered">
+                Radial Wake Time
+            </div>
+            <div class="col-xs-6 centered">
+                Radial Sleep Time
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 centered">
+                Companion vs. City vs. Wake Time
+            </div>
+            <div class="col-xs-6 centered">
+                Companion vs. City vs. Sleep Time
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% load staticfiles %}
+<script src=" {% static 'heartbeat/js/jquery-2.1.1.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'heartbeat/js/bootstrap.min.js' %}" rel="stylesheet"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<script>
+
+Highcharts.chart('wake_radial', {
+    chart: {
+        polar: true,
+        borderWidth: 0,
+        backgroundColor: null
+    },
+    title: {
+        text: 'Wake Up Time'
+    },
+    pane: {
+        startAngle: 0,
+        endAngle: 360
+    },
+    xAxis: {
+        tickInterval: 1,
+        min: 0,
+        max: 23,
+        labels: {
+            formatter: function () {
+                return this.value + 'h';
+            }
+        }
+    },
+    yAxis: {
+        min: 0
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0,
+            groupPadding: 0
+        }
+    },
+    legend: {enabled: false},
+    exporting: { enabled: false },
+    credits: {enabled: false},
+    series: {{radial_wake|safe}}
+});
+
+
+</script>
+
+</body>
+</html>
