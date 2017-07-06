@@ -53,7 +53,7 @@ def sleep(request):
     wake_dict = Counter(wake_list)
     radial_wake_list = []
     for key,val in wake_dict.items():
-        radial_wake_list.append({'type':'line','name':'Occurrences','data':[0,val],'pointStart':0,'pointInterval':key,'color':'black','symbol':'circle'})
+        radial_wake_list.append({'type':'line','name':'Occurrences','data':[0,val],'pointStart':0,'pointInterval':key,'color':'black','marker':{'symbol':'circle'}})
 
     df_sleep_time = df["sleep_time"].tolist()
     sleep_list = []
@@ -70,7 +70,7 @@ def sleep(request):
     sleep_dict = Counter(sleep_list)
     radial_sleep_list = []
     for key,val in sleep_dict.items():
-        radial_sleep_list.append({'type':'line','name':'Occurrences','data':[0,val],'pointStart':0,'pointInterval':key,'color':'black'})
+        radial_sleep_list.append({'type':'line','name':'Occurrences','data':[0,val],'pointStart':0,'pointInterval':key,'color':'black','marker':{'symbol':'circle'}})
 
     context = {
         'radial_wake': radial_wake_list,
