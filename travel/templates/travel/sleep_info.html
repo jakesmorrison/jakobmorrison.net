@@ -22,16 +22,18 @@
             <div class="col-xs-3"><h3 style="text-align:center;"><b>Sleep Time</b> </h3></div>
         </div>
         <!--Start Loop Here-->
+        {% for d in city_wake_sleep %}
         <div class="row">
-            <div class="col-xs-3"><h5 style="text-align:center;"><b>Spain</b> </h5></div>
-            <div class="col-xs-3"><h5 style="text-align:center;"><b>11:00AM</b> </h5></div>
-            <div class="col-xs-3"><h5 style="text-align:center;"><b>2:30AM</b> </h5></div>
-            <div class="col-xs-3"><h5 style="text-align:center;"><b>9.5 Hours</b> </h5></div>
+            <div class="col-xs-3"><h5 style="text-align:center;"><b>{{d.city|safe}}</b> </h5></div>
+            <div class="col-xs-3"><h5 style="text-align:center;"><b>{{d.wake|safe}}</b> </h5></div>
+            <div class="col-xs-3"><h5 style="text-align:center;"><b>{{d.sleep|safe}}</b> </h5></div>
+
         </div>
+        {% endfor %}
         <!--End Loop Here-->
 
         <div class="row">
-                        <div class="col-xs-12 centered">NAPS</div>
+            <div class="col-xs-12 centered">NAPS</div>
         </div>
     </div>
     <div class="col-lg-7 col-xs-12 my_data_col">
