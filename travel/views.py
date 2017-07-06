@@ -42,7 +42,9 @@ def sleep(request):
     wake_list = []
     for x in df_wake_time:
         wake_time = (str(x).split(":"))
-        if int(wake_time[1])>=30:
+        if int(wake_time[1]) == 23 and int(wake_time[1])>=30:
+            wake_time = 0
+        elif int(wake_time[1])>=30:
             wake_time=int(wake_time[0]) + 1
         else:
             wake_time = int(wake_time[0])
@@ -51,13 +53,15 @@ def sleep(request):
     wake_dict = Counter(wake_list)
     radial_wake_list = []
     for key,val in wake_dict.items():
-        radial_wake_list.append({'type':'line','name':'Occurrences','data':[0,val],'pointStart':0,'pointInterval':key,'color':'black'})
+        radial_wake_list.append({'type':'line','name':'Occurrences','data':[0,val],'pointStart':0,'pointInterval':key,'color':'black','symbol':'circle'})
 
     df_sleep_time = df["sleep_time"].tolist()
     sleep_list = []
     for x in df_sleep_time:
         sleep_time = (str(x).split(":"))
-        if int(sleep_time[1])>=30:
+        if int(sleep_time[1]) == 23 and int(sleep_time[1])>=30:
+            sleep_time = 0
+        elif int(sleep_time[1])>=30:
             sleep_time=int(sleep_time[0]) + 1
         else:
             sleep_time = int(sleep_time[0])
