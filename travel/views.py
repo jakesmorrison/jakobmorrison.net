@@ -51,10 +51,26 @@ def sleep(request):
     wake_dict = Counter(wake_list)
     radial_wake_list = []
     for key,val in wake_dict.items():
-        radial_wake_list.append({'type':'line','name':'Line','data':[0,val],'pointStart':0,'pointInterval':key,'color':'black'})
+        radial_wake_list.append({'type':'line','name':'Occurrences','data':[0,val],'pointStart':0,'pointInterval':key,'color':'black'})
+
+    df_sleep_time = df["sleep_time"].tolist()
+    sleep_list = []
+    for x in df_sleep_time:
+        sleep_time = (str(x).split(":"))
+        if int(sleep_time[1])>=30:
+            sleep_time=int(sleep_time[0]) + 1
+        else:
+            sleep_time = int(sleep_time[0])
+        sleep_list.append(sleep_time)
+
+    sleep_dict = Counter(sleep_list)
+    radial_sleep_list = []
+    for key,val in sleep_dict.items():
+        radial_sleep_list.append({'type':'line','name':'Occurrences','data':[0,val],'pointStart':0,'pointInterval':key,'color':'black'})
 
     context = {
-        'radial_wake': radial_wake_list
+        'radial_wake': radial_wake_list,
+        'radial_sleep': radial_sleep_list,
     }
     return render(request, 'travel/sleep_info.html', context)
 

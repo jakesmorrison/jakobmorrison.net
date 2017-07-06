@@ -37,10 +37,8 @@
     <div class="col-lg-7 col-xs-12 my_data_col">
         <div class="row">
             <div id="wake_radial" style="min-width: 310px; max-width: 400px; height: 400px; margin: 0 auto" class="col-xs-6 centered">
-                Radial Wake Time
             </div>
-            <div class="col-xs-6 centered">
-                Radial Sleep Time
+            <div id="sleep_radial" style="min-width: 310px; max-width: 400px; height: 400px; margin: 0 auto" class="col-xs-6 centered">
             </div>
         </div>
         <div class="row">
@@ -103,6 +101,43 @@ Highcharts.chart('wake_radial', {
     series: {{radial_wake|safe}}
 });
 
+Highcharts.chart('sleep_radial', {
+    chart: {
+        polar: true,
+        borderWidth: 0,
+        backgroundColor: null
+    },
+    title: {
+        text: 'Sleep Time'
+    },
+    pane: {
+        startAngle: 0,
+        endAngle: 360
+    },
+    xAxis: {
+        tickInterval: 1,
+        min: 0,
+        max: 23,
+        labels: {
+            formatter: function () {
+                return this.value + 'h';
+            }
+        }
+    },
+    yAxis: {
+        min: 0
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0,
+            groupPadding: 0
+        }
+    },
+    legend: {enabled: false},
+    exporting: { enabled: false },
+    credits: {enabled: false},
+    series: {{radial_sleep|safe}}
+});
 
 </script>
 
