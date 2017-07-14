@@ -38,7 +38,15 @@ def sleep(request):
     df = pd.DataFrame(list(TravelStats.objects.all().values()))
 
     df_city_wake_sleep = df[["city","wake_time","sleep_time"]]
-    df_city_wake_sleep["wake_time"] = df_city_wake_sleep["wake_time"].apply(lambda x: int(str(x).split(":")[1])+int(str(x).split(":")[1])/60)
+    df_city_wake_sleep["wake_time_hour"] = df_city_wake_sleep["wake_time"].apply(lambda x: int(str(x).split(":")[0]))
+    df_city_wake_sleep["wake_time_min"] = df_city_wake_sleep["wake_time"].apply(lambda x: int(str(x).split(":")[1]))
+    df_city_wake_sleep["sleep_time_hour"] = df_city_wake_sleep["sleep_time"].apply(lambda x: int(str(x).split(":")[0]))
+    df_city_wake_sleep["sleep_time_min"] = df_city_wake_sleep["sleep_time"].apply(lambda x: int(str(x).split(":")[1]))
+
+    df_city_wake_sleep = df_city_wake_sleep.groupby(['city']).mean().reset_index()
+    print(df_city_wake_sleep)
+
+
     df_city_wake_sleep["sleep_time"] = df_city_wake_sleep["sleep_time"].apply(lambda x: int(str(x).split(":")[1])+int(str(x).split(":")[1])/60)
     df_city_wake_sleep = df_city_wake_sleep.groupby(['city']).mean().reset_index()
 

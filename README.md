@@ -30,6 +30,8 @@ python manage.py book_to_db "The Road" "Cormac McCarthy" "theroad" "Fiction" "Po
 python manage.py book_to_db "Being Mortal" "Atul Gawande" "beingmortal" "Non-Fiction" "Medicine" "2017-03-10" "2017-03-19" --settings=jakobmorrison.apache.override
 python manage.py book_to_db "East Of Eden" "John Steinbeck" "eastofeden" "Fiction" "Classics" "2017-04-01" "2017-04-25" --settings=jakobmorrison.apache.override
 python manage.py book_to_db "Foundation and Empire" "Isaac Asimov" "foundationandempire" "Fiction" "Science Fiction" "2017-04-28" "2017-05-05" --settings=jakobmorrison.apache.override
+python manage.py book_to_db "American Gods" "Neil Gaiman" "americangods" "Fiction" "Fantasy" "2017-05-27" "2017-07-25" --settings=jakobmorrison.apache.override
+python manage.py book_to_db "The Handmaid's Tale" "Margaret Atwood" "thehandmaidstale" "Fiction" "Dystopian" "2017-06-20" "2017-07-20" --settings=jakobmorrison.apache.override
 
 
 ## Travel
