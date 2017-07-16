@@ -37,29 +37,10 @@ def sleep(request):
 
     df = pd.DataFrame(list(TravelStats.objects.all().values()))
 
-    df_city_wake_sleep = df[["city","wake_time","sleep_time"]]
-    df_city_wake_sleep["wake_time_hour"] = df_city_wake_sleep["wake_time"].apply(lambda x: int(str(x).split(":")[0]))
-    df_city_wake_sleep["wake_time_min"] = df_city_wake_sleep["wake_time"].apply(lambda x: int(str(x).split(":")[1]))
-    df_city_wake_sleep["sleep_time_hour"] = df_city_wake_sleep["sleep_time"].apply(lambda x: int(str(x).split(":")[0]))
-    df_city_wake_sleep["sleep_time_min"] = df_city_wake_sleep["sleep_time"].apply(lambda x: int(str(x).split(":")[1]))
-
-    df_city_wake_sleep = df_city_wake_sleep.groupby(['city']).mean().reset_index()
-    print(df_city_wake_sleep)
-
-
-    df_city_wake_sleep["sleep_time"] = df_city_wake_sleep["sleep_time"].apply(lambda x: int(str(x).split(":")[1])+int(str(x).split(":")[1])/60)
-    df_city_wake_sleep = df_city_wake_sleep.groupby(['city']).mean().reset_index()
-
-    df_city_wake_sleep["wake_time"] = df_city_wake_sleep["wake_time"].apply(lambda x: str(str(x).split(".")[0]) + ":" +str((float(str(x).split(".")[1])*60)/1000).replace(".",""))
-    df_city_wake_sleep["sleep_time"] = df_city_wake_sleep["sleep_time"].apply(lambda x: str(str(x).split(".")[0]) + ":" +str((float(str(x).split(".")[1])*60)/1000).replace(".",""))
-
-    city = list(df_city_wake_sleep["city"].tolist())
-    wake = list(df_city_wake_sleep["wake_time"].tolist())
-    sleep = list(df_city_wake_sleep["sleep_time"].tolist())
-
-    city_wake_sleep = []
-    for n,x in enumerate(city):
-        city_wake_sleep.append({'city': city[n],'wake':wake[n], 'sleep':sleep[n]})
+    wake = df["wake_time"].tolist()
+    sleep = df["sleep_time"].tolist()
+    wake = [int(str(x).split(":")[0])+int(str(x).split(":")[1])/100 for x in wake]
+    sleep = [int(str(x).split(":")[0])+int(str(x).split(":")[1])/100 for x in sleep]
 
     # For radial charts
     df_wake_time = df["wake_time"].tolist()
@@ -97,7 +78,8 @@ def sleep(request):
         radial_sleep_list.append({'type':'line','name':'Occurrences','data':[0,val],'pointStart':0,'pointInterval':key,'color':'black','marker':{'symbol':'circle'}})
 
     context = {
-        'city_wake_sleep': city_wake_sleep,
+        'wake': wake,
+        'sleep': sleep,
         'radial_wake': radial_wake_list,
         'radial_sleep': radial_sleep_list,
     }
