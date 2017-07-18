@@ -52,7 +52,8 @@ Highcharts.chart('wake_radial', {
     chart: {
         polar: true,
         borderWidth: 0,
-        backgroundColor: null
+        backgroundColor: null,
+        zoomType: 'xy'
     },
     title: {
         text: 'Wake Up Time'
@@ -156,14 +157,14 @@ Highcharts.chart('sleep_date', {
     credits: {enabled: false},
     series: [{
         data: {{wake|safe}},
-        pointStart: Date.UTC(2017, 6, 20),
+        pointStart: Date.UTC(2017, 5, 20),
         pointInterval: 24 * 3600 * 1000,
         name: "Wake",
         color: 'orange'
     },
     {
         data: {{sleep|safe}},
-        pointStart: Date.UTC(2017, 6, 20),
+        pointStart: Date.UTC(2017, 5, 20),
         pointInterval: 24 * 3600 * 1000,
         name: "Sleep",
         color: 'black'
