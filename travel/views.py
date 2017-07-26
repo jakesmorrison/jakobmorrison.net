@@ -29,7 +29,8 @@ def general(request):
     context = {
         "city_list": city_list,
         "city_day_count": city_day_count,
-        "country_pie": country_pie
+        "country_pie": country_pie,
+        "day_traveled": total_days
     }
     return render(request, 'travel/general_info.html', context)
 
