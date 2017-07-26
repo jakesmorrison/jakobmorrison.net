@@ -9,12 +9,6 @@ def home(request):
     }
     return render(request, 'travel/stats_home.html', context)
 
-# def euro(request):
-#     context = {
-#     }
-#     return render(request, 'travel/stats_home.html', context)
-#
-
 def general(request):
     df = pd.DataFrame(list(TravelStats.objects.all().values()))
     temp_dict = Counter(df["city"].tolist())
@@ -23,9 +17,18 @@ def general(request):
     city_list = [x[0] for x in city_day_counter]
     city_day_count = [x[1] for x in city_day_counter]
 
+    country_list = df["country"].tolist()
+    total_days = len(country_list)
+    country_dict = Counter(country_list)
+    country_pie = []
+    for key,val in country_dict.items():
+        country_pie.append({'name':key, 'y':(val/total_days)*100})
+
+
     context = {
         "city_list": city_list,
         "city_day_count": city_day_count,
+        "country_pie": country_pie
     }
     return render(request, 'travel/general_info.html', context)
 
