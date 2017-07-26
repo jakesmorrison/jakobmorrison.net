@@ -23,7 +23,7 @@ def general(request):
 
     country_pie = []
     for x in sorted(set(country_list), key=lambda x: country_list.index(x)):
-        country_pie.append({'name':x, 'y':(country_dict[x]/total_days)*100})
+        country_pie.append({'name':x, 'y':int(country_dict[x])})
 
 
     context = {

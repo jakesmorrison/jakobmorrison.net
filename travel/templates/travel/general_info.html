@@ -159,7 +159,7 @@ Highcharts.chart('countries', {
         text: 'Countries Visited'
     },
     tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        pointFormat: '{series.name}: <b>{point.y}</b> <br> Percent: <b>{point.percentage:.1f}%</b>'
     },
     plotOptions: {
         pie: {
@@ -175,7 +175,7 @@ Highcharts.chart('countries', {
         enabled: false
     },
     series: [{
-        name: 'Country',
+        name: 'Days',
         colorByPoint: true,
         data: {{country_pie|safe}}
     }]
