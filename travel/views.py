@@ -20,9 +20,10 @@ def general(request):
     country_list = df["country"].tolist()
     total_days = len(country_list)
     country_dict = Counter(country_list)
+
     country_pie = []
-    for key,val in country_dict.items():
-        country_pie.append({'name':key, 'y':(val/total_days)*100})
+    for x in sorted(set(country_list), key=lambda x: country_list.index(x)):
+        country_pie.append({'name':x, 'y':(country_dict[x]/total_days)*100})
 
 
     context = {
