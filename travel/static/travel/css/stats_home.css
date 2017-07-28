@@ -3,7 +3,7 @@
 }
 
 .myfont{
-    font-family: 'Patrick Hand SC', cursive;
+    font-family: 'Patrick Hand SC', cursive, font-weight:900; font-style:italic;
 }
 
 .container {
@@ -55,7 +55,7 @@
 
 .custom-block-text{
     color: white;
-    font-family: 'Patrick Hand SC', cursive;
+    font-family: 'Patrick Hand SC', cursive, font-weight:900; font-style:italic;
     transform: scale(1);
     transition: all .3s ease-in-out 0.2s;
     cursor: pointer;
