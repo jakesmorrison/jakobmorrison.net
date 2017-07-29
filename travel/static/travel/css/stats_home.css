@@ -3,7 +3,7 @@
 }
 
 .myfont{
-    font-family: 'Patrick Hand SC', cursive, font-weight:900; font-style:italic;
+    font-family: 'Patrick Hand SC', cursive;
 }
 
 .container {
@@ -74,5 +74,6 @@
 .btn{
     background: transparent;
 }
+
 
 

@@ -1,6 +1,19 @@
 .my_data_col{
     height:100%;
     position:relative;
+    display: table;
+}
+
+@media screen and (max-width: 700px) {
+    .my_row {
+        top: 50%;
+        margin-top: 50%;
+    }
+}
+
+.vert-center{
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .overlay {

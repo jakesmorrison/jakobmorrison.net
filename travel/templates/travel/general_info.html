@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% load staticfiles %}
     <link href=" {% static 'heartbeat/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -13,75 +14,85 @@
 </head>
 <body>
 
-<div style="background-color: #ff5f5f" class="container">
-    <div class="row">
+<div class="container">
+    <div style="background-color: #ff5f5f" class="row">
         <div class="col-lg-4 col-xs-12 my_data_col">
-            <h1 class="centered myfont">Total Days Traveling</h1>
+            <div class="vert-center">
+                <h1 class="centered myfont">Total Days Traveling</h1>
             <br>
-            <h1 class="centered myfont" style="font-size: 1000%;">{{day_traveled|safe}}</h1>
+                <h1 class="centered myfont" style="font-size: 1000%;">{{day_traveled|safe}}</h1>
+            </div>
         </div>
-        <div style="font-family: 'Patrick Hand SC', cursive;" class="col-lg-4 col-xs-12 my_data_col">
-            <h3 style="text-align:center;"><b>9</b> Countries Visited</h3>
-            <div class="row">
-                <div class="col-xs-4 country centered"><img class="image" height="80" width="80" src=" {% static 'travel/img/spain.png' %}">
-                    <div class="overlay">
-                         <div class="text centered">Spain</div>
+        <div class="col-lg-4 col-xs-12 my_data_col">
+            <div class="vert-center">
+                <h3 class="centered myfont"><b>9</b> Countries Visited</h3>
+                <div class="row">
+                    <div class="col-xs-4 country centered"><img class="image" height="80" width="80" src=" {% static 'travel/img/spain.png' %}">
+                        <div class="overlay">
+                             <div class="text centered">Spain</div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 country centered"><img height="80" width="80" src=" {% static 'travel/img/france.png' %}">
+                        <div class="overlay">
+                             <div class="text centered">France</div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 country centered"><img height="80" width="80" src=" {% static 'travel/img/portugal.png' %}">
+                        <div class="overlay">
+                             <div class="text centered">Portugal</div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-xs-4 country centered"><img height="80" width="80" src=" {% static 'travel/img/france.png' %}">
-                    <div class="overlay">
-                         <div class="text centered">France</div>
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-xs-4 country centered">
+                        <img height="80" width="80" src=" {% static 'travel/img/hungary.png' %}">
+                        <div class="overlay">
+                             <div class="text centered">Hungary</div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 country centered"><img height="80" width="80" src=" {% static 'travel/img/romania.png' %}">
+                        <div class="overlay">
+                             <div class="text centered">Romania</div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 country centered"><img height="80" width="80" src=" {% static 'travel/img/greece.png' %}">
+                        <div class="overlay">
+                             <div class="text centered">Greece</div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-xs-4 country centered"><img height="80" width="80" src=" {% static 'travel/img/portugal.png' %}">
-                    <div class="overlay">
-                         <div class="text centered">Portugal</div>
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-xs-4 country centered"><img height="80" width="80" src=" {% static 'travel/img/turkey.png' %}">
+                        <div class="overlay">
+                             <div class="text centered">Turkey</div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row" style="margin-top: 20px;">
-                <div class="col-xs-4 country centered">
-                    <img height="80" width="80" src=" {% static 'travel/img/hungary.png' %}">
-                    <div class="overlay">
-                         <div class="text">Hungary</div>
+                    <div class="col-xs-4 country centered"><img height="80" width="80" src=" {% static 'travel/img/albania.png' %}">
+                        <div class="overlay">
+                             <div class="text centered">Albania</div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-xs-4 country centered"><img height="80" width="80" src=" {% static 'travel/img/romania.png' %}">
-                    <div class="overlay">
-                         <div class="text centered">Romania</div>
-                    </div>
-                </div>
-                <div class="col-xs-4 country centered"><img height="80" width="80" src=" {% static 'travel/img/greece.png' %}">
-                    <div class="overlay">
-                         <div class="text centered">Greece</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="margin-top: 20px;">
-                <div class="col-xs-4 country centered"><img height="80" width="80" src=" {% static 'travel/img/turkey.png' %}">
-                    <div class="overlay">
-                         <div class="text centered">Turkey</div>
-                    </div>
-                </div>
-                <div class="col-xs-4 country centered"><img height="80" width="80" src=" {% static 'travel/img/albania.png' %}">
-                    <div class="overlay">
-                         <div class="text centered">Albania</div>
-                    </div>
-                </div>
-                <div class="col-xs-4 country centered"><img height="80" width="80" src=" {% static 'travel/img/italy.png' %}">
-                    <div class="overlay">
-                         <div class="text centered">Italy</div>
+                    <div class="col-xs-4 country centered"><img height="80" width="80" src=" {% static 'travel/img/italy.png' %}">
+                        <div class="overlay">
+                             <div class="text centered">Italy</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-4 col-xs-12 my_data_col">
-            <div id="cities"></div>
+            <div class="vert-center">
+                <h3 class="centered myfont">Cities Visited</h3>
+                <div id="cities"></div>
+            </div>
         </div>
     </div>
-    <div class="row">
+    <div style="background-color: #ff5f5f" class="row">
         <div class="col-lg-4 col-xs-12 my_data_col">
-            <div id="countries" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+            <div class="vert-center">
+                <h3 class="centered myfont">Countries Visited</h3>
+                <div id="countries" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -91,8 +102,46 @@
 <script src=" {% static 'heartbeat/js/jquery-2.1.1.js' %}" rel="stylesheet"></script>
 <script src=" {% static 'heartbeat/js/bootstrap.min.js' %}" rel="stylesheet"></script>
 <script src=" {% static 'softball/js/highcharts.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'travel/js/jquery.scrollify.min.js' %}" rel="stylesheet"></script>
 
 <script>
+
+$( document ).ready(function() {
+    var windowsize = $(window).width();
+    if (windowsize <= 700) {
+        $('.my_data_col').addClass('my_row');
+    }
+});
+
+$(window).resize(function() {
+  $('.my_data_col').removeClass('my_row');
+  windowsize = $(window).width();
+  if (windowsize <= 700) {
+      $('.my_data_col').addClass('my_row');
+  }
+});
+
+
+$(function() {
+    $.scrollify({
+        section : ".my_row",
+        interstitialSection : "",
+		easing: "easeOutExpo",
+		scrollSpeed: 1100,
+		offset : 0,
+		scrollbars: true,
+		standardScrollElements: "",
+		setHeights: true,
+		overflowScroll: true,
+		updateHash: true,
+		touchScroll:true,
+		before:function() {},
+		after:function() {},
+		afterResize:function() {},
+		afterRender:function() {}
+
+    });
+});
 
 Highcharts.chart('cities', {
     chart: {
@@ -104,7 +153,7 @@ Highcharts.chart('cities', {
         }
     },
     title: {
-        text: 'Cities Visited'
+        text: ''
     },
      credits: {
         enabled: false
@@ -165,7 +214,7 @@ Highcharts.chart('countries', {
         }
     },
     title: {
-        text: 'Countries Visited'
+        text: ''
     },
     tooltip: {
         pointFormat: '{series.name}: <b>{point.y}</b> <br> Percent: <b>{point.percentage:.1f}%</b>'
