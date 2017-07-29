@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     {% load staticfiles %}
     <link href=" {% static 'heartbeat/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -13,29 +14,28 @@
 </head>
 <body>
 
-<div style="background-color: #6b6bf5" class="container">
-    <div style="font-family: 'Patrick Hand SC', cursive;" class="col-lg-5 col-xs-12 my_data_col">
-        <div class="row">
-            <div id="sleep_date" class="col-xs-12" style="height: 400px; width: 500px"></div>
-        </div>
-    </div>
-    <div class="col-lg-7 col-xs-12 my_data_col">
-        <div class="row">
-            <div id="wake_radial" style="min-width: 310px; max-width: 400px; height: 400px; margin: 0 auto" class="col-xs-6 centered">
-            </div>
-            <div id="sleep_radial" style="min-width: 310px; max-width: 400px; height: 400px; margin: 0 auto" class="col-xs-6 centered">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6 centered">
-                Companion vs. City vs. Wake Time
-            </div>
-            <div class="col-xs-6 centered">
-                Companion vs. City vs. Sleep Time
-            </div>
-        </div>
-    </div>
 
+<div class="container">
+    <div style="background-color: #6b6bf5" class="row">
+        <div class="col-lg-6 col-xs-12 my_data_col">
+            <div class="vert-center">
+                <h3 class="centered myfont">Wake/Bed Time vs. Date</h3>
+                <div id="sleep_date"></div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-12 my_data_col">
+            <div class="vert-center">
+                <h3 class="centered myfont">Wake Time</h3>
+                <div id="wake_radial"></div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-12 my_data_col">
+            <div class="vert-center">
+                <h3 class="centered myfont">Bed Time</h3>
+                <div id="sleep_radial"></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -45,6 +45,9 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src=" {% static 'travel/js/jquery.scrollify.min.js' %}" ></script>
+<!--<script src=" {% static 'travel/js/flatdark.js' %}" ></script>-->
+<script src=" {% static 'travel/js/imp_scrollify.js' %}" ></script>
 
 <script>
 
@@ -56,7 +59,7 @@ Highcharts.chart('wake_radial', {
         zoomType: 'xy'
     },
     title: {
-        text: 'Wake Up Time'
+        text: ''
     },
     pane: {
         startAngle: 0,
@@ -94,7 +97,7 @@ Highcharts.chart('sleep_radial', {
         backgroundColor: null
     },
     title: {
-        text: 'Sleep Time'
+        text: ''
     },
     pane: {
         startAngle: 0,
@@ -131,7 +134,7 @@ Highcharts.chart('sleep_date', {
         backgroundColor: null
     },
     title: {
-        text: 'Wake Up Time'
+        text: ''
     },
     xAxis: {
         type: 'datetime',
@@ -139,11 +142,22 @@ Highcharts.chart('sleep_date', {
             day: '%e of %b'
         }
     },
-    yAxis: {
+    tooltip: {
+            split: true
+    },
+    legend: {
+        enabled:false
+    },
+    yAxis: [{
+        tickInterval: 1,
+        max: 24,
+        min: 0,
         title: {
-            text: 'Time (hh:mm)'
+            text: 'Wake Time (hh:mm)'
         },
         labels: {
+            align: 'right',
+            x: -3,
             formatter: function () {
                 var time = this.value;
                 var hours1=parseInt(time.toString().split(".")[0]);
@@ -151,23 +165,52 @@ Highcharts.chart('sleep_date', {
                 if(isNaN(mins1)){mins1=0;}
                 return hours1 + ':' + mins1;
             }
-        }
+        },
+        height: '35%',
+        lineWidth: 2
     },
+    {
+        tickInterval: 1,
+        max: 24,
+        min: 0,
+        title: {
+            text: 'Sleep Time (hh:mm)'
+        },
+        labels: {
+            align: 'right',
+            x: -3,
+            formatter: function () {
+                var time = this.value;
+                var hours1=parseInt(time.toString().split(".")[0]);
+                var mins1=parseInt(time.toString().split(".")[1]);
+                if(isNaN(mins1)){mins1=0;}
+                return hours1 + ':' + mins1;
+            }
+        },
+        top: '50%',
+        height: '35%',
+        offset: 0,
+        lineWidth: 2
+    }],
+
     exporting: { enabled: false },
     credits: {enabled: false},
     series: [{
         data: {{wake|safe}},
         pointStart: Date.UTC(2017, 5, 20),
         pointInterval: 24 * 3600 * 1000,
-        name: "Wake",
-        color: 'orange'
+        lineWidth: 5,
+        color: "green",
+        name: "Wake Time"
     },
     {
         data: {{sleep|safe}},
         pointStart: Date.UTC(2017, 5, 20),
         pointInterval: 24 * 3600 * 1000,
-        name: "Sleep",
-        color: 'black'
+        yAxis: 1,
+        lineWidth: 5,
+        color: "black",
+        name: "Bed Time"
     }]
 });
 
