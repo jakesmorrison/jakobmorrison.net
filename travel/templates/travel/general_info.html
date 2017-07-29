@@ -18,7 +18,7 @@
     <div style="background-color: #ff5f5f" class="row">
         <div class="col-lg-4 col-xs-12 my_data_col">
             <div class="vert-center">
-                <h1 class="centered myfont">Total Days Traveling</h1>
+                <h1 class="centered myfont">Total Days Traveled</h1>
             <br>
                 <h1 class="centered myfont" style="font-size: 1000%;">{{day_traveled|safe}}</h1>
             </div>
@@ -82,16 +82,22 @@
         </div>
         <div class="col-lg-4 col-xs-12 my_data_col">
             <div class="vert-center">
-                <h3 class="centered myfont">Cities Visited</h3>
-                <div id="cities"></div>
+                <h3 class="centered myfont">Stay Duration by Country</h3>
+                <div id="countries" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
             </div>
         </div>
     </div>
     <div style="background-color: #ff5f5f" class="row">
-        <div class="col-lg-4 col-xs-12 my_data_col">
+        <div class="col-lg-5 col-xs-12 my_data_col">
             <div class="vert-center">
-                <h3 class="centered myfont">Countries Visited</h3>
-                <div id="countries" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                <h3 class="centered myfont">Cities Visited</h3>
+                <div id="cities"></div>
+            </div>
+        </div>
+        <div class="col-lg-7 col-xs-12 my_data_col">
+            <div class="vert-center">
+                <h3 class="centered myfont">Cities Visited</h3>
+                <div id="city_area"></div>
             </div>
         </div>
     </div>
@@ -237,6 +243,48 @@ Highcharts.chart('countries', {
         colorByPoint: true,
         data: {{country_pie|safe}}
     }]
+});
+
+Highcharts.chart('city_area', {
+  chart: {
+    type: 'area',
+    borderWidth: 0,
+    backgroundColor: null,
+    style: {
+        fontFamily: "'Patrick Hand SC', cursive"
+    }
+  },
+  credits: {
+    enabled: false
+  },
+  title: {
+    text: 'US and USSR nuclear stockpiles'
+  },
+  xAxis: {
+    type: 'datetime'
+  },
+  yAxis: {
+    max: 100,
+    title: {
+      text: ''
+    },
+    labels: {
+      formatter: function() {
+        return '';
+      }
+    }
+  },
+  plotOptions: {
+    area: {
+      marker: {
+        enabled: false
+      }
+    }
+  },
+  tooltip: {
+    pointFormat: 'City: {series.name}'
+  },
+  series: {{city_date|safe}}
 });
 
 

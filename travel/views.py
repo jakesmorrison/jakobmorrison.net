@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import TravelStats
 import pandas as pd
 from collections import Counter, OrderedDict
+import datetime
 # Create your views here.
 
 def home(request):
@@ -26,11 +27,38 @@ def general(request):
         country_pie.append({'name':x, 'y':int(country_dict[x])})
 
 
+    city_date = []
+    city = ""
+    counter = 0
+    init_start = ""
+    for index, row in df.iterrows():
+        #init
+        if index == 0:
+            city = row["city"]
+            counter += 1
+            init_start = int(datetime.datetime.strptime(str(row["date"]), "%Y-%m-%d").strftime('%s')) * 1000
+
+
+        elif city == row["city"]:
+            counter+=1
+        else:
+            city_date.append({"name":city,"data":[100]*counter,'pointStart': init_start, "pointInterval": 24 * 3600 * 1000})
+            city = row["city"]
+            counter = 1
+            init_start = int(datetime.datetime.strptime(str(row["date"]), "%Y-%m-%d").strftime('%s')) * 1000
+
+    #add in last piece
+    city_date.append({"name":city,"data":[100]*counter,'pointStart': init_start, "pointInterval": 24 * 3600 * 1000})
+    print(city_date)
+
+
+
     context = {
         "city_list": city_list,
         "city_day_count": city_day_count,
         "country_pie": country_pie,
-        "day_traveled": total_days
+        "day_traveled": total_days,
+        "city_date": city_date,
     }
     return render(request, 'travel/general_info.html', context)
 
