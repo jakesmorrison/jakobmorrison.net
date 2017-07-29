@@ -105,10 +105,11 @@
 
 
 {% load staticfiles %}
-<script src=" {% static 'heartbeat/js/jquery-2.1.1.js' %}" rel="stylesheet"></script>
-<script src=" {% static 'heartbeat/js/bootstrap.min.js' %}" rel="stylesheet"></script>
-<script src=" {% static 'softball/js/highcharts.js' %}" rel="stylesheet"></script>
-<script src=" {% static 'travel/js/jquery.scrollify.min.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'heartbeat/js/jquery-2.1.1.js' %}" ></script>
+<script src=" {% static 'heartbeat/js/bootstrap.min.js' %}" ></script>
+<script src=" {% static 'softball/js/highcharts.js' %}" ></script>
+<script src=" {% static 'travel/js/jquery.scrollify.min.js' %}" ></script>
+<script src=" {% static 'travel/js/flatdark.js' %}" ></script>
 
 <script>
 
@@ -258,7 +259,7 @@ Highcharts.chart('city_area', {
     enabled: false
   },
   title: {
-    text: 'US and USSR nuclear stockpiles'
+    text: ''
   },
   xAxis: {
     type: 'datetime'
@@ -286,7 +287,6 @@ Highcharts.chart('city_area', {
   },
   series: {{city_date|safe}}
 });
-
 
 </script>
 

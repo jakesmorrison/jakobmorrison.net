@@ -49,8 +49,6 @@ def general(request):
 
     #add in last piece
     city_date.append({"name":city,"data":[100]*(counter+1),'pointStart': init_start, "pointInterval": 24 * 3600 * 1000})
-    print(city_date)
-
 
 
     context = {
