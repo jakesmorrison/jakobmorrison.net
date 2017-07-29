@@ -42,13 +42,13 @@ def general(request):
         elif city == row["city"]:
             counter+=1
         else:
-            city_date.append({"name":city,"data":[100]*counter,'pointStart': init_start, "pointInterval": 24 * 3600 * 1000})
+            city_date.append({"name":city,"data":[100]*(counter+1),'pointStart': init_start, "pointInterval": 24 * 3600 * 1000})
             city = row["city"]
             counter = 1
             init_start = int(datetime.datetime.strptime(str(row["date"]), "%Y-%m-%d").strftime('%s')) * 1000
 
     #add in last piece
-    city_date.append({"name":city,"data":[100]*counter,'pointStart': init_start, "pointInterval": 24 * 3600 * 1000})
+    city_date.append({"name":city,"data":[100]*(counter+1),'pointStart': init_start, "pointInterval": 24 * 3600 * 1000})
     print(city_date)
 
 
