@@ -140,17 +140,28 @@ Highcharts.chart('sleep_date', {
         type: 'datetime',
         dateTimeLabelFormats: {
             day: '%e of %b'
-        }
+        },
     },
     tooltip: {
-            split: true
+            split: true,
+            formatter: function () {
+                var s = [Highcharts.dateFormat('%d.%m.%Y', this.x)];
+                $.each(this.points, function(i, point) {
+                    var time = point.y;
+                    var hours1=parseInt(time.toString().split(".")[0]);
+                    var mins1=parseInt(time.toString().split(".")[1]);
+                    if(isNaN(mins1)){mins1=0;}
+                    s.push(hours1 + ':0' + mins1);
+                });
+                return s;
+            }
     },
     legend: {
         enabled:false
     },
     yAxis: [{
         tickInterval: 1,
-        max: 24,
+        max: 12,
         min: 0,
         title: {
             text: 'Wake Time (hh:mm)'
@@ -163,7 +174,7 @@ Highcharts.chart('sleep_date', {
                 var hours1=parseInt(time.toString().split(".")[0]);
                 var mins1=parseInt(time.toString().split(".")[1]);
                 if(isNaN(mins1)){mins1=0;}
-                return hours1 + ':' + mins1;
+                return hours1 + ':0' + mins1;
             }
         },
         height: '35%',
@@ -192,7 +203,6 @@ Highcharts.chart('sleep_date', {
         offset: 0,
         lineWidth: 2
     }],
-
     exporting: { enabled: false },
     credits: {enabled: false},
     series: [{
