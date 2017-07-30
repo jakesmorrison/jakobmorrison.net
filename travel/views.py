@@ -50,6 +50,18 @@ def general(request):
     #add in last piece
     city_date.append({"name":city,"data":[100]*(counter+1),'pointStart': init_start, "pointInterval": 24 * 3600 * 1000})
 
+    # df_points = pd.read_csv("travel/static/travel/csv/credit_card_data.csv")
+
+
+    traveling_with = dict(Counter(df["traveling_with"].tolist()))
+    other_count = 0
+    for key,val in traveling_with.items():
+        if key == "Joie" or key== "Solo" or key== "Mom":
+            pass
+        else:
+            other_count+=1
+    traveling_with["Other"] = other_count
+
 
     context = {
         "city_list": city_list,
@@ -57,6 +69,7 @@ def general(request):
         "country_pie": country_pie,
         "day_traveled": total_days,
         "city_date": city_date,
+        "traveling_with": traveling_with,
     }
     return render(request, 'travel/general_info.html', context)
 
