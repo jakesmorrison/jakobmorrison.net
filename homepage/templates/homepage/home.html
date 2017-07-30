@@ -63,8 +63,13 @@
                 <li>
                     <a class="page-scroll" href="{% url 'softball:softball.views.index' %}">Softball</a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="{% url 'map:map.views.index' %}">Travel</a>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Travel
+                    <span class="caret"></span></a>
+                    <ul style="border-radius: 3px; background: #222;" class="dropdown-menu">
+                        <li><a style="color: #9d9d9d;" href="{% url 'travel:travel.views.home' %}">Europe</a></li>
+                        <li><a style="color: #9d9d9d;" href="{% url 'map:map.views.index' %}">Asia</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a class="page-scroll" href="{% url 'books:books.views.home' %}">Books</a>
