@@ -1,6 +1,6 @@
 $( document ).ready(function() {
     var windowsize = $(window).width();
-    if (windowsize <= 700) {
+    if (windowsize <= 1200) {
         $('.my_data_col').addClass('my_row');
     }
 });
@@ -8,7 +8,7 @@ $( document ).ready(function() {
 $(window).resize(function() {
   $('.my_data_col').removeClass('my_row');
   windowsize = $(window).width();
-  if (windowsize <= 700) {
+  if (windowsize <= 1200) {
       $('.my_data_col').addClass('my_row');
   }
 });
