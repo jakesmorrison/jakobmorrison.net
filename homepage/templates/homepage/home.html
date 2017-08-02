@@ -35,7 +35,7 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand page-scroll" href="{% url 'homepage:homepage.views.home' %}">JM</a>
@@ -43,9 +43,9 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <!--removing "navbar-collapse"-->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
+                <li class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Resume
                     <span class="caret"></span></a>
                     <ul style="border-radius: 3px; background: #222;" class="dropdown-menu">
@@ -64,7 +64,7 @@
                 <li>
                     <a class="page-scroll" href="{% url 'softball:softball.views.index' %}">Softball</a>
                 </li>
-                <li class="dropdown">
+                <li class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Travel
                     <span class="caret"></span></a>
                     <ul style="border-radius: 3px; background: #222;" class="dropdown-menu">
@@ -127,7 +127,7 @@
     {% load staticfiles %}
     <script src=" {% static 'homepage/js/jquery.min.js' %}" rel="stylesheet"></script>
     <script src=" {% static 'homepage/js/bootstrap.min.js' %}" rel="stylesheet"></script>
-    <script src=" {% static 'homepage/js/new-age.min.js' %}" rel="stylesheet"></script>
+    <!--<script src=" {% static 'homepage/js/new-age.min.js' %}" rel="stylesheet"></script>-->
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>

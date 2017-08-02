@@ -59,7 +59,7 @@ def general(request):
         if key == "Joie" or key== "Solo" or key== "Mom":
             pass
         else:
-            other_count+=1
+            other_count+=val
     traveling_with["Other"] = other_count
 
 
