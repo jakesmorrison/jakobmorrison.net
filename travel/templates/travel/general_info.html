@@ -28,7 +28,7 @@
                 <h1 class="centered myfont">Days Traveled With...</h1>
                 <h3 class="centered myfont"><img height="30" width="30" src=" {% static 'travel/img/solo.png' %}">: {{traveling_with.Solo}}</h3>
                 <h3 class="centered myfont"><img height="40" width="40" src=" {% static 'travel/img/gf.png' %}">: {{traveling_with.Joie}}</h3>
-                <h3 class="centered myfont"><img height="30" width="30" src=" {% static 'travel/img/mother.png' %}">: 0</h3>
+                <h3 class="centered myfont"><img height="30" width="30" src=" {% static 'travel/img/mother.png' %}">: {{traveling_with.Mom}}</h3>
                 <h3 class="centered myfont"><img height="30" width="30" src=" {% static 'travel/img/random.png' %}">: {{traveling_with.Other}}</h3>
             </div>
         </div>
@@ -244,16 +244,29 @@ Highcharts.chart('city_area', {
     text: ''
   },
   xAxis: {
-    type: 'datetime'
+    type: 'datetime',
+    labels: {
+     style: {
+        color: '#000',
+        fontFamily: "'Patrick Hand SC', cursive"
+     }
+    }
   },
   yAxis: {
     max: 100,
     title: {
       text: ''
     },
+    gridLineColor: 'black',
+    gridLineWidth: 0,
+    minorGridLineWidth: 0,
     labels: {
       formatter: function() {
         return '';
+      },
+      style: {
+        color: '#000',
+        fontFamily: "'Patrick Hand SC', cursive"
       }
     }
   },
