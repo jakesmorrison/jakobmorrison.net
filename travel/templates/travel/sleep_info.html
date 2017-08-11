@@ -183,7 +183,7 @@ Highcharts.chart('sleep_date', {
                     var hours1=parseInt(time.toString().split(".")[0]);
                     var mins1=parseInt(time.toString().split(".")[1]);
                     if(isNaN(mins1)){mins1=0;}
-                    if(hours1<0){hours1=hours1+24;}
+                    if(hours1<=0){hours1=hours1+12;}
                     if(mins1.toString().length === 1){s.push(hours1 + ':0' + mins1);}
                     else{s.push(hours1 + ':' + mins1);}
 
@@ -196,8 +196,8 @@ Highcharts.chart('sleep_date', {
     },
     yAxis: [{
         tickInterval: 1,
-        max: 24,
-        min: 0,
+        max: 11,
+        min: 5,
         title: {
             text: 'Wake Time (hh:mm)',
             style: {
@@ -246,7 +246,7 @@ Highcharts.chart('sleep_date', {
                 var hours1=parseInt(time.toString().split(".")[0]);
                 var mins1=parseInt(time.toString().split(".")[1]);
                 if(isNaN(mins1)){mins1=0;}
-                if(hours1<0){hours1=hours1+24;}
+                if(hours1<=0){hours1=hours1+12;}
                 return hours1 + ':0' + mins1;
             },
             style: {
