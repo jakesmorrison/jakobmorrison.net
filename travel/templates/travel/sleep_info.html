@@ -68,15 +68,28 @@ Highcharts.chart('wake_radial', {
     xAxis: {
         tickInterval: 1,
         min: 0,
-        max: 23,
+        max: 12,
         labels: {
             formatter: function () {
                 return this.value + 'h';
-            }
+            },
+            style: {
+                color: '#333',
+                fontSize:'20px',
+                fontFamily: "'Patrick Hand SC', cursive"
+             }
         }
     },
     yAxis: {
-        min: 0
+        min: 0,
+        gridLineColor: 'white',
+        labels: {
+         style: {
+            color: '#333',
+            fontFamily: "'Patrick Hand SC', cursive"
+         }
+        }
+
     },
     plotOptions: {
         column: {
@@ -106,15 +119,27 @@ Highcharts.chart('sleep_radial', {
     xAxis: {
         tickInterval: 1,
         min: 0,
-        max: 23,
+        max: 12,
         labels: {
             formatter: function () {
                 return this.value + 'h';
-            }
+            },
+            style: {
+                color: '#333',
+                fontSize:'20px',
+                fontFamily: "'Patrick Hand SC', cursive"
+             }
         }
     },
     yAxis: {
         min: 0,
+        gridLineColor: 'white',
+        labels: {
+         style: {
+            color: '#333',
+            fontFamily: "'Patrick Hand SC', cursive"
+         }
+        }
     },
     plotOptions: {
         column: {
@@ -141,6 +166,13 @@ Highcharts.chart('sleep_date', {
         dateTimeLabelFormats: {
             day: '%e of %b'
         },
+        labels:{
+        style: {
+                color: '#333',
+                fontSize:'18px',
+                fontFamily: "'Patrick Hand SC', cursive"
+         }
+        }
     },
     tooltip: {
             split: true,
@@ -166,7 +198,12 @@ Highcharts.chart('sleep_date', {
         max: 12,
         min: 0,
         title: {
-            text: 'Wake Time (hh:mm)'
+            text: 'Wake Time (hh:mm)',
+            style: {
+                color: '#333',
+                fontSize:'18px',
+                fontFamily: "'Patrick Hand SC', cursive"
+             }
         },
         labels: {
             align: 'right',
@@ -177,7 +214,12 @@ Highcharts.chart('sleep_date', {
                 var mins1=parseInt(time.toString().split(".")[1]);
                 if(isNaN(mins1)){mins1=0;}
                 return hours1 + ':0' + mins1;
-            }
+            },
+             style: {
+                color: '#333',
+                fontSize:'15px',
+                fontFamily: "'Patrick Hand SC', cursive"
+             }
         },
         height: '35%',
         lineWidth: 2
@@ -187,7 +229,13 @@ Highcharts.chart('sleep_date', {
         max: 24,
         min: 0,
         title: {
-            text: 'Sleep Time (hh:mm)'
+            text: 'Sleep Time (hh:mm)',
+            style: {
+                color: '#333',
+                fontSize:'18px',
+                fontFamily: "'Patrick Hand SC', cursive"
+             }
+
         },
         labels: {
             align: 'right',
@@ -198,7 +246,12 @@ Highcharts.chart('sleep_date', {
                 var mins1=parseInt(time.toString().split(".")[1]);
                 if(isNaN(mins1)){mins1=0;}
                 return hours1 + ':0' + mins1;
-            }
+            },
+            style: {
+                color: '#333',
+                fontSize:'15px',
+                fontFamily: "'Patrick Hand SC', cursive"
+             }
         },
         top: '50%',
         height: '35%',

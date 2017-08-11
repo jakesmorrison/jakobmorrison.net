@@ -28,7 +28,7 @@
                 <h1 class="centered myfont">Days Traveled With...</h1>
                 <h3 class="centered myfont"><img height="30" width="30" src=" {% static 'travel/img/solo.png' %}">: {{traveling_with.Solo}}</h3>
                 <h3 class="centered myfont"><img height="40" width="40" src=" {% static 'travel/img/gf.png' %}">: {{traveling_with.Joie}}</h3>
-                <h3 class="centered myfont"><img height="30" width="30" src=" {% static 'travel/img/mother.png' %}">: {{traveling_with.Mom}}</h3>
+                <h3 class="centered myfont"><img height="30" width="30" src=" {% static 'travel/img/mother.png' %}">: {{traveling_with.Mom }}</h3>
                 <h3 class="centered myfont"><img height="30" width="30" src=" {% static 'travel/img/random.png' %}">: {{traveling_with.Other}}</h3>
             </div>
         </div>
@@ -154,7 +154,8 @@ Highcharts.chart('cities', {
         tickColor: '#000',
         labels: {
          style: {
-            color: '#000',
+            color: '#333',
+            fontSize:'16px',
             fontFamily: "'Patrick Hand SC', cursive"
          }
         }
@@ -166,13 +167,15 @@ Highcharts.chart('cities', {
         title: {
             text: '# Of Days',
             style: {
+            fontSize:'18px',
             color: '#333'
             }
         },
         gridLineColor: 'black',
         labels: {
          style: {
-            color: '#000',
+            color: '#333',
+            fontSize:'18px',
             fontFamily: "'Patrick Hand SC', cursive"
          }
         }
@@ -247,7 +250,8 @@ Highcharts.chart('city_area', {
     type: 'datetime',
     labels: {
      style: {
-        color: '#000',
+        color: '#333',
+        fontSize:'16px',
         fontFamily: "'Patrick Hand SC', cursive"
      }
     }
@@ -265,7 +269,7 @@ Highcharts.chart('city_area', {
         return '';
       },
       style: {
-        color: '#000',
+        color: '#333',
         fontFamily: "'Patrick Hand SC', cursive"
       }
     }
