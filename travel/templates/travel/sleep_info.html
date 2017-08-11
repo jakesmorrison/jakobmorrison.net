@@ -161,6 +161,14 @@ Highcharts.chart('sleep_date', {
     title: {
         text: ''
     },
+        plotOptions: {
+        series: {
+            marker: {
+                enabled: false
+            }
+        }
+    },
+
     xAxis: {
         type: 'datetime',
         dateTimeLabelFormats: {
