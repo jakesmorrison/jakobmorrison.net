@@ -92,6 +92,7 @@ def sleep(request):
             foo = float(str(int(str(sleep[n]).split(".")[0])-24)+"."+str(sleep[n]).split(".")[1])
             sleep[n] = foo
 
+
     # For radial charts
     df_wake_time = df["wake_time"].tolist()
     df_sleep_time = df["sleep_time"].tolist()
