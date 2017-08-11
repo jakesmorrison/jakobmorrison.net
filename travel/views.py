@@ -86,9 +86,11 @@ def sleep(request):
     wake = [int(str(x).split(":")[0])+int(str(x).split(":")[1])/100 for x in wake]
     sleep = [int(str(x).split(":")[0])+int(str(x).split(":")[1])/100 for x in sleep]
 
+    foo = ""
     for n,x in enumerate(sleep):
         if sleep[n]>=20:
-            sleep[n] = sleep[n]-24
+            foo = float(str(int(str(sleep[n]).split(".")[0])-24)+"."+str(sleep[n]).split(".")[1])
+            sleep[n] = foo
 
     # For radial charts
     df_wake_time = df["wake_time"].tolist()
