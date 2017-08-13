@@ -36,6 +36,31 @@
             </div>
         </div>
     </div>
+
+    <div style="background-color: #6b6bf5" class="row">
+        <div class="col-lg-6 col-xs-12 my_data_col">
+            <div class="vert-center">
+                <h3 class="centered myfont">Wake/Bed Time vs. Date</h3>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-12 my_data_col">
+            <div class="vert-center">
+                <h2 class="centered myfont">Average Wake Up Time</h2>
+                <h3 class="centered myfont">{{average_time_wake|safe}}am</h3>
+                <h3 class="centered myfont"><img height="30" width="30" src=" {% static 'travel/img/solo.png' %}">: {{average_time_wake_solo|safe}}am</h3>
+                <h3 class="centered myfont"><img height="30" width="30" src=" {% static 'travel/img/gf.png' %}">: {{average_time_wake_joie|safe}}am</h3>
+                <h3 class="centered myfont"><img height="30" width="30" src=" {% static 'travel/img/mother.png' %}">: {{average_time_wake_mom|safe}}am</h3>
+
+            </div>
+        </div>
+        <div class="col-lg-3 col-xs-12 my_data_col">
+            <div class="vert-center">
+                <h3 class="centered myfont">Average Bed Time</h3>
+                <div id=""></div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 

@@ -3,6 +3,8 @@ from .models import TravelStats
 import pandas as pd
 from collections import Counter, OrderedDict
 import datetime
+from .management import methods
+
 # Create your views here.
 
 def home(request):
@@ -83,8 +85,8 @@ def sleep(request):
 
     wake = df["wake_time"].tolist()
     sleep = df["sleep_time"].tolist()
-    wake = [int(str(x).split(":")[0])+int(str(x).split(":")[1])/100 for x in wake]
-    sleep = [int(str(x).split(":")[0])+int(str(x).split(":")[1])/100 for x in sleep]
+    wake = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in wake]
+    sleep = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in sleep]
 
     foo = ""
     for n,x in enumerate(sleep):
@@ -127,11 +129,36 @@ def sleep(request):
     for key,val in sleep_dict.items():
         radial_sleep_list.append({'type':'line','name':'Occurrences','data':[0,val],'pointStart':0,'pointInterval':key,'color':'black','marker':{'symbol':'circle'}})
 
+
+    average_minutes_wake = methods.Travel_Methods.convert_to_minutes(wake)
+    average_time_wake = methods.Travel_Methods.convert_to_hours(average_minutes_wake)
+
+    wake_solo = df[df["traveling_with"]=="Solo"]["wake_time"].tolist()
+    wake_solo = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in wake_solo]
+    average_minutes_wake_solo = methods.Travel_Methods.convert_to_minutes(wake_solo)
+    average_time_wake_solo = methods.Travel_Methods.convert_to_hours(average_minutes_wake_solo)
+
+    wake_joie = df[df["traveling_with"]=="Joie"]["wake_time"].tolist()
+    wake_joie = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in wake_joie]
+    average_minutes_wake_joie = methods.Travel_Methods.convert_to_minutes(wake_joie)
+    average_time_wake_joie = methods.Travel_Methods.convert_to_hours(average_minutes_wake_joie)
+
+    wake_mom = df[df["traveling_with"]=="Mom"]["wake_time"].tolist()
+    wake_mom = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in wake_mom]
+    average_minutes_wake_mom = methods.Travel_Methods.convert_to_minutes(wake_mom)
+    average_time_wake_mom = methods.Travel_Methods.convert_to_hours(average_minutes_wake_mom)
+
+
     context = {
         'wake': wake,
         'sleep': sleep,
         'radial_wake': radial_wake_list,
         'radial_sleep': radial_sleep_list,
+        'average_time_wake': average_time_wake,
+        'average_time_wake_solo': average_time_wake_solo,
+        'average_time_wake_joie': average_time_wake_joie,
+        'average_time_wake_mom': average_time_wake_mom,
+
     }
     return render(request, 'travel/sleep_info.html', context)
 
