@@ -6,7 +6,7 @@ class Travel_Methods():
         for x in time_array:
             hour = int(str(x).split(".")[0])
             minutes = int(float("%.2f" % (x-hour))*100)
-            if hour in [0,1,2,3,4]:
+            if hour in [0,1,2,3]:
                 hour = hour+24
             minutes_array.append(hour*60+minutes)
         return sum(minutes_array)/len(time_array)
