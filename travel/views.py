@@ -183,6 +183,10 @@ def sleep(request):
             new_city_list.append(x)
     city_list = new_city_list
 
+
+    #Accommodation Cost vs. Days Stayed vs. City
+    df["housing_cost"] = df["housing_cost"].apply(lambda x: int(x))
+
     df_cost = df.groupby(['housing_type', 'city'])['housing_cost'].sum().reset_index()
     df_acc = df.groupby(['housing_type','city'])['housing_cost'].count().reset_index()
 
@@ -202,6 +206,10 @@ def sleep(request):
         acc_data.append(foo)
 
 
+
+    average_by_person = df.groupby(["traveling_with"]).mean()["housing_cost"].reset_index()
+    average_by_person_html = average_by_person.to_html()
+
     context = {
         'wake': wake,
         'sleep': sleep,
@@ -217,6 +225,7 @@ def sleep(request):
         'average_time_bed_mom': average_time_bed_mom,
         'city_list':city_list,
         'acc_data': acc_data,
+        'housing_person_table': average_by_person_html,
 
 
     }
