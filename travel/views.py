@@ -196,7 +196,7 @@ def sleep(request):
         city_index = city_list.index(city)
         color = "#7a7a7a"
         if row["housing_type"] == 'Hotel':color='#ff4d4d'
-        elif row["housing_type"] == 'Airbnb':color='#4d4dff'
+        elif row["housing_type"] == 'Airbnb':color='#ff4dff'
         elif row["housing_type"] == 'Hostel':color='#4dff4d'
         foo = {'x':city_index,'y':float(row['housing_cost']),'z':int(days_stayed),'name':row["housing_type"],'city':row['city'],'color':color}
         acc_data.append(foo)
