@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load staticfiles %}
+    <link href=" {% static 'heartbeat/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'travel/css/stats_home.css' %}" rel="stylesheet">
+    <link href=" {% static 'travel/css/stats_pages.css' %}" rel="stylesheet">
+    <link href=" {% static 'travel/css/stats_gelato.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
+
+    <title>Gelato</title>
+</head>
+<body>
+
+<div class="container">
+    <div style="background-color: #af3daf" class="row">
+        <div class="col-lg-6 col-xs-12 my_data_col">
+            <div class="vert-center">
+
+                <h3 class="date myfont" style="text-align:center; font-size:250%;"></h3>
+                <div class="gelato">
+                    <div class="cup">
+                        <table style="width:100%">
+                          <tr>
+                            <th></th>
+                            <th><h1 class="my_label city myfont" style=""></h1></th>
+                            <th></th>
+                          </tr>
+                        </table>
+
+                        <div class="icecream_l"></div>
+                        <div class="icecream_r"></div>
+                    </div>
+                </div>
+                <table style="width:100%">
+                  <tr>
+                    <th><h3 class="flavor_left myfont" style="text-align:center; font-size:250%;"></h3></th>
+                    <th><h3 class="flavor_right myfont" style="text-align:center; font-size:250%;"></h3></th>
+                  </tr>
+                </table>
+
+
+
+
+
+
+            </div>
+        </div>
+        <div class="col-lg-6 col-xs-12 my_data_col">
+            <div class="vert-center">
+                <h3 class="centered myfont">Cities Visited</h3>
+                <div id=""></div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background-color: #ffff63" class="row">
+        <!--<div class="col-lg-6 col-xs-12 my_data_col">-->
+            <!--<div class="vert-center">-->
+                <!--<h3 class="centered myfont">Gelato</h3>-->
+                <!--<div class="row">-->
+                    <!--<div class="col-lg-1 col-xs-2">-->
+                        <!--<div class="gelato">-->
+                            <!--<div class="cup"><p class="my_label">Florence</p></div>-->
+                            <!--<div name="Chocolate" class="icecream_l"></div>-->
+                            <!--<div name="Cherry" class="icecream_r"></div>-->
+                            <!--<div class="flavor_hover"></div>-->
+                            <!--&lt;!&ndash;-->
+                            <!--<div class="spoon"></div>-->
+                            <!--<div class="handle"><p class="spoon_city"></p></div>-->
+                             <!--&ndash;&gt;-->
+                         <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-lg-1 col-xs-2">-->
+                        <!--<div class="gelato">-->
+                            <!--<div class="cup"><p class="my_label">Florence</p></div>-->
+                            <!--<div name="Chocolate" class="icecream_l"></div>-->
+                            <!--<div name="Cherry" class="icecream_r"></div>-->
+                            <!--<div class="flavor_hover"></div>-->
+                         <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                    <!--<div class="row">-->
+                    <!--<div class="col-lg-1 col-xs-2">-->
+                        <!--<div class="gelato">-->
+                            <!--<div class="cup"><p class="my_label">Florence</p></div>-->
+                            <!--<div name="Chocolate" class="icecream_l"></div>-->
+                            <!--<div name="Cherry" class="icecream_r"></div>-->
+                            <!--<div class="flavor_hover"></div>-->
+                            <!--&lt;!&ndash;-->
+                            <!--<div class="spoon"></div>-->
+                            <!--<div class="handle"><p class="spoon_city"></p></div>-->
+                             <!--&ndash;&gt;-->
+                         <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-lg-1 col-xs-2">-->
+                        <!--<div class="gelato">-->
+                            <!--<div class="cup"><p class="my_label">Florence</p></div>-->
+                            <!--<div name="Chocolate" class="icecream_l"></div>-->
+                            <!--<div name="Cherry" class="icecream_r"></div>-->
+                            <!--<div class="flavor_hover"></div>-->
+                         <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-lg-6 col-xs-12 my_data_col">-->
+            <!--<div class="vert-center">-->
+                <!--<h3 class="centered myfont">Cities Visited</h3>-->
+                <!--<div id=""></div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+
+</div>
+
+
+{% load staticfiles %}
+<script src=" {% static 'heartbeat/js/jquery-2.1.1.js' %}" ></script>
+<script src=" {% static 'heartbeat/js/bootstrap.min.js' %}" ></script>
+<script src=" {% static 'softball/js/highcharts.js' %}" ></script>
+<script src=" {% static 'travel/js/jquery.scrollify.min.js' %}" ></script>
+<script src=" {% static 'travel/js/flatdark.js' %}" ></script>
+<script src=" {% static 'travel/js/imp_scrollify.js' %}" ></script>
+
+
+<script>
+flavor_lookup={
+    'Dark Chocolate': '#271b0e',
+    'Stracciatella': '#ebebeb',
+    'Coconut': '#fff',
+    'Caramel': '#a76b29',
+    'Chocolate': '#753e18',
+    'Strawberry': '#f94848',
+    'Banana': '#fff5be',
+    'Cherry': '#980000',
+    'Lemon': '#fff669',
+    'Cheesecake': '#FCFAE1',
+    'Hazelnut': '#d0be9b',
+    'Pistachio': '#93c572',
+    'Nutella': '#80300F',
+}
+
+mono_lookup={
+    '#271b0e': '#000000', //Dark Chocolate
+    '#ebebeb': '#868686', //Stracciatella
+    '#fff': '#bdbdbd',    // Coconut
+    '#a76b29': '#54330e', // Caramel
+    '#753e18': '#2a1506', //Chocolate
+    '#f94848': '#b30000', //Strawberry
+    '#fff5be': '#ffe34c', //Banana
+    '#980000': '#650000', //Cherry
+    '#fff669':'#ffef00', //Lemon
+    '#FCFAE1': '#BD8D46', //Cheesecake
+    '#d0be9b': '#998762', //Hazelnut
+    '#93c572': '#2d5a0f',  //Pistachio
+    '#80300F': '#381506' //Nutella
+}
+
+gelato_list_dict = [
+
+    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Stracciatella', 'date': '08/09/2017', 'location': 'Florence'},
+    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Coconut', 'date': '08/10/2017', 'location': 'Florence'},
+    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Stracciatella', 'date': '08/10/2017', 'location': 'Florence'},
+    {'flavor_l': 'Stracciatella', 'flavor_r': 'Caramel', 'date': '08/11/2017', 'location': 'Florence'},
+    {'flavor_l': 'Chocolate', 'flavor_r': 'Stracciatella', 'date': '08/11/2017', 'location': 'Florence'},
+    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Caramel', 'date': '08/12/2017', 'location': 'Florence'},
+    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Strawberry', 'date': '08/13/2017', 'location': 'Florence'},
+    {'flavor_l': 'Chocolate', 'flavor_r': 'Banana', 'date': '08/13/2017', 'location': 'Florence'},
+    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Stracciatella', 'date': '08/14/2017', 'location': 'Florence'},
+    {'flavor_l': 'Cherry', 'flavor_r': 'Lemon', 'date': '8/14/2017', 'location': 'Florence'},
+    {'flavor_l': 'Chocolate', 'flavor_r': 'Coconut', 'date': '08/15/2017', 'location': 'La Spezia'},
+    {'flavor_l': 'Stracciatella', 'flavor_r': 'Caramel', 'date': '08/16/2017', 'location': 'Cinque Terra'},
+    {'flavor_l': 'Strawberry', 'flavor_r': 'Cheesecake', 'date': '08/16/2017', 'location': 'Cinque Terra'},
+    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Hazelnut', 'date': '08/16/2017', 'location': 'Cinque Terra'},
+    {'flavor_l': 'Pistachio', 'flavor_r': 'Nutella', 'date': '08/17/2017', 'location': 'Ferarra'},
+]
+
+
+var counter=0;
+var ice_l = $('.icecream_l');
+var ice_r = $('.icecream_r');
+var flavor_left = $('.flavor_left');
+var flavor_right = $('.flavor_right');
+var date = $('.date');
+var city = $('.city');
+
+
+
+function loop(){
+    if(counter>=gelato_list_dict.length){
+        counter=0
+    }
+    console.log(gelato_list_dict.length);
+
+    ice_l.css('background', flavor_lookup[gelato_list_dict[counter]['flavor_l']]);
+    ice_r.css('background', flavor_lookup[gelato_list_dict[counter]['flavor_r']]);
+    ice_l.css('box-shadow', 'inset 50px 80px 100px -30px '+mono_lookup[flavor_lookup[gelato_list_dict[counter]['flavor_l']]]);
+    ice_r.css('box-shadow', 'inset -20px 0px 100px 20px '+mono_lookup[flavor_lookup[gelato_list_dict[counter]['flavor_r']]]);
+    flavor_left.html(gelato_list_dict[counter]['flavor_l']);
+    flavor_right.html(gelato_list_dict[counter]['flavor_r']);
+    date.html("Gelato Eaten on "+gelato_list_dict[counter]['date']);
+    city.html(gelato_list_dict[counter]['location']);
+
+    counter=  counter + 1;
+}
+
+
+$(document).ready(function(){
+
+    // Setting up scoop of right
+    var div = $('.icecream_r');
+    var width = div.width();
+    div.css('height', width/2);
+    div.css('top', -1*(width/2));
+    div.css('border-top-left-radius', width*2);
+    div.css('border-top-right-radius', width*2);
+
+    // Setting up scoop of left
+    var div = $('.icecream_l');
+    var width = div.width();
+    div.css('height', width/2);
+    div.css('top', -1*(width/2));
+    div.css('border-top-left-radius', width*2);
+    div.css('border-top-right-radius', width*2);
+
+    // cup and top margines
+    var div = $('.cup');
+    div.css('height', width/2.5);
+    div.css('margin-top', width/1.7);
+
+    // Adding lables and colors
+
+    temp_counter = 0
+    city.css('margin-top', width/2.5 - 40)
+    ice_l.css('background', flavor_lookup[gelato_list_dict[temp_counter]['flavor_l']]);
+    ice_r.css('background', flavor_lookup[gelato_list_dict[temp_counter]['flavor_r']]);
+    ice_l.css('box-shadow', 'inset 50px 80px 100px -30px '+mono_lookup[flavor_lookup[gelato_list_dict[temp_counter]['flavor_l']]]);
+    ice_r.css('box-shadow', 'inset -20px 0px 100px 20px '+mono_lookup[flavor_lookup[gelato_list_dict[temp_counter]['flavor_r']]]);
+    flavor_left.html(gelato_list_dict[temp_counter]['flavor_l']);
+    flavor_right.html(gelato_list_dict[temp_counter]['flavor_r']);
+    date.html("Gelato Eaten on "+gelato_list_dict[temp_counter]['date']);
+    city.html(gelato_list_dict[temp_counter]['location']);
+
+    intervalId = setInterval(loop, 2000);
+});
+
+
+
+</script>
+
+</body>
+</html>

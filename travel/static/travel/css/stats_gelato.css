@@ -1,0 +1,89 @@
+
+.gelato{
+}
+
+.cup {
+	width: 100%;
+	background: #dcdde6;
+    z-index:3;
+    position: relative;
+    border-style: solid;
+    border-width: 4px;
+    border-top: 8px solid;
+    border-radius: 0 0 60px 60px;
+    box-shadow: inset 17px -7px 0 0 #c3c1c1;
+}
+
+.dot{
+    position: absolute;
+    width: 15px;
+	height: 15px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+    z-index:1;
+}
+
+.icecream_r{
+	width: 60%;
+    border-style: solid;
+    border-width: 4px;
+	background: white;
+    z-index:1;
+    position: absolute;
+    margin-left: 40%;
+    top: -120%;
+    cursor: pointer;
+
+}
+
+.icecream_l{
+	width: 60%;
+    border-style: solid;
+    border-width: 4px;
+    z-index:2;
+	background: white;
+    position: absolute;
+    cursor: pointer;
+}
+
+.spoon{
+  width: 35px;
+  height: 60px;
+  background: white;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 4px;
+  z-index:3;
+  position: absolute;
+  transform: rotate(45deg);
+  margin-left:75px;
+  margin-top: 10px;
+}
+
+.handle{
+  width: 20px;
+  height: 60px;
+  background: white;
+  border-radius: 5px;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-top: 1px solid;
+  z-index:2;
+  position: absolute;
+  transform: rotate(45deg);
+  margin-left:124px;
+  margin-top: -30px;
+
+}
+
+.my_label{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  color: black;
+  line-height: 0;
+  z-index:2;
+  margin-bottom:10px;
+}

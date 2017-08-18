@@ -19,10 +19,11 @@
     border: 2px solid #908080;
     height: 100%;
     text-align:center;
+    display: table;
 }
 
 .my-row{
-    height: 33.33%;
+    height: 50%;
 }
 
 .title-block{
@@ -38,7 +39,7 @@
 }
 
 .my-block-3{
-    background-color: #ffff63;
+    background-color: #af3daf;
 }
 
 .my-block-4{
@@ -46,7 +47,7 @@
 }
 
 .my-block-5{
-    background-color: #af3daf;
+    background-color: #ffff63;
 }
 
 .my-block-6{

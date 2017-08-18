@@ -190,7 +190,7 @@ def sleep(request):
 
 def food(request):
     context = {}
-    return render(request, 'travel/general_info.html', context)
+    return render(request, 'travel/gelato_info.html', context)
 
 def transportation(request):
     context = {}

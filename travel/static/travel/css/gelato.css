@@ -1,0 +1,107 @@
+
+.border{
+    border-radius: 10px;
+    border-style: solid;
+    position: relative;
+}
+
+.gelato{
+  margin-top:0%;
+  margin-left: 21%;
+}
+
+.cup {
+	width: 550px;
+	height: 145px;
+	background: #dcdde6;
+    z-index:100;
+    position: absolute;
+    margin-top: 150px;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 4px;
+    border-top: 8px solid;
+    border-radius: 0 0 60px 60px;
+    box-shadow: inset 17px -7px 0 0 #c3c1c1;
+}
+
+.dot{
+    position: absolute;
+    width: 15px;
+	height: 15px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+    z-index:1;
+}
+
+.icecream_r{
+	width: 300px;
+	height: 300px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 4px;
+	background: white;
+    z-index:1;
+    position: absolute;
+    margin-left: 240px;
+    margin-top: 0px;
+    cursor: pointer;
+
+}
+
+.icecream_l{
+	width: 300px;
+	height: 300px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 4px;
+    z-index:4;
+	background: white;
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 0px;
+    cursor: pointer;
+}
+
+
+.spoon{
+  width: 35px;
+  height: 60px;
+  background: white;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 4px;
+  z-index:3;
+  position: absolute;
+  transform: rotate(45deg);
+  margin-left:75px;
+  margin-top: 10px;
+}
+
+.handle{
+  width: 20px;
+  height: 60px;
+  background: white;
+  border-radius: 5px;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-top: 1px solid;
+  z-index:2;
+  position: absolute;
+  transform: rotate(45deg);
+  margin-left:124px;
+  margin-top: -30px;
+
+}
+
+.my_label{
+  position: absolute;
+align-items: center;
+  display: flex;
+  justify-content: center;
+    font-weight: bold;
+  color: black;
+  line-height: 2.5;
+  z-index:2;
+}
