@@ -174,6 +174,14 @@ def sleep(request):
     cities = Counter(df["city"].tolist())
     city_day_counter = sorted(cities.items(), key=lambda x: x[1])[::-1]
     city_list = [x[0] for x in city_day_counter]
+    city_list = df["city"].tolist()
+    new_city_list = []
+    for x in city_list:
+        if x in new_city_list:
+            pass
+        else:
+            new_city_list.append(x)
+    city_list = new_city_list
 
     df_cost = df.groupby(['housing_type', 'city'])['housing_cost'].sum().reset_index()
     df_acc = df.groupby(['housing_type','city'])['housing_cost'].count().reset_index()
@@ -186,7 +194,7 @@ def sleep(request):
         days_stayed = df_acc_city[df_acc_city['housing_type']==row["housing_type"]]['housing_cost'].tolist()[0]
 
         city_index = city_list.index(city)
-        color = ""
+        color = "black"
         if row["housing_type"] == 'Hotel':color='red'
         elif row["housing_type"] == 'Airbnb':color='blue'
         elif row["housing_type"] == 'Hostel':color='green'
