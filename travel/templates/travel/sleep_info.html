@@ -340,6 +340,7 @@ Highcharts.chart('housing', {
   },
 
   xAxis: {
+  categories: {{city_list|safe}},
     gridLineWidth: 1,
     title: {
       text: '',
@@ -348,17 +349,6 @@ Highcharts.chart('housing', {
         fontSize:'20px',
         fontFamily: "'Patrick Hand SC', cursive"
       }
-    },
-
-    labels: {
-      formatter: function() {
-        return my_points[this.value];
-      },
-      style: {
-        color: '#333',
-        fontSize:'15px',
-        fontFamily: "'Patrick Hand SC', cursive"
-     }
     }
   },
 
