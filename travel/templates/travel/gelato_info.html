@@ -6,9 +6,11 @@
 
     {% load staticfiles %}
     <link href=" {% static 'heartbeat/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'travel/css/slider.css' %}" rel="stylesheet">
     <link href=" {% static 'travel/css/stats_home.css' %}" rel="stylesheet">
     <link href=" {% static 'travel/css/stats_pages.css' %}" rel="stylesheet">
     <link href=" {% static 'travel/css/stats_gelato.css' %}" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
 
     <title>Gelato</title>
@@ -19,8 +21,8 @@
     <div style="background-color: #af3daf" class="row">
         <div class="col-lg-6 col-xs-12 my_data_col">
             <div class="vert-center">
-
                 <h3 class="date myfont" style="text-align:center; font-size:250%;"></h3>
+                <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="100" data-slider-max="5000" data-slider-step="100" data-slider-value="2000"/>
                 <div class="gelato">
                     <div class="cup">
                         <table style="width:100%">
@@ -126,6 +128,8 @@
 <script src=" {% static 'travel/js/jquery.scrollify.min.js' %}" ></script>
 <script src=" {% static 'travel/js/flatdark.js' %}" ></script>
 <script src=" {% static 'travel/js/imp_scrollify.js' %}" ></script>
+<script src=" {% static 'travel/js/slider.js' %}" ></script>
+
 
 
 <script>
@@ -143,10 +147,12 @@ flavor_lookup={
     'Hazelnut': '#d0be9b',
     'Pistachio': '#93c572',
     'Nutella': '#80300F',
+    'Cream':'#FFFFCC',
+    'Raspberry':'#b3446c',
 }
 
 mono_lookup={
-    '#271b0e': '#000000', //Dark Chocolate
+    '#271b0e': '#211a1a', //Dark Chocolate
     '#ebebeb': '#868686', //Stracciatella
     '#fff': '#bdbdbd',    // Coconut
     '#a76b29': '#54330e', // Caramel
@@ -158,7 +164,9 @@ mono_lookup={
     '#FCFAE1': '#BD8D46', //Cheesecake
     '#d0be9b': '#998762', //Hazelnut
     '#93c572': '#2d5a0f',  //Pistachio
-    '#80300F': '#381506' //Nutella
+    '#80300F': '#381506', //Nutella
+    '#FFFFCC': '#ffff80', //Cream
+    '#b3446c':'#7c2f4b' //Raspberry
 }
 
 gelato_list_dict = [
@@ -178,9 +186,12 @@ gelato_list_dict = [
     {'flavor_l': 'Strawberry', 'flavor_r': 'Cheesecake', 'date': '08/16/2017', 'location': 'Cinque Terra'},
     {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Hazelnut', 'date': '08/16/2017', 'location': 'Cinque Terra'},
     {'flavor_l': 'Pistachio', 'flavor_r': 'Nutella', 'date': '08/17/2017', 'location': 'Ferarra'},
+    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Cream', 'date': '08/18/2017', 'location': 'Ferarra'},
+    {'flavor_l': 'Chocolate', 'flavor_r': 'Raspberry', 'date': '08/18/2017', 'location': 'Ferarra'},
+
 ]
 
-
+var intervalId = null;
 var counter=0;
 var ice_l = $('.icecream_l');
 var ice_r = $('.icecream_r');
@@ -195,12 +206,13 @@ function loop(){
     if(counter>=gelato_list_dict.length){
         counter=0
     }
-    console.log(gelato_list_dict.length);
 
     ice_l.css('background', flavor_lookup[gelato_list_dict[counter]['flavor_l']]);
     ice_r.css('background', flavor_lookup[gelato_list_dict[counter]['flavor_r']]);
+
     ice_l.css('box-shadow', 'inset 50px 80px 100px -30px '+mono_lookup[flavor_lookup[gelato_list_dict[counter]['flavor_l']]]);
     ice_r.css('box-shadow', 'inset -20px 0px 100px 20px '+mono_lookup[flavor_lookup[gelato_list_dict[counter]['flavor_r']]]);
+
     flavor_left.html(gelato_list_dict[counter]['flavor_l']);
     flavor_right.html(gelato_list_dict[counter]['flavor_r']);
     date.html("Gelato Eaten on "+gelato_list_dict[counter]['date']);
@@ -209,8 +221,23 @@ function loop(){
     counter=  counter + 1;
 }
 
+var change_interval = function() {
+    clearInterval(intervalId);
+	intervalId = setInterval(loop, r.getValue());
+};
+
+var r = $('#ex1').slider()
+    .on('slide', change_interval)
+    .data('slider');
+
 
 $(document).ready(function(){
+
+    $('#ex1').slider({
+        formatter: function(value) {
+            return 'Current value: ' + value;
+        }
+    });
 
     // Setting up scoop of right
     var div = $('.icecream_r');
@@ -231,7 +258,7 @@ $(document).ready(function(){
     // cup and top margines
     var div = $('.cup');
     div.css('height', width/2.5);
-    div.css('margin-top', width/1.7);
+    div.css('margin-top', width/2);
 
     // Adding lables and colors
 
@@ -239,8 +266,10 @@ $(document).ready(function(){
     city.css('margin-top', width/2.5 - 40)
     ice_l.css('background', flavor_lookup[gelato_list_dict[temp_counter]['flavor_l']]);
     ice_r.css('background', flavor_lookup[gelato_list_dict[temp_counter]['flavor_r']]);
+
     ice_l.css('box-shadow', 'inset 50px 80px 100px -30px '+mono_lookup[flavor_lookup[gelato_list_dict[temp_counter]['flavor_l']]]);
     ice_r.css('box-shadow', 'inset -20px 0px 100px 20px '+mono_lookup[flavor_lookup[gelato_list_dict[temp_counter]['flavor_r']]]);
+
     flavor_left.html(gelato_list_dict[temp_counter]['flavor_l']);
     flavor_right.html(gelato_list_dict[temp_counter]['flavor_r']);
     date.html("Gelato Eaten on "+gelato_list_dict[temp_counter]['date']);

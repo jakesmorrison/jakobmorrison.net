@@ -15,23 +15,23 @@
 <body>
 
 
-<div class="container">
+<div style="background-color: #6b6bf5" class="container">
     <div style="background-color: #6b6bf5" class="row">
         <div class="col-lg-6 col-xs-12 my_data_col">
             <div class="vert-center">
-                <h3 class="centered myfont">Wake/Bed Time vs. Date</h3>
+                <h2 class="centered myfont">Wake/Bed Time vs. Date</h2>
                 <div id="sleep_date"></div>
             </div>
         </div>
         <div class="col-lg-3 col-xs-12 my_data_col">
             <div class="vert-center">
-                <h3 class="centered myfont">Wake Time</h3>
+                <h2 class="centered myfont">Wake Time</h2>
                 <div id="wake_radial"></div>
             </div>
         </div>
         <div class="col-lg-3 col-xs-12 my_data_col">
             <div class="vert-center">
-                <h3 class="centered myfont">Bed Time</h3>
+                <h2 class="centered myfont">Bed Time</h2>
                 <div id="sleep_radial"></div>
             </div>
         </div>
@@ -40,7 +40,8 @@
     <div style="background-color: #6b6bf5" class="row">
         <div class="col-lg-6 col-xs-12 my_data_col">
             <div class="vert-center">
-                <h3 class="centered myfont">Wake/Bed Time vs. Date</h3>
+                <h2 class="centered myfont">Accommodation Cost vs. Days Stayed vs. City</h2>
+                <div id="housing"></div>
             </div>
         </div>
         <div class="col-lg-3 col-xs-12 my_data_col">
@@ -317,6 +318,144 @@ Highcharts.chart('sleep_date', {
         type: 'spline'
     }]
 });
+
+my_points = {{city_list|safe}}
+
+Highcharts.chart('housing', {
+
+  chart: {
+    type: 'bubble',
+    plotBorderWidth: 1,
+    zoomType: 'xy',
+    borderWidth: 0,
+    backgroundColor: null
+  },
+
+    legend: {enabled: false},
+    exporting: { enabled: false },
+    credits: {enabled: false},
+
+  title: {
+    text: ''
+  },
+
+  xAxis: {
+    gridLineWidth: 1,
+    title: {
+      text: '',
+      style: {
+        color: '#333',
+        fontSize:'20px',
+        fontFamily: "'Patrick Hand SC', cursive"
+      }
+    },
+
+    labels: {
+      formatter: function() {
+        return my_points[this.value];
+      },
+      style: {
+        color: '#333',
+        fontSize:'15px',
+        fontFamily: "'Patrick Hand SC', cursive"
+     }
+    }
+  },
+
+  yAxis: {
+    startOnTick: false,
+    endOnTick: false,
+    title: {
+      text: 'Total Cost ($)',
+      style: {
+        color: '#333',
+        fontSize:'20px',
+        fontFamily: "'Patrick Hand SC', cursive"
+      }
+    },
+    labels: {
+      format: '${value}',
+      style: {
+        color: '#333',
+        fontSize:'15px',
+        fontFamily: "'Patrick Hand SC', cursive"
+      }
+    },
+    maxPadding: 0.2,
+    plotLines: [
+    {
+      color: 'red',
+      dashStyle: 'dot',
+      width: 2,
+      value: 50,
+      label: {
+        align: 'right',
+        style: {
+          fontStyle: 'italic'
+        },
+        text: 'Average Hotel',
+        x: -10
+      },
+      zIndex: 3
+    },
+    {
+      color: 'blue',
+      dashStyle: 'dot',
+      width: 2,
+      value: 25,
+      label: {
+        align: 'right',
+        style: {
+          fontStyle: 'italic'
+        },
+        text: 'Average Hostel',
+        x: -10
+      },
+      zIndex: 3
+    },
+    {
+      color: 'green',
+      dashStyle: 'dot',
+      width: 2,
+      value: 35,
+      label: {
+        align: 'right',
+        style: {
+          fontStyle: 'italic'
+        },
+        text: 'Average Airbnb',
+        x: -10
+      },
+      zIndex: 3
+    }
+    ]
+  },
+
+  tooltip: {
+    useHTML: true,
+    headerFormat: '<table>',
+    pointFormat: '<tr><th colspan="2"><h3>{point.city}</h3></th></tr>' +
+    	'<tr><th>Type:</th><td>{point.name}</td></tr>' +
+      '<tr><th>Nights Spent:</th><td>{point.z}</td></tr>' +
+      '<tr><th>Total Cost:</th><td>${point.y}</td></tr>',
+    footerFormat: '</table>',
+    followPointer: true
+  },
+
+  plotOptions: {
+    series: {
+      dataLabels: {
+        enabled: true,
+        format: '{point.name}'
+      }
+    }
+  },
+
+  series: [{
+    data: {{acc_data|safe}}
+  }]
+});
+
 
 </script>
 

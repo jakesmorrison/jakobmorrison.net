@@ -122,12 +122,12 @@ def sleep(request):
     wake_dict = Counter(wake_list)
     radial_wake_list = []
     for key,val in wake_dict.items():
-        radial_wake_list.append({'type':'line','name':'Occurrences','data':[0,val],'pointStart':0,'pointInterval':key,'color':'black','marker':{'symbol':'circle'}})
+        radial_wake_list.append({'type':'line','name':'Occurrences','data':[0,val],'pointStart':0,'pointInterval':key,'color':'magenta','lineWidth': 5,'marker':{'symbol':'circle'}})
 
     sleep_dict = Counter(sleep_list)
     radial_sleep_list = []
     for key,val in sleep_dict.items():
-        radial_sleep_list.append({'type':'line','name':'Occurrences','data':[0,val],'pointStart':0,'pointInterval':key,'color':'black','marker':{'symbol':'circle'}})
+        radial_sleep_list.append({'type':'line','name':'Occurrences','data':[0,val],'pointStart':0,'pointInterval':key,'color':'cyan','lineWidth': 5,'marker':{'symbol':'circle'}})
 
 
     average_minutes_wake = methods.Travel_Methods.convert_to_minutes(wake)
@@ -151,7 +151,7 @@ def sleep(request):
 
     sleep_all = df["sleep_time"].tolist()
     sleep_all = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in sleep_all]
-    print(sleep_all)
+
     average_minutes_bed = methods.Travel_Methods.convert_to_minutes(sleep_all)
     average_time_bed = methods.Travel_Methods.convert_to_hours(average_minutes_bed)
 
@@ -171,6 +171,29 @@ def sleep(request):
     average_time_bed_mom = methods.Travel_Methods.convert_to_hours(average_minutes_bed_mom)
 
 
+    cities = Counter(df["city"].tolist())
+    city_day_counter = sorted(cities.items(), key=lambda x: x[1])[::-1]
+    city_list = [x[0] for x in city_day_counter]
+
+    df_cost = df.groupby(['housing_type', 'city'])['housing_cost'].sum().reset_index()
+    df_acc = df.groupby(['housing_type','city'])['housing_cost'].count().reset_index()
+
+
+    acc_data = []
+    for index, row in df_cost.iterrows():
+        city = row["city"]
+        df_acc_city = df_acc[df_acc['city']==city]
+        days_stayed = df_acc_city[df_acc_city['housing_type']==row["housing_type"]]['housing_cost'].tolist()[0]
+
+        city_index = city_list.index(city)
+        color = ""
+        if row["housing_type"] == 'Hotel':color='red'
+        elif row["housing_type"] == 'Airbnb':color='blue'
+        elif row["housing_type"] == 'Hostel':color='green'
+        foo = {'x':city_index,'y':float(row['housing_cost']),'z':int(days_stayed),'name':row["housing_type"],'city':row['city'],'color':color}
+        acc_data.append(foo)
+
+
     context = {
         'wake': wake,
         'sleep': sleep,
@@ -184,6 +207,9 @@ def sleep(request):
         'average_time_bed_solo': average_time_bed_solo,
         'average_time_bed_joie': average_time_bed_joie,
         'average_time_bed_mom': average_time_bed_mom,
+        'city_list':city_list,
+        'acc_data': acc_data,
+
 
     }
     return render(request, 'travel/sleep_info.html', context)
