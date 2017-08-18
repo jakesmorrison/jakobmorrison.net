@@ -341,15 +341,22 @@ Highcharts.chart('housing', {
 
   xAxis: {
   categories: {{city_list|safe}},
-    gridLineWidth: 1,
-    title: {
+  gridLineWidth: 1,
+  title: {
       text: '',
       style: {
         color: '#333',
         fontSize:'20px',
         fontFamily: "'Patrick Hand SC', cursive"
       }
-    }
+    },
+   labels: {
+      style: {
+        color: '#333',
+        fontSize:'16px',
+        fontFamily: "'Patrick Hand SC', cursive"
+      }
+      }
   },
 
   yAxis: {

@@ -194,10 +194,10 @@ def sleep(request):
         days_stayed = df_acc_city[df_acc_city['housing_type']==row["housing_type"]]['housing_cost'].tolist()[0]
 
         city_index = city_list.index(city)
-        color = "black"
-        if row["housing_type"] == 'Hotel':color='red'
-        elif row["housing_type"] == 'Airbnb':color='blue'
-        elif row["housing_type"] == 'Hostel':color='green'
+        color = "#7a7a7a"
+        if row["housing_type"] == 'Hotel':color='#ff4d4d'
+        elif row["housing_type"] == 'Airbnb':color='#4d4dff'
+        elif row["housing_type"] == 'Hostel':color='#4dff4d'
         foo = {'x':city_index,'y':float(row['housing_cost']),'z':int(days_stayed),'name':row["housing_type"],'city':row['city'],'color':color}
         acc_data.append(foo)
 
