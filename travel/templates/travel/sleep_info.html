@@ -43,7 +43,7 @@
             <div class="vert-center">
                 <table style="width:100%">
                     <tr>
-                        <th><h2 class="centered myfont housing_cost">Total Accommodation Cost </h2></th>
+                        <th><h2 class="centered myfont housing_cost">Total Accommodation Cost by City </h2></th>
                         <th><button style="font-size: 10px;margin-top: -5px;" type="button" class="btn btn-primary toggle_button" id="toggle_data">Toggle Data</button></th>
                     </tr>
                 </table>
@@ -449,7 +449,7 @@ var toggle_housing_cost = "total";
 $('#toggle_data').click(function () {
 
    if (toggle_housing_cost === "total"){
-        $('.housing_cost').html("Average Accommodation Cost");
+        $('.housing_cost').html("Average Accommodation Cost by City");
         toggle_housing_cost = "avg"
         housing.series[0].setData({{acc_data_avg|safe}});
         housing.tooltip.options.formatter = function() {
@@ -460,7 +460,7 @@ $('#toggle_data').click(function () {
         housing.yAxis[0].setTitle({ text: "Average Cost ($)" });
    }
    else{
-        $('.housing_cost').html("Total Accommodation Cost");
+        $('.housing_cost').html("Total Accommodation Cost by City");
         toggle_housing_cost = "total"
         housing.series[0].setData({{acc_data|safe}});
         housing.tooltip.options.formatter = function() {
@@ -502,6 +502,7 @@ Highcharts.chart('box_plot', {
       text: 'Country',
       style: {
         color: '#333',
+        fontSize:'15px',
         fontFamily: "'Patrick Hand SC', cursive"
       }
 
@@ -509,6 +510,7 @@ Highcharts.chart('box_plot', {
     labels: {
       style: {
         color: '#333',
+        fontSize:'15px',
         fontFamily: "'Patrick Hand SC', cursive"
       }
     }
@@ -519,13 +521,15 @@ Highcharts.chart('box_plot', {
       text: 'Observations',
       style: {
         color: '#333',
+        fontSize:'15px',
         fontFamily: "'Patrick Hand SC', cursive"
       },
-      labels: {
-        style: {
-          color: '#333',
-          fontFamily: "'Patrick Hand SC', cursive"
-        }
+    },
+    labels: {
+      style: {
+        color: '#333',
+        fontSize:'15px',
+        fontFamily: "'Patrick Hand SC', cursive"
       }
     }
   },
@@ -533,6 +537,10 @@ Highcharts.chart('box_plot', {
   series: [{
     name: 'Observations',
     data: {{box_data|safe}},
+            lineWidth: 3,
+        color: "black",
+        fillColor: "transparent",
+
     tooltip: {
       headerFormat: '<em>{point.key}</em><br/>'
     }
