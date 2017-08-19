@@ -40,7 +40,12 @@
     <div style="background-color: #6b6bf5" class="row">
         <div class="col-lg-6 col-xs-12 my_data_col">
             <div class="vert-center">
-                <h2 class="centered myfont">Accommodation Cost vs. Days Stayed vs. City</h2>
+                <table style="width:100%">
+                    <tr>
+                        <th><h2 class="centered myfont housing_cost">Total Accommodation Cost vs. Days Stayed vs. City </h2></th>
+                        <th><button style="font-size: 10px;margin-top: 12px;" type="button" class="btn btn-primary" id="toggle_data">Toggle Data</button></th>
+                    </tr>
+                </table>
                 <div id="housing"></div>
             </div>
         </div>
@@ -331,7 +336,7 @@ Highcharts.chart('sleep_date', {
 
 my_points = {{city_list|safe}}
 
-Highcharts.chart('housing', {
+var housing = Highcharts.chart('housing', {
 
   chart: {
     type: 'bubble',
@@ -439,6 +444,22 @@ Highcharts.chart('housing', {
   series: [{
     data: {{acc_data|safe}}
   }]
+});
+
+var toggle_housing_cost = "total";
+$('#toggle_data').click(function () {
+   if (toggle_housing_cost === "total"){
+    $('.housing_cost').html("Average Accommodation Cost vs. Days Stayed vs. City");
+    toggle_housing_cost = "avg"
+    housing.series[0].setData({{acc_data_avg|safe}});
+   }
+   else{
+    $('.housing_cost').html("Total Accommodation Cost vs. Days Stayed vs. City");
+    toggle_housing_cost = "total"
+    housing.series[0].setData({{acc_data|safe}});
+
+   }
+
 });
 
 
