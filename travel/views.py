@@ -3,6 +3,7 @@ from .models import TravelStats
 import pandas as pd
 from collections import Counter, OrderedDict
 import datetime
+import numpy as np
 from .management import methods
 
 # Create your views here.
@@ -218,6 +219,22 @@ def sleep(request):
     housing_cost_joie = (average_by_person[average_by_person["traveling_with"]=="Joie"]["housing_cost"].tolist()[0])
     housing_cost_mom = (average_by_person[average_by_person["traveling_with"]=="Mom"]["housing_cost"].tolist()[0])
 
+    country_list = df["country"].tolist()
+    new_country_list = []
+    for x in country_list:
+        if x in new_country_list:
+            pass
+        else:
+            new_country_list.append(x)
+    country_list=new_country_list
+    df_cost_country= df.groupby(["country"]).describe()["housing_cost"].reset_index()
+
+    box_data = []
+    for x in country_list:
+        foo = df_cost_country[df_cost_country["country"]==x]
+        temp = [foo[foo["level_1"]=="min"]["housing_cost"].tolist()[0],foo[foo["level_1"] == "25%"]["housing_cost"].tolist()[0],foo[foo["level_1"] == "50%"]["housing_cost"].tolist()[0],foo[foo["level_1"] == "75%"]["housing_cost"].tolist()[0],foo[foo["level_1"] == "max"]["housing_cost"].tolist()[0]]
+        box_data.append(temp)
+
 
     context = {
         'wake': wake,
@@ -238,6 +255,8 @@ def sleep(request):
         'average_cost_solo':"%.2f" % housing_cost_solo,
         'average_cost_joie':"%.2f" % housing_cost_joie,
         'average_cost_mom':"%.2f" % housing_cost_mom,
+        'country_list': country_list,
+        'box_data':box_data,
     }
     return render(request, 'travel/sleep_info.html', context)
 

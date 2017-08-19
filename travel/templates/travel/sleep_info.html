@@ -8,6 +8,7 @@
     <link href=" {% static 'heartbeat/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href=" {% static 'travel/css/stats_home.css' %}" rel="stylesheet">
     <link href=" {% static 'travel/css/stats_pages.css' %}" rel="stylesheet">
+    <link href=" {% static 'travel/css/stats_sleep.css' %}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
 
     <title>Sleep</title>
@@ -42,8 +43,8 @@
             <div class="vert-center">
                 <table style="width:100%">
                     <tr>
-                        <th><h2 class="centered myfont housing_cost">Total Accommodation Cost vs. Days Stayed vs. City </h2></th>
-                        <th><button style="font-size: 10px;margin-top: 12px;" type="button" class="btn btn-primary" id="toggle_data">Toggle Data</button></th>
+                        <th><h2 class="centered myfont housing_cost">Total Accommodation Cost </h2></th>
+                        <th><button style="font-size: 10px;margin-top: -5px;" type="button" class="btn btn-primary toggle_button" id="toggle_data">Toggle Data</button></th>
                     </tr>
                 </table>
                 <div id="housing"></div>
@@ -51,7 +52,7 @@
         </div>
         <div class="col-lg-2 col-xs-12 my_data_col">
             <div class="vert-center">
-                <h2 class="centered myfont">Average Housing Cost by Person</h2>
+                <h2 class="centered myfont">Average Accommodation Cost by Person</h2>
                 <table style="width:100%">
                   <tr>
                       <th class="centered"><img height="30" width="30" src=" {% static 'travel/img/solo.png' %}"></th>
@@ -70,11 +71,9 @@
         </div>
         <div class="col-lg-4 col-xs-12 my_data_col">
             <div class="vert-center">
-                <h2 class="centered myfont">Average Bed Time</h2>
-                <h3 class="centered myfont">{{average_time_bed|safe}}am</h3>
-                <h3 class="centered myfont"><img height="30" width="30" src=" {% static 'travel/img/solo.png' %}">: {{average_time_bed_solo|safe}}am</h3>
-                <h3 class="centered myfont"><img height="40" width="40" src=" {% static 'travel/img/gf.png' %}">: {{average_time_bed_joie|safe}}am</h3>
-                <h3 class="centered myfont"><img height="30" width="30" src=" {% static 'travel/img/mother.png' %}">: {{average_time_bed_mom|safe}}am</h3>
+                <h2 class="centered myfont">Accommodation Cost by Country</h2>
+                <div id="box_plot"></div>
+
             </div>
         </div>
     </div>
@@ -450,25 +449,94 @@ var toggle_housing_cost = "total";
 $('#toggle_data').click(function () {
 
    if (toggle_housing_cost === "total"){
-        $('.housing_cost').html("Average Accommodation Cost vs. Days Stayed vs. City");
+        $('.housing_cost').html("Average Accommodation Cost");
         toggle_housing_cost = "avg"
         housing.series[0].setData({{acc_data_avg|safe}});
         housing.tooltip.options.formatter = function() {
             console.log(this.point)
             return '<table> <tr><th colspan="2"><h3>'+this.point.city+'</h3></th></tr><tr><th>Type:</th><td>'+this.point.name+'</td></tr><tr><th>Nights:</th><td>'+this.point.nights+'</td></tr><tr><th>Total Cost:</th><td>$'+this.point.total+'</td></tr><tr><th>Average Cost:</th><td> $'+this.point.avg+'</td></tr></table>';
         }
+        console.log(housing.xAxis[0])
+        housing.yAxis[0].setTitle({ text: "Average Cost ($)" });
    }
    else{
-    $('.housing_cost').html("Total Accommodation Cost vs. Days Stayed vs. City");
-    toggle_housing_cost = "total"
-    housing.series[0].setData({{acc_data|safe}});
-    housing.tooltip.options.formatter = function() {
-        console.log(this.point)
-        return '<table> <tr><th colspan="2"><h3>'+this.point.city+'</h3></th></tr><tr><th>Type:</th><td>'+this.point.name+'</td></tr><tr><th>Nights:</th><td>'+this.point.nights+'</td></tr><tr><th>Total Cost:</th><td>$'+this.point.total+'</td></tr><tr><th>Average Cost:</th><td> $'+this.point.avg+'</td></tr></table>';
-    }
-
+        $('.housing_cost').html("Total Accommodation Cost");
+        toggle_housing_cost = "total"
+        housing.series[0].setData({{acc_data|safe}});
+        housing.tooltip.options.formatter = function() {
+            return '<table> <tr><th colspan="2"><h3>'+this.point.city+'</h3></th></tr><tr><th>Type:</th><td>'+this.point.name+'</td></tr><tr><th>Nights:</th><td>'+this.point.nights+'</td></tr><tr><th>Total Cost:</th><td>$'+this.point.total+'</td></tr><tr><th>Average Cost:</th><td> $'+this.point.avg+'</td></tr></table>';
+        }
+        housing.yAxis[0].setTitle({ text: "Total Cost ($)" });
    }
 
+});
+
+
+Highcharts.chart('box_plot', {
+
+  chart: {
+    type: 'boxplot',
+    borderWidth: 0,
+    backgroundColor: null,
+    zoomType: 'xy'
+  },
+
+  title: {
+    text: ''
+  },
+
+  legend: {
+    enabled: false
+  },
+  exporting: {
+    enabled: false
+  },
+  credits: {
+    enabled: false
+  },
+
+
+  xAxis: {
+    categories: {{country_list|safe}},
+    title: {
+      text: 'Country',
+      style: {
+        color: '#333',
+        fontFamily: "'Patrick Hand SC', cursive"
+      }
+
+    },
+    labels: {
+      style: {
+        color: '#333',
+        fontFamily: "'Patrick Hand SC', cursive"
+      }
+    }
+  },
+
+  yAxis: {
+    title: {
+      text: 'Observations',
+      style: {
+        color: '#333',
+        fontFamily: "'Patrick Hand SC', cursive"
+      },
+      labels: {
+        style: {
+          color: '#333',
+          fontFamily: "'Patrick Hand SC', cursive"
+        }
+      }
+    }
+  },
+
+  series: [{
+    name: 'Observations',
+    data: {{box_data|safe}},
+    tooltip: {
+      headerFormat: '<em>{point.key}</em><br/>'
+    }
+  }]
 });
 
 
