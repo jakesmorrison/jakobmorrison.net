@@ -130,50 +130,49 @@ def sleep(request):
         radial_sleep_list.append({'type':'line','name':'Occurrences','data':[0,val],'pointStart':0,'pointInterval':key,'color':'cyan','lineWidth': 5,'marker':{'symbol':'circle'}})
 
 
-    average_minutes_wake = methods.Travel_Methods.convert_to_minutes(wake)
-    average_time_wake = methods.Travel_Methods.convert_to_hours(average_minutes_wake)
-
-    wake_solo = df[df["traveling_with"]=="Solo"]["wake_time"].tolist()
-    wake_solo = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in wake_solo]
-    average_minutes_wake_solo = methods.Travel_Methods.convert_to_minutes(wake_solo)
-    average_time_wake_solo = methods.Travel_Methods.convert_to_hours(average_minutes_wake_solo)
-
-    wake_joie = df[df["traveling_with"]=="Joie"]["wake_time"].tolist()
-    wake_joie = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in wake_joie]
-    average_minutes_wake_joie = methods.Travel_Methods.convert_to_minutes(wake_joie)
-    average_time_wake_joie = methods.Travel_Methods.convert_to_hours(average_minutes_wake_joie)
-
-    wake_mom = df[df["traveling_with"]=="Mom"]["wake_time"].tolist()
-    wake_mom = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in wake_mom]
-    average_minutes_wake_mom = methods.Travel_Methods.convert_to_minutes(wake_mom)
-    average_time_wake_mom = methods.Travel_Methods.convert_to_hours(average_minutes_wake_mom)
-
-
-    sleep_all = df["sleep_time"].tolist()
-    sleep_all = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in sleep_all]
-
-    average_minutes_bed = methods.Travel_Methods.convert_to_minutes(sleep_all)
-    average_time_bed = methods.Travel_Methods.convert_to_hours(average_minutes_bed)
-
-    bed_solo = df[df["traveling_with"]=="Solo"]["sleep_time"].tolist()
-    bed_solo = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in bed_solo]
-    average_minutes_bed_solo = methods.Travel_Methods.convert_to_minutes(bed_solo)
-    average_time_bed_solo = methods.Travel_Methods.convert_to_hours(average_minutes_bed_solo)
-
-    bed_joie = df[df["traveling_with"]=="Joie"]["sleep_time"].tolist()
-    bed_joie = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in bed_joie]
-    average_minutes_bed_joie = methods.Travel_Methods.convert_to_minutes(bed_joie)
-    average_time_bed_joie = methods.Travel_Methods.convert_to_hours(average_minutes_bed_joie)
-
-    bed_mom = df[df["traveling_with"]=="Mom"]["sleep_time"].tolist()
-    bed_mom = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in bed_mom]
-    average_minutes_bed_mom = methods.Travel_Methods.convert_to_minutes(bed_mom)
-    average_time_bed_mom = methods.Travel_Methods.convert_to_hours(average_minutes_bed_mom)
+    # average_minutes_wake = methods.Travel_Methods.convert_to_minutes(wake)
+    # average_time_wake = methods.Travel_Methods.convert_to_hours(average_minutes_wake)
+    #
+    # wake_solo = df[df["traveling_with"]=="Solo"]["wake_time"].tolist()
+    # wake_solo = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in wake_solo]
+    # average_minutes_wake_solo = methods.Travel_Methods.convert_to_minutes(wake_solo)
+    # average_time_wake_solo = methods.Travel_Methods.convert_to_hours(average_minutes_wake_solo)
+    #
+    # wake_joie = df[df["traveling_with"]=="Joie"]["wake_time"].tolist()
+    # wake_joie = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in wake_joie]
+    # average_minutes_wake_joie = methods.Travel_Methods.convert_to_minutes(wake_joie)
+    # average_time_wake_joie = methods.Travel_Methods.convert_to_hours(average_minutes_wake_joie)
+    #
+    # wake_mom = df[df["traveling_with"]=="Mom"]["wake_time"].tolist()
+    # wake_mom = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in wake_mom]
+    # average_minutes_wake_mom = methods.Travel_Methods.convert_to_minutes(wake_mom)
+    # average_time_wake_mom = methods.Travel_Methods.convert_to_hours(average_minutes_wake_mom)
+    #
+    #
+    # sleep_all = df["sleep_time"].tolist()
+    # sleep_all = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in sleep_all]
+    #
+    # average_minutes_bed = methods.Travel_Methods.convert_to_minutes(sleep_all)
+    # average_time_bed = methods.Travel_Methods.convert_to_hours(average_minutes_bed)
+    #
+    # bed_solo = df[df["traveling_with"]=="Solo"]["sleep_time"].tolist()
+    # bed_solo = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in bed_solo]
+    # average_minutes_bed_solo = methods.Travel_Methods.convert_to_minutes(bed_solo)
+    # average_time_bed_solo = methods.Travel_Methods.convert_to_hours(average_minutes_bed_solo)
+    #
+    # bed_joie = df[df["traveling_with"]=="Joie"]["sleep_time"].tolist()
+    # bed_joie = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in bed_joie]
+    # average_minutes_bed_joie = methods.Travel_Methods.convert_to_minutes(bed_joie)
+    # average_time_bed_joie = methods.Travel_Methods.convert_to_hours(average_minutes_bed_joie)
+    #
+    # bed_mom = df[df["traveling_with"]=="Mom"]["sleep_time"].tolist()
+    # bed_mom = [float("%.2f" %(int(str(x).split(":")[0])+int(str(x).split(":")[1])/100)) for x in bed_mom]
+    # average_minutes_bed_mom = methods.Travel_Methods.convert_to_minutes(bed_mom)
+    # average_time_bed_mom = methods.Travel_Methods.convert_to_hours(average_minutes_bed_mom)
 
 
     cities = Counter(df["city"].tolist())
     city_day_counter = sorted(cities.items(), key=lambda x: x[1])[::-1]
-    city_list = [x[0] for x in city_day_counter]
     city_list = df["city"].tolist()
     new_city_list = []
     for x in city_list:
@@ -208,26 +207,30 @@ def sleep(request):
 
 
     average_by_person = df.groupby(["traveling_with"]).mean()["housing_cost"].reset_index()
-    average_by_person_html = average_by_person.to_html()
+    # average_by_person_html = average_by_person.to_html()
+    housing_cost_solo = (average_by_person[average_by_person["traveling_with"]=="Solo"]["housing_cost"].tolist()[0])
+    housing_cost_joie = (average_by_person[average_by_person["traveling_with"]=="Joie"]["housing_cost"].tolist()[0])
+    housing_cost_mom = (average_by_person[average_by_person["traveling_with"]=="Mom"]["housing_cost"].tolist()[0])
+
 
     context = {
         'wake': wake,
         'sleep': sleep,
         'radial_wake': radial_wake_list,
         'radial_sleep': radial_sleep_list,
-        'average_time_wake': average_time_wake,
-        'average_time_wake_solo': average_time_wake_solo,
-        'average_time_wake_joie': average_time_wake_joie,
-        'average_time_wake_mom': average_time_wake_mom,
-        'average_time_bed': average_time_bed,
-        'average_time_bed_solo': average_time_bed_solo,
-        'average_time_bed_joie': average_time_bed_joie,
-        'average_time_bed_mom': average_time_bed_mom,
+        # 'average_time_wake': average_time_wake,
+        # 'average_time_wake_solo': average_time_wake_solo,
+        # 'average_time_wake_joie': average_time_wake_joie,
+        # 'average_time_wake_mom': average_time_wake_mom,
+        # 'average_time_bed': average_time_bed,
+        # 'average_time_bed_solo': average_time_bed_solo,
+        # 'average_time_bed_joie': average_time_bed_joie,
+        # 'average_time_bed_mom': average_time_bed_mom,
         'city_list':city_list,
         'acc_data': acc_data,
-        'housing_person_table': average_by_person_html,
-
-
+        'average_cost_solo':housing_cost_solo,
+        'average_cost_joie':housing_cost_joie,
+        'average_cost_solo_mom':housing_cost_mom,
     }
     return render(request, 'travel/sleep_info.html', context)
 

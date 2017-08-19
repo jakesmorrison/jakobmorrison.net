@@ -42,21 +42,28 @@
             <div class="vert-center">
                 <h2 class="centered myfont">Accommodation Cost vs. Days Stayed vs. City</h2>
                 <div id="housing"></div>
-                <div class="table">
-                    {{housing_person_table|safe}}
-                </div>
             </div>
         </div>
-        <div class="col-lg-3 col-xs-12 my_data_col">
+        <div class="col-lg-2 col-xs-12 my_data_col">
             <div class="vert-center">
-                <h2 class="centered myfont">Average Wake Up Time</h2>
-                <h3 class="centered myfont">{{average_time_wake|safe}}am</h3>
-                <h3 class="centered myfont"><img height="30" width="30" src=" {% static 'travel/img/solo.png' %}">: {{average_time_wake_solo|safe}}am</h3>
-                <h3 class="centered myfont"><img height="40" width="40" src=" {% static 'travel/img/gf.png' %}">: {{average_time_wake_joie|safe}}am</h3>
-                <h3 class="centered myfont"><img height="30" width="30" src=" {% static 'travel/img/mother.png' %}">: {{average_time_wake_mom|safe}}am</h3>
+                <h2 class="centered myfont">Average Housing Cost</h2>
+                <table style="width:100%">
+                  <tr>
+                      <th class="centered"><img height="30" width="30" src=" {% static 'travel/img/solo.png' %}"></th>
+                      <th><h3 class="centered myfont">${{average_cost_solo|safe}}</h3></th>
+                  </tr>
+                  <tr>
+                      <th class="centered"><img height="30" width="30" src=" {% static 'travel/img/gf.png' %}"></th>
+                      <th><h3 class="centered myfont">${{average_cost_joie|safe}}</h3></th>
+                  </tr>
+                  <tr>
+                      <th class="centered"><img height="30" width="30" src=" {% static 'travel/img/mother.png' %}"></th>
+                      <th><h3 class="centered myfont">${{average_cost_mom|safe}}</h3></th>
+                  </tr>
+                </table>
             </div>
         </div>
-        <div class="col-lg-3 col-xs-12 my_data_col">
+        <div class="col-lg-4 col-xs-12 my_data_col">
             <div class="vert-center">
                 <h2 class="centered myfont">Average Bed Time</h2>
                 <h3 class="centered myfont">{{average_time_bed|safe}}am</h3>
