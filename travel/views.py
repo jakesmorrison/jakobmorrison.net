@@ -187,6 +187,8 @@ def sleep(request):
     df["housing_cost"] = df["housing_cost"].apply(lambda x: int(x))
 
     df_cost = df.groupby(['housing_type', 'city'])['housing_cost'].sum().reset_index()
+    df_avg = df.groupby(['housing_type', 'city'])['housing_cost'].mean().reset_index()
+
     df_acc = df.groupby(['housing_type','city'])['housing_cost'].count().reset_index()
 
 
@@ -195,13 +197,15 @@ def sleep(request):
         city = row["city"]
         df_acc_city = df_acc[df_acc['city']==city]
         days_stayed = df_acc_city[df_acc_city['housing_type']==row["housing_type"]]['housing_cost'].tolist()[0]
+        df_avg_city = "%.2f" %  df_avg[df_avg['housing_type']==row["housing_type"]]['housing_cost'].tolist()[0]
+
 
         city_index = city_list.index(city)
         color = "#7a7a7a"
         if row["housing_type"] == 'Hotel':color='#ff4d4d'
         elif row["housing_type"] == 'Airbnb':color='#ff4dff'
         elif row["housing_type"] == 'Hostel':color='#4dff4d'
-        foo = {'x':city_index,'y':float(row['housing_cost']),'z':int(days_stayed),'name':row["housing_type"],'city':row['city'],'color':color}
+        foo = {'x':city_index,'y':float(row['housing_cost']),'z':int(days_stayed),'name':row["housing_type"],'city':row['city'],'color':color,'avg':df_avg_city}
         acc_data.append(foo)
 
 

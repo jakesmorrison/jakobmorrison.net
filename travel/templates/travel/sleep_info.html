@@ -46,14 +46,14 @@
         </div>
         <div class="col-lg-2 col-xs-12 my_data_col">
             <div class="vert-center">
-                <h2 class="centered myfont">Average Housing Cost</h2>
+                <h2 class="centered myfont">Average Housing Cost by Person</h2>
                 <table style="width:100%">
                   <tr>
                       <th class="centered"><img height="30" width="30" src=" {% static 'travel/img/solo.png' %}"></th>
                       <th><h3 class="centered myfont">${{average_cost_solo|safe}}</h3></th>
                   </tr>
                   <tr>
-                      <th class="centered"><img height="30" width="30" src=" {% static 'travel/img/gf.png' %}"></th>
+                      <th class="centered"><img height="40" width="40" src=" {% static 'travel/img/gf.png' %}"></th>
                       <th><h3 class="centered myfont">${{average_cost_joie|safe}}</h3></th>
                   </tr>
                   <tr>
@@ -421,7 +421,8 @@ Highcharts.chart('housing', {
     pointFormat: '<tr><th colspan="2"><h3>{point.city}</h3></th></tr>' +
     	'<tr><th>Type:</th><td>{point.name}</td></tr>' +
       '<tr><th>Nights:</th><td>{point.z}</td></tr>' +
-      '<tr><th>Cost:</th><td>${point.y}</td></tr>',
+      '<tr><th>Total Cost:</th><td>${point.y}</td></tr>' +
+      '<tr><th>Average Cost:</th><td>${point.avg}</td></tr>',
     footerFormat: '</table>',
     followPointer: true
   },
