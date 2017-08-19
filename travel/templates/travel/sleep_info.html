@@ -448,15 +448,24 @@ var housing = Highcharts.chart('housing', {
 
 var toggle_housing_cost = "total";
 $('#toggle_data').click(function () {
+
    if (toggle_housing_cost === "total"){
-    $('.housing_cost').html("Average Accommodation Cost vs. Days Stayed vs. City");
-    toggle_housing_cost = "avg"
-    housing.series[0].setData({{acc_data_avg|safe}});
+        $('.housing_cost').html("Average Accommodation Cost vs. Days Stayed vs. City");
+        toggle_housing_cost = "avg"
+        housing.series[0].setData({{acc_data_avg|safe}});
+        housing.tooltip.options.formatter = function() {
+            console.log(this.point)
+            return '<table> <tr><th colspan="2"><h3>'+this.point.city+'</h3></th></tr><tr><th>Type:</th><td>'+this.point.name+'</td></tr><tr><th>Nights:</th><td>'+this.point.nights+'</td></tr><tr><th>Total Cost:</th><td>$'+this.point.total+'</td></tr><tr><th>Average Cost:</th><td> $'+this.point.avg+'</td></tr></table>';
+        }
    }
    else{
     $('.housing_cost').html("Total Accommodation Cost vs. Days Stayed vs. City");
     toggle_housing_cost = "total"
     housing.series[0].setData({{acc_data|safe}});
+    housing.tooltip.options.formatter = function() {
+        console.log(this.point)
+        return '<table> <tr><th colspan="2"><h3>'+this.point.city+'</h3></th></tr><tr><th>Type:</th><td>'+this.point.name+'</td></tr><tr><th>Nights:</th><td>'+this.point.nights+'</td></tr><tr><th>Total Cost:</th><td>$'+this.point.total+'</td></tr><tr><th>Average Cost:</th><td> $'+this.point.avg+'</td></tr></table>';
+    }
 
    }
 

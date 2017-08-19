@@ -205,7 +205,7 @@ def sleep(request):
 
         avg_cost = float("%.2f" % (float(row['housing_cost'])/int(days_stayed)))
         foo = {'x':city_index,'y':float(row['housing_cost']),'z':int(days_stayed),'name':row["housing_type"],'city':row['city'],'color':color,'avg':avg_cost}
-        foo1 = {'x':city_index,'y':avg_cost,'z':1,'name':row["housing_type"],'city':row['city'],'color':color,'avg':avg_cost}
+        foo1 = {'x':city_index,'y':avg_cost,'z':int(days_stayed),'name':row["housing_type"],'city':row['city'],'color':color,'total':float(row['housing_cost']),'nights':int(days_stayed)}
         acc_data.append(foo)
         acc_data_average.append(foo1)
 
