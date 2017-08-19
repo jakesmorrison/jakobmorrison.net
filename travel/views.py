@@ -228,9 +228,9 @@ def sleep(request):
         # 'average_time_bed_mom': average_time_bed_mom,
         'city_list':city_list,
         'acc_data': acc_data,
-        'average_cost_solo':housing_cost_solo,
-        'average_cost_joie':housing_cost_joie,
-        'average_cost_solo_mom':housing_cost_mom,
+        'average_cost_solo':"%.2f" % housing_cost_solo,
+        'average_cost_joie':"%.2f" % housing_cost_joie,
+        'average_cost_mom':"%.2f" % housing_cost_mom,
     }
     return render(request, 'travel/sleep_info.html', context)
 
