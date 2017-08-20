@@ -47,7 +47,8 @@
     margin-left: 240px;
     margin-top: 0px;
     cursor: pointer;
-
+    -webkit-box-shadow: rgb(33, 26, 26) 50px 80px 100px -30px
+    box-shadow: rgb(33, 26, 26) 50px 80px 100px -30px
 }
 
 .icecream_l{
@@ -96,12 +97,12 @@
 }
 
 .my_label{
-  position: absolute;
-align-items: center;
-  display: flex;
-  justify-content: center;
+    position: absolute;
+    align-items: center;
+    display: flex;
+    justify-content: center;
     font-weight: bold;
-  color: black;
-  line-height: 2.5;
-  z-index:2;
+    color: black;
+    line-height: 2.5;
+    z-index:2;
 }
