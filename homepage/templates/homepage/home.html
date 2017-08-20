@@ -45,7 +45,7 @@
         <!--removing "navbar-collapse"-->
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <li class="disable" role="button" aria-haspopup="true" aria-expanded="false">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Resume
                     <span class="caret"></span></a>
                     <ul style="border-radius: 3px; background: #222;" class="dropdown-menu">
@@ -64,7 +64,7 @@
                 <li>
                     <a class="page-scroll" href="{% url 'softball:softball.views.index' %}">Softball</a>
                 </li>
-                <li class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <li class="disable" role="button" aria-haspopup="true" aria-expanded="false">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Travel
                     <span class="caret"></span></a>
                     <ul style="border-radius: 3px; background: #222;" class="dropdown-menu">
@@ -133,12 +133,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
 <script>
+jQuery(document).ready(function($)  {
+
+    $("li.dropdown a").click(function(e){
+        $(this).next('ul.dropdown-menu').css("display", "block");
+        e.stopPropagation();
+    });
+
     $(".footer-jake").text(new Date().getFullYear()+" Jake Morrison")
-    jQuery(document).ready(function($)  {
-$("li.dropdown a").click(function(e){
-    $(this).next('ul.dropdown-menu').css("display", "block");
-    e.stopPropagation();
-  });
 });
 </script>
 
