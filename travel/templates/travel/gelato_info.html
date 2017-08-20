@@ -149,6 +149,10 @@ flavor_lookup={
     'Nutella': '#80300F',
     'Cream':'#FFFFCC',
     'Raspberry':'#b3446c',
+    'Kinder Egg':'#FFFFFF',
+    'Raspberry':'#b3446c',
+    'Chocolate Mousse': '#753e19',
+    'Bubble Gum?': '#ff9aff'
 }
 
 mono_lookup={
@@ -166,7 +170,10 @@ mono_lookup={
     '#93c572': '#2d5a0f',  //Pistachio
     '#80300F': '#381506', //Nutella
     '#FFFFCC': '#ffff80', //Cream
-    '#b3446c':'#7c2f4b' //Raspberry
+    '#b3446c':'#7c2f4b', //Raspberry
+    '#753e19': '#FFFFCC', //Chocolate Mouess
+    '#FFFFFF': '#753e18', //Kinder
+    'ff9aff': '#ff81ff', //BubbleGum
 }
 
 gelato_list_dict = [
@@ -188,6 +195,8 @@ gelato_list_dict = [
     {'flavor_l': 'Pistachio', 'flavor_r': 'Nutella', 'date': '08/17/2017', 'location': 'Ferarra'},
     {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Cream', 'date': '08/18/2017', 'location': 'Ferarra'},
     {'flavor_l': 'Chocolate', 'flavor_r': 'Raspberry', 'date': '08/18/2017', 'location': 'Ferarra'},
+    {'flavor_l': 'Kinder', 'flavor_r': 'Bubble Gum?', 'date': '08/19/2017', 'location': 'Venice'},
+    {'flavor_l': 'Chocolate', 'flavor_r': 'Chocolate Mousse', 'date': '08/19/2017', 'location': 'Venice'},
 
 ]
 
@@ -211,7 +220,7 @@ function loop(){
     ice_r.css('background', flavor_lookup[gelato_list_dict[counter]['flavor_r']]);
 
     ice_l.css('box-shadow', 'inset 50px 80px 100px -30px '+mono_lookup[flavor_lookup[gelato_list_dict[counter]['flavor_l']]]);
-    <!--ice_r.css('box-shadow', 'inset -20px 0px 100px 20px '+mono_lookup[flavor_lookup[gelato_list_dict[counter]['flavor_r']]]);-->
+    ice_r.css('box-shadow', 'inset -20px 0px 100px 20px '+mono_lookup[flavor_lookup[gelato_list_dict[counter]['flavor_r']]]);
 
     flavor_left.html(gelato_list_dict[counter]['flavor_l']);
     flavor_right.html(gelato_list_dict[counter]['flavor_r']);
@@ -268,7 +277,7 @@ $(document).ready(function(){
     ice_r.css('background', flavor_lookup[gelato_list_dict[temp_counter]['flavor_r']]);
 
     ice_l.css('box-shadow', 'inset 50px 80px 100px -30px '+mono_lookup[flavor_lookup[gelato_list_dict[temp_counter]['flavor_l']]]);
-    <!--ice_r.css('box-shadow', 'inset -20px 0px 100px 20px '+mono_lookup[flavor_lookup[gelato_list_dict[temp_counter]['flavor_r']]]);-->
+    ice_r.css('box-shadow', 'inset -20px 0px 100px 20px '+mono_lookup[flavor_lookup[gelato_list_dict[temp_counter]['flavor_r']]]);
 
     flavor_left.html(gelato_list_dict[temp_counter]['flavor_l']);
     flavor_right.html(gelato_list_dict[temp_counter]['flavor_r']);
