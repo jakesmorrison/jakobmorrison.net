@@ -213,7 +213,8 @@ def sleep(request):
 
 
     # I didnt actually pay money for the hotels so I am not including them in this data.
-    df_per_person = df[df["housing_type"]!="Hotel"]
+    # df_per_person = df[df["housing_type"]!="Hotel"]
+    df_per_person = df
     average_by_person = df_per_person.groupby(["traveling_with"]).mean()["housing_cost"].reset_index()
     # average_by_person_html = average_by_person.to_html()
     housing_cost_solo = (average_by_person[average_by_person["traveling_with"]=="Solo"]["housing_cost"].tolist()[0])
