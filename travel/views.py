@@ -16,6 +16,7 @@ def home(request):
 def general(request):
     df = pd.DataFrame(list(TravelStats.objects.all().values()))
     df = df[df["country"]!="United States"]
+
     temp_dict = Counter(df["city"].tolist())
     city_day_counter = sorted(temp_dict.items(), key=lambda x: x[1])[::-1]
 
