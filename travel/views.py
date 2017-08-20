@@ -15,7 +15,7 @@ def home(request):
 
 def general(request):
     df = pd.DataFrame(list(TravelStats.objects.all().values()))
-    df = df[df["county"]!="United States"].reset_index()
+    df = df[df["country"]!="United States"].reset_index()
 
     temp_dict = Counter(df["city"].tolist())
     city_day_counter = sorted(temp_dict.items(), key=lambda x: x[1])[::-1]
@@ -84,7 +84,7 @@ def media(request):
 
 def sleep(request):
     df = pd.DataFrame(list(TravelStats.objects.all().values()))
-    df = df[df["county"]!="United States"].reset_index()
+    df = df[df["country"]!="United States"].reset_index()
 
     wake = df["wake_time"].tolist()
     sleep = df["sleep_time"].tolist()
