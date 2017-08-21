@@ -332,7 +332,7 @@ Highcharts.chart('food_city', {
   yAxis: {
     min: 0,
     title: {
-      text: 'Cities',
+      text: 'Total Cost ($)',
       style: {
         color: '#333',
         fontSize: '15px',
@@ -347,14 +347,13 @@ Highcharts.chart('food_city', {
       }
     },
     stackLabels: {
-      enabled: true,
+      enabled: false,
       style: {
         fontWeight: 'bold',
          color: 'black',
-         fontSize: '20px',
+         fontSize: '15px',
       },
       formatter: function (){
-        console.log(this)
         return '$'+this.total;
       }
     }
@@ -374,8 +373,7 @@ Highcharts.chart('food_city', {
     column: {
       stacking: 'normal',
       dataLabels: {
-        enabled: true,
-        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+        enabled: false
       }
     }
   },

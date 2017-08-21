@@ -292,10 +292,15 @@ def food(request):
     df["breakfast_cost"] = df["breakfast_cost"] .apply(lambda x: float(x))
     df["dinner_cost"] = df["dinner_cost"] .apply(lambda x: float(x))
     df_food_group_sum = df.groupby(["city"]).sum().reset_index()
+    df_food_group_avg = df.groupby(["city"]).mean().reset_index()
 
     food_sum_city_dinner = []
     food_sum_city_lunch = []
     food_sum_city_breakfast = []
+    food_avg_city_dinner = []
+    food_avg_city_lunch = []
+    food_avg_city_breakfast = []
+
     for x in city_list:
         city_data = df_food_group_sum[df_food_group_sum["city"]==x]
         food_sum_city_dinner.append(city_data["dinner_cost"].tolist()[0])
