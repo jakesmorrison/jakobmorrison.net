@@ -291,7 +291,7 @@ def food(request):
     df["lunch_cost"] = df["lunch_cost"] .apply(lambda x: float(x))
     df["breakfast_cost"] = df["breakfast_cost"] .apply(lambda x: float(x))
     df["dinner_cost"] = df["dinner_cost"] .apply(lambda x: float(x))
-    df_food_group_sum = df.groupby(["city"]).sum().reset_index()
+    df_food_group_sum = df.groupby(["city"]).mean().reset_index()
     df_food_group_avg = df.groupby(["city"]).mean().reset_index()
 
     food_sum_city_dinner = []
