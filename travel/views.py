@@ -265,7 +265,51 @@ def sleep(request):
     return render(request, 'travel/sleep_info.html', context)
 
 def food(request):
-    context = {}
+    # [{
+    #     name: 'John',
+    #     data: [5, 3, 4, 7, 2]
+    # }, {
+    #     name: 'Jane',
+    #     data: [2, 2, 3, 2, 1]
+    # }, {
+    #     name: 'Joe',
+    #     data: [3, 4, 4, 2, 5]
+    # }]
+
+    df = pd.DataFrame(list(TravelStats.objects.all().values()))
+    df = df[df["country"]!="United States"].reset_index()
+
+    city_list = df["city"].tolist()
+    new_city_list = []
+    for x in city_list:
+        if x in new_city_list:
+            pass
+        else:
+            new_city_list.append(x)
+    city_list = new_city_list
+
+    df["lunch_cost"] = df["lunch_cost"] .apply(lambda x: float(x))
+    df["breakfast_cost"] = df["breakfast_cost"] .apply(lambda x: float(x))
+    df["dinner_cost"] = df["dinner_cost"] .apply(lambda x: float(x))
+    df_food_group_sum = df.groupby(["city"]).sum().reset_index()
+
+    food_sum_city_dinner = []
+    food_sum_city_lunch = []
+    food_sum_city_breakfast = []
+    for x in city_list:
+        city_data = df_food_group_sum[df_food_group_sum["city"]==x]
+        food_sum_city_dinner.append(city_data["dinner_cost"].tolist()[0])
+        food_sum_city_lunch.append(city_data["lunch_cost"].tolist()[0])
+        food_sum_city_breakfast.append(city_data["breakfast_cost"].tolist()[0])
+    food_sum_city_data = [{'name': 'Breakfast', 'data': food_sum_city_breakfast},
+                          {'name': 'Lunch', 'data': food_sum_city_lunch},
+                           {'name': 'Dinner', 'data': food_sum_city_dinner}]
+
+    print(food_sum_city_data)
+    context = {
+        'food_sum_city_data':food_sum_city_data,
+        'cities': city_list
+    }
     return render(request, 'travel/gelato_info.html', context)
 
 def transportation(request):

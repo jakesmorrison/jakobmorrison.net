@@ -3,7 +3,8 @@
 }
 
 .cup {
-	width: 100%;
+	width: 85%;
+	margin-left: 7.5%;
 	background: #dcdde6;
     z-index:3;
     position: relative;

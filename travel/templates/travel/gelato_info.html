@@ -39,22 +39,16 @@
                 </div>
                 <table style="width:100%">
                   <tr>
-                    <th><h3 class="flavor_left myfont" style="text-align:center; font-size:250%;"></h3></th>
-                    <th><h3 class="flavor_right myfont" style="text-align:center; font-size:250%;"></h3></th>
+                    <th style="width:50%"><h3 class="flavor_left myfont" style="text-align:center; font-size:250%;"></h3></th>
+                    <th style="width:50%"><h3 class="flavor_right myfont" style="text-align:center; font-size:250%;"></h3></th>
                   </tr>
                 </table>
-
-
-
-
-
-
             </div>
         </div>
         <div class="col-lg-6 col-xs-12 my_data_col">
             <div class="vert-center">
-                <h3 class="centered myfont">Cities Visited</h3>
-                <div id=""></div>
+                <h3 class="centered myfont">Total Food Cost</h3>
+                <div id="food_city"></div>
             </div>
         </div>
     </div>
@@ -149,10 +143,13 @@ flavor_lookup={
     'Nutella': '#80300F',
     'Cream':'#FFFFCC',
     'Raspberry':'#b3446c',
-    'Kinder Egg':'#FFFFFF',
+    'Kinder Egg':'#753e20',
     'Raspberry':'#b3446c',
     'Chocolate Mousse': '#753e19',
-    'Bubble Gum?': '#ff9aff'
+    'Bubble Gum?': '#ff9aff',
+    'Pineapple':'#ddf657',
+    'Mango':'#FFC143',
+    'Almond':'#ffebcd',
 }
 
 mono_lookup={
@@ -172,31 +169,37 @@ mono_lookup={
     '#FFFFCC': '#ffff80', //Cream
     '#b3446c':'#7c2f4b', //Raspberry
     '#753e19': '#FFFFCC', //Chocolate Mouess
-    '#FFFFFF': '#753e18', //Kinder
+    '#753e20': '#FFF', //Kinder
     'ff9aff': '#ff81ff', //BubbleGum
+    '#FFC143': '#FF8243', //Mango
+    '#ffebcd': '#FFFFFF',    //Almond
+    '#ddf657': '#ecfaa0', //Pineapple
 }
 
 gelato_list_dict = [
 
-    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Stracciatella', 'date': '08/09/2017', 'location': 'Florence'},
-    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Coconut', 'date': '08/10/2017', 'location': 'Florence'},
-    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Stracciatella', 'date': '08/10/2017', 'location': 'Florence'},
-    {'flavor_l': 'Stracciatella', 'flavor_r': 'Caramel', 'date': '08/11/2017', 'location': 'Florence'},
-    {'flavor_l': 'Chocolate', 'flavor_r': 'Stracciatella', 'date': '08/11/2017', 'location': 'Florence'},
-    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Caramel', 'date': '08/12/2017', 'location': 'Florence'},
-    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Strawberry', 'date': '08/13/2017', 'location': 'Florence'},
-    {'flavor_l': 'Chocolate', 'flavor_r': 'Banana', 'date': '08/13/2017', 'location': 'Florence'},
-    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Stracciatella', 'date': '08/14/2017', 'location': 'Florence'},
-    {'flavor_l': 'Cherry', 'flavor_r': 'Lemon', 'date': '8/14/2017', 'location': 'Florence'},
-    {'flavor_l': 'Chocolate', 'flavor_r': 'Coconut', 'date': '08/15/2017', 'location': 'La Spezia'},
-    {'flavor_l': 'Stracciatella', 'flavor_r': 'Caramel', 'date': '08/16/2017', 'location': 'Cinque Terra'},
-    {'flavor_l': 'Strawberry', 'flavor_r': 'Cheesecake', 'date': '08/16/2017', 'location': 'Cinque Terra'},
-    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Hazelnut', 'date': '08/16/2017', 'location': 'Cinque Terra'},
-    {'flavor_l': 'Pistachio', 'flavor_r': 'Nutella', 'date': '08/17/2017', 'location': 'Ferarra'},
-    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Cream', 'date': '08/18/2017', 'location': 'Ferarra'},
-    {'flavor_l': 'Chocolate', 'flavor_r': 'Raspberry', 'date': '08/18/2017', 'location': 'Ferarra'},
-    {'flavor_l': 'Kinder', 'flavor_r': 'Bubble Gum?', 'date': '08/19/2017', 'location': 'Venice'},
+    <!--{'flavor_l': 'Dark Chocolate', 'flavor_r': 'Stracciatella', 'date': '08/09/2017', 'location': 'Florence'},-->
+    <!--{'flavor_l': 'Dark Chocolate', 'flavor_r': 'Coconut', 'date': '08/10/2017', 'location': 'Florence'},-->
+    <!--{'flavor_l': 'Dark Chocolate', 'flavor_r': 'Stracciatella', 'date': '08/10/2017', 'location': 'Florence'},-->
+    <!--{'flavor_l': 'Stracciatella', 'flavor_r': 'Caramel', 'date': '08/11/2017', 'location': 'Florence'},-->
+    <!--{'flavor_l': 'Chocolate', 'flavor_r': 'Stracciatella', 'date': '08/11/2017', 'location': 'Florence'},-->
+    <!--{'flavor_l': 'Dark Chocolate', 'flavor_r': 'Caramel', 'date': '08/12/2017', 'location': 'Florence'},-->
+    <!--{'flavor_l': 'Dark Chocolate', 'flavor_r': 'Strawberry', 'date': '08/13/2017', 'location': 'Florence'},-->
+    <!--{'flavor_l': 'Chocolate', 'flavor_r': 'Banana', 'date': '08/13/2017', 'location': 'Florence'},-->
+    <!--{'flavor_l': 'Dark Chocolate', 'flavor_r': 'Stracciatella', 'date': '08/14/2017', 'location': 'Florence'},-->
+    <!--{'flavor_l': 'Cherry', 'flavor_r': 'Lemon', 'date': '8/14/2017', 'location': 'Florence'},-->
+    <!--{'flavor_l': 'Chocolate', 'flavor_r': 'Coconut', 'date': '08/15/2017', 'location': 'La Spezia'},-->
+    <!--{'flavor_l': 'Stracciatella', 'flavor_r': 'Caramel', 'date': '08/16/2017', 'location': 'Cinque Terra'},-->
+    <!--{'flavor_l': 'Strawberry', 'flavor_r': 'Cheesecake', 'date': '08/16/2017', 'location': 'Cinque Terra'},-->
+    <!--{'flavor_l': 'Dark Chocolate', 'flavor_r': 'Hazelnut', 'date': '08/16/2017', 'location': 'Cinque Terra'},-->
+    <!--{'flavor_l': 'Pistachio', 'flavor_r': 'Nutella', 'date': '08/17/2017', 'location': 'Ferarra'},-->
+    <!--{'flavor_l': 'Dark Chocolate', 'flavor_r': 'Cream', 'date': '08/18/2017', 'location': 'Ferarra'},-->
+    <!--{'flavor_l': 'Chocolate', 'flavor_r': 'Raspberry', 'date': '08/18/2017', 'location': 'Ferarra'},-->
+    {'flavor_l': 'Kinder Egg', 'flavor_r': 'Bubble Gum?', 'date': '08/19/2017', 'location': 'Venice'},
     {'flavor_l': 'Chocolate', 'flavor_r': 'Chocolate Mousse', 'date': '08/19/2017', 'location': 'Venice'},
+    {'flavor_l': 'Pineapple', 'flavor_r': 'Mango', 'date': '08/20/2017', 'location': 'Venice'},
+    {'flavor_l': 'Dark Chocolate', 'flavor_r': 'Almond', 'date': '08/20/2017', 'location': 'Venice'},
+    {'flavor_l': 'Chocolate', 'flavor_r': 'Caramel', 'date': '08/21/2017', 'location': 'Venice'},
 
 ]
 
@@ -287,6 +290,97 @@ $(document).ready(function(){
     intervalId = setInterval(loop, 2000);
 });
 
+
+Highcharts.chart('food_city', {
+  chart: {
+    type: 'column',
+    borderWidth: 0,
+    backgroundColor: null,
+    zoomType: 'xy'
+
+  },
+  title: {
+    text: ''
+  },
+  legend: {
+    enabled: false
+  },
+  exporting: {
+    enabled: false
+  },
+  credits: {
+    enabled: false
+  },
+  xAxis: {
+    title: {
+      text: 'Cities',
+      style: {
+        color: '#333',
+        fontSize: '15px',
+        fontFamily: "'Patrick Hand SC', cursive"
+      }
+    },
+    labels: {
+      style: {
+        color: '#333',
+        fontSize: '15px',
+        fontFamily: "'Patrick Hand SC', cursive"
+      }
+    },
+    categories: {{cities|safe}}
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Cities',
+      style: {
+        color: '#333',
+        fontSize: '15px',
+        fontFamily: "'Patrick Hand SC', cursive"
+      }
+    },
+    labels: {
+      style: {
+        color: '#333',
+        fontSize: '15px',
+        fontFamily: "'Patrick Hand SC', cursive"
+      }
+    },
+    stackLabels: {
+      enabled: true,
+      style: {
+        fontWeight: 'bold',
+         color: 'black',
+         fontSize: '20px',
+      },
+      formatter: function (){
+        console.log(this)
+        return '$'+this.total;
+      }
+    }
+  },
+  legend: {
+    align: 'left',
+    x:25,
+    verticalAlign: 'bottom',
+    floating: true,
+    shadow: false
+  },
+  tooltip: {
+    headerFormat: '<b>{point.x}</b><br/>',
+    pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+  },
+  plotOptions: {
+    column: {
+      stacking: 'normal',
+      dataLabels: {
+        enabled: true,
+        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+      }
+    }
+  },
+  series: {{food_sum_city_data|safe}}
+});
 
 
 </script>
