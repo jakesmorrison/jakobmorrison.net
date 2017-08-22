@@ -261,6 +261,7 @@ def sleep(request):
         'average_cost_mom':"%.2f" % housing_cost_mom,
         'country_list': country_list,
         'box_data':box_data,
+        'total_cost': "%.2f" % sum(df["housing_cost"].tolist()),
     }
     return render(request, 'travel/sleep_info.html', context)
 

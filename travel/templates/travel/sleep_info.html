@@ -52,7 +52,9 @@
         </div>
         <div class="col-lg-2 col-xs-12 my_data_col">
             <div class="vert-center">
-                <h2 class="centered myfont">Average Accommodation Cost by Person</h2>
+                <h2 class="centered myfont">Accommodation </h2>
+
+                <h3 class="centered myfont">Average Cost by Person</h3>
                 <table style="width:100%">
                   <tr>
                       <th class="centered"><img height="30" width="30" src=" {% static 'travel/img/solo.png' %}"></th>
@@ -67,6 +69,7 @@
                       <th><h3 class="centered myfont">${{average_cost_mom|safe}}</h3></th>
                   </tr>
                 </table>
+                <h3 class="centered myfont">Total Cost: {{total_cost|safe}}</h3>
             </div>
         </div>
         <div class="col-lg-4 col-xs-12 my_data_col">
