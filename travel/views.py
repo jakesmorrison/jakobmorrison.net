@@ -328,7 +328,6 @@ def food(request):
                           {'name': 'Lunch', 'data': food_avg_city_lunch},
                            {'name': 'Dinner', 'data': food_avg_city_dinner}]
 
-
     context = {
         'food_avg_city_data':food_avg_city_data,
         'cities': city_list,
