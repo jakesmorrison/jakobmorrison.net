@@ -47,7 +47,7 @@
         </div>
         <div class="col-lg-6 col-xs-12 my_data_col">
             <div class="vert-center">
-                <h3 class="centered myfont">Total Food Cost</h3>
+                <h3 class="centered myfont">Average Food Cost</h3>
                 <div id="food_city"></div>
             </div>
         </div>
@@ -330,9 +330,10 @@ Highcharts.chart('food_city', {
     categories: {{cities|safe}}
   },
   yAxis: {
+    reversedStacks: false,
     min: 0,
     title: {
-      text: 'Total Cost ($)',
+      text: 'Average Cost ($)',
       style: {
         color: '#333',
         fontSize: '15px',
@@ -367,7 +368,7 @@ Highcharts.chart('food_city', {
   },
   tooltip: {
     headerFormat: '<b>{point.x}</b><br/>',
-    pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+    pointFormat: '{series.name} Average: ${point.y}<br/>Daily Average: ${point.stackTotal}'
   },
   plotOptions: {
     column: {
@@ -377,7 +378,7 @@ Highcharts.chart('food_city', {
       }
     }
   },
-  series: {{food_sum_city_data|safe}}
+  series: {{food_avg_city_data|safe}}
 });
 
 

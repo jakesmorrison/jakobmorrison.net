@@ -1,0 +1,105 @@
+.circle1 {
+    height:30px;
+    width:100%;
+    position: absolute;
+    border:solid 3px black;
+    background:#159;
+    border-radius:100%;
+    display:inline-block;
+    z-index: 3;
+}
+
+.circle2 {
+    height:30px;
+    width:100%;
+    margin-top: 500px;
+    position: absolute;
+    border:solid 3px black;
+    border-radius:100%;
+    z-index: 3;
+    background: #722f37;
+    background: -webkit-linear-gradient(#722f37, gray);
+    background: linear-gradient(#722f37, gray);
+    background-repeat: repeat;
+    background-size: 100% 200%;
+    background-position: 0% 0%;
+}
+
+.rectangle1{
+  height: 500px;
+  width: 100%;
+  margin-top: 15px;
+  position: absolute;
+  border:solid 3px black;
+  background: transparent;
+  z-index: 2;
+  border-bottom:solid 0px red;
+  border-top:solid 0px red;
+
+}
+
+
+.rectangle2{
+  height: 500px;
+  width: 100%;
+  margin-top: 15px;
+  background:transparent;
+  position: absolute;
+  border-top-left-radius: 0%;
+  border-top-right-radius: 0%;
+  border:solid 3px black;
+  z-index: 1;
+}
+
+
+@keyframes changeColor{
+  0%{background-position: 0% 0%;}
+  100%{background-position:0% -100%;}
+}
+
+.redCure{
+    background: #722f37;
+    background: -webkit-linear-gradient(#722f37, gray);
+    background: linear-gradient(#722f37, gray);
+    background-repeat: repeat;
+    background-size: 100% 200%;
+    background-position: 0% 0%;
+    -webkit-background-size: 100% 200%;
+    -webkit-animation: changeColor 1s linear reverse;
+    animation: changeColor 5s linear reverse;
+}
+
+.square {
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  vertical-align: middle;
+  border: 3px solid white;
+  text-indent: 0px;
+  font-size: 12px;
+  background-color: grey;
+  border-radius:3px;
+  cursor: pointer;
+  color: #d0d0d0;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+  <div class="glass" style="height: 500px; width: 300px; position:relative;">
+    <div class="circle1"></div>
+    <div class="rectangle1"></div>
+    <div class="circle2"></div>
+
+    <div class="rectangle2 redCure"></div>
+
+
+  </div>
+  </body>
+</html>

@@ -291,8 +291,8 @@ def food(request):
     df["lunch_cost"] = df["lunch_cost"] .apply(lambda x: float(x))
     df["breakfast_cost"] = df["breakfast_cost"] .apply(lambda x: float(x))
     df["dinner_cost"] = df["dinner_cost"] .apply(lambda x: float(x))
-    df_food_group_sum = df.groupby(["city"]).mean().reset_index()
-    df_food_group_avg = df.groupby(["city"]).mean().reset_index()
+    df_food_group_sum = df.groupby(["city", "country"]).sum().reset_index()
+    df_food_group_avg = df.groupby(["city", "country"]).mean().reset_index()
 
     food_sum_city_dinner = []
     food_sum_city_lunch = []
@@ -302,17 +302,23 @@ def food(request):
     food_avg_city_breakfast = []
 
     for x in city_list:
-        city_data = df_food_group_sum[df_food_group_sum["city"]==x]
-        food_sum_city_dinner.append(city_data["dinner_cost"].tolist()[0])
-        food_sum_city_lunch.append(city_data["lunch_cost"].tolist()[0])
-        food_sum_city_breakfast.append(city_data["breakfast_cost"].tolist()[0])
-    food_sum_city_data = [{'name': 'Breakfast', 'data': food_sum_city_breakfast},
-                          {'name': 'Lunch', 'data': food_sum_city_lunch},
-                           {'name': 'Dinner', 'data': food_sum_city_dinner}]
+        city_data = df_food_group_avg[df_food_group_avg["city"]==x]
+        if city_data["country"].tolist()[0] in ["Italy", "Spain", "Portugal"]:
+            food_avg_city_dinner.append(float("%.2f" %(city_data["dinner_cost"].tolist()[0]/2)))
+            food_avg_city_lunch.append(float("%.2f" %(city_data["lunch_cost"].tolist()[0]/2)))
+            food_avg_city_breakfast.append(float("%.2f" %(city_data["breakfast_cost"].tolist()[0]/2)))
+        else:
+            food_avg_city_dinner.append(float("%.2f" %(city_data["dinner_cost"].tolist()[0])))
+            food_avg_city_lunch.append(float("%.2f" %(city_data["lunch_cost"].tolist()[0])))
+            food_avg_city_breakfast.append(float("%.2f" %(city_data["breakfast_cost"].tolist()[0])))
 
-    print(food_sum_city_data)
+    food_avg_city_data = [{'name': 'Breakfast', 'data': food_avg_city_breakfast},
+                          {'name': 'Lunch', 'data': food_avg_city_lunch},
+                           {'name': 'Dinner', 'data': food_avg_city_dinner}]
+
+
     context = {
-        'food_sum_city_data':food_sum_city_data,
+        'food_avg_city_data':food_avg_city_data,
         'cities': city_list
     }
     return render(request, 'travel/gelato_info.html', context)
