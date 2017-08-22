@@ -303,14 +303,25 @@ def food(request):
 
     for x in city_list:
         city_data = df_food_group_avg[df_food_group_avg["city"]==x]
+        city_data_sum = df_food_group_avg[df_food_group_sum["city"]==x]
         if city_data["country"].tolist()[0] in ["Italy", "Spain", "Portugal"]:
             food_avg_city_dinner.append(float("%.2f" %(city_data["dinner_cost"].tolist()[0]/2)))
             food_avg_city_lunch.append(float("%.2f" %(city_data["lunch_cost"].tolist()[0]/2)))
             food_avg_city_breakfast.append(float("%.2f" %(city_data["breakfast_cost"].tolist()[0]/2)))
+
+            food_sum_city_dinner.append(float("%.2f" %(city_data_sum["dinner_cost"].tolist()[0]/2)))
+            food_sum_city_lunch.append(float("%.2f" %(city_data_sum["lunch_cost"].tolist()[0]/2)))
+            food_sum_city_breakfast.append(float("%.2f" %(city_data_sum["breakfast_cost"].tolist()[0]/2)))
+
         else:
             food_avg_city_dinner.append(float("%.2f" %(city_data["dinner_cost"].tolist()[0])))
             food_avg_city_lunch.append(float("%.2f" %(city_data["lunch_cost"].tolist()[0])))
             food_avg_city_breakfast.append(float("%.2f" %(city_data["breakfast_cost"].tolist()[0])))
+
+            food_sum_city_dinner.append(float("%.2f" %(city_data_sum["dinner_cost"].tolist()[0])))
+            food_sum_city_lunch.append(float("%.2f" %(city_data_sum["lunch_cost"].tolist()[0])))
+            food_sum_city_breakfast.append(float("%.2f" %(city_data_sum["breakfast_cost"].tolist()[0])))
+
 
     food_avg_city_data = [{'name': 'Breakfast', 'data': food_avg_city_breakfast},
                           {'name': 'Lunch', 'data': food_avg_city_lunch},
@@ -319,7 +330,11 @@ def food(request):
 
     context = {
         'food_avg_city_data':food_avg_city_data,
-        'cities': city_list
+        'cities': city_list,
+        'total_food_cost':sum(food_sum_city_dinner)+sum(food_sum_city_lunch)+sum(food_sum_city_breakfast),
+        'total_breakfast_cost':sum(food_sum_city_dinner),
+        'total_lunch_cost':sum(food_sum_city_lunch),
+        'total_dinner_cost':sum(food_sum_city_breakfast),
     }
     return render(request, 'travel/gelato_info.html', context)
 

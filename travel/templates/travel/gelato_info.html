@@ -19,7 +19,7 @@
 
 <div class="container">
     <div style="background-color: #af3daf" class="row">
-        <div class="col-lg-6 col-xs-12 my_data_col">
+        <div class="col-lg-5 col-xs-12 my_data_col">
             <div class="vert-center">
                 <h3 class="date myfont" style="text-align:center; font-size:250%;"></h3>
                 <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="100" data-slider-max="5000" data-slider-step="100" data-slider-value="2000"/>
@@ -45,7 +45,23 @@
                 </table>
             </div>
         </div>
-        <div class="col-lg-6 col-xs-12 my_data_col">
+            <div class="col-lg-2 col-xs-12 my_data_col">
+            <div class="vert-center">
+                <h2 class="centered myfont">Total Food Cost</h2>
+                <!--<table>-->
+                    <!--<tr>-->
+                        <!--<th></th>-->
+                    <!--</tr>-->
+                <!--</table>-->
+                <h3 class="centered myfont">Breakfast: {{total_breakfast_cost|safe}}</h3>
+                <h3 class="centered myfont">Lunch: {{total_lunch_cost|safe}}</h3>
+                <h3 class="centered myfont">Dinner: {{total_dinner_cost|safe}}</h3>
+                <h3 class="centered myfont">Sum: {{total_food_cost|safe}}</h3>
+
+            </div>
+        </div>
+
+        <div class="col-lg-5 col-xs-12 my_data_col">
             <div class="vert-center">
                 <h3 class="centered myfont">Average Food Cost</h3>
                 <div id="food_city"></div>
