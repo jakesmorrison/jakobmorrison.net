@@ -332,10 +332,10 @@ def food(request):
     context = {
         'food_avg_city_data':food_avg_city_data,
         'cities': city_list,
-        'total_food_cost':sum(food_sum_city_dinner)+sum(food_sum_city_lunch)+sum(food_sum_city_breakfast),
-        'total_breakfast_cost':sum(food_sum_city_dinner),
-        'total_lunch_cost':sum(food_sum_city_lunch),
-        'total_dinner_cost':sum(food_sum_city_breakfast),
+        'total_food_cost': "%.2f" % (sum(food_sum_city_dinner)+sum(food_sum_city_lunch)+sum(food_sum_city_breakfast)),
+        'total_breakfast_cost': "%.2f" % sum(food_sum_city_breakfast),
+        'total_lunch_cost': "%.2f" % sum(food_sum_city_lunch),
+        'total_dinner_cost': "%.2f" % sum(food_sum_city_dinner),
     }
     return render(request, 'travel/gelato_info.html', context)
 
