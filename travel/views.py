@@ -303,7 +303,8 @@ def food(request):
 
     for x in city_list:
         city_data = df_food_group_avg[df_food_group_avg["city"]==x]
-        city_data_sum = df_food_group_avg[df_food_group_sum["city"]==x]
+        city_data_sum = df_food_group_sum[df_food_group_sum["city"]==x]
+
         if city_data["country"].tolist()[0] in ["Italy", "Spain", "Portugal"]:
             food_avg_city_dinner.append(float("%.2f" %(city_data["dinner_cost"].tolist()[0]/2)))
             food_avg_city_lunch.append(float("%.2f" %(city_data["lunch_cost"].tolist()[0]/2)))
