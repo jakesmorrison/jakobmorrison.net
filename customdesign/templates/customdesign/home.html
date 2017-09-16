@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load staticfiles %}
+    <link href=" {% static 'heartbeat/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'customdesign/css/style.css' %}" rel="stylesheet">
+
+    <title>General</title>
+
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container" style="background: white;">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                Menu <i class="fa fa-bars"></i>
+            </button>
+            <a style="" class="navbar-brand page-scroll unica-font" href="#page-top">
+                <i class="fa fa-play-circle"></i> <span class=" unica-fontlight">Project</span> 57
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <ul class="nav navbar-nav">
+                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li>
+                    <a style="" class="page-scroll unica-font" href="#stats">Stats</a>
+                </li>
+                <li>
+                    <a style="" class="page-scroll unica-font" href="#chart">Charts</a>
+                </li>
+                <li>
+                    <a style="" class="page-scroll unica-font" href="#dashboard">Dashboard</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<div class="container" style="background: white;">
+    <div class="row">
+        <div style="background: black;" class="col-md-10 col-md-offset-1 col-xs-12 my_data_col">
+            <div class="vert-center">
+                <h3 class="centered myfont">Cities Visited</h3>
+            </div>
+        </div>
+    </div>
+
+    <div style="" class="row">
+        <div style="background: black;" class="col-md-10 col-md-offset-1 col-xs-12 my_data_col">
+            <div class="vert-center">
+                <h3 class="centered myfont">Cities sfadaf</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% load staticfiles %}
+<script src=" {% static 'heartbeat/js/jquery-2.1.1.js' %}" ></script>
+<script src=" {% static 'heartbeat/js/bootstrap.min.js' %}" ></script>
+<script src=" {% static 'travel/js/jquery.scrollify.min.js' %}" ></script>
+<script src=" {% static 'travel/js/imp_scrollify.js' %}" ></script>
+
+</body>
+</html>

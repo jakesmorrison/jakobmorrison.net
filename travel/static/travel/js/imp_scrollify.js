@@ -1,8 +1,8 @@
 $( document ).ready(function() {
     var windowsize = $(window).width();
-    if (windowsize <= 1200) {
+//    if (windowsize <= 1200) {
         $('.my_data_col').addClass('my_row');
-    }
+//    }
 });
 
 $(window).resize(function() {

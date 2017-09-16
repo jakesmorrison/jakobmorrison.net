@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'poo.apps.PooConfig',
     'travelbuddies.apps.TravelbuddiesConfig',
     'asia.apps.AsiaConfig',
+    'customdesign.apps.CustomdesignConfig',
+    'workout.apps.WorkoutConfig',
     'rest_framework',
 ]
 
