@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
 import json
 
-from .models import Workouts
+from .models import Workouts, Stats
 
 
 # Create your views here.
@@ -59,4 +59,30 @@ def change_type(request):
     }
     return JsonResponse(json.loads(json.dumps(context)))
 
+
+from datetime import datetime
+from pytz import timezone
+def add_to_db(request):
+    params = request.GET
+
+    type = params["type"]
+    exercise = params["exercise"]
+    reps = params["reps"]
+    weight = params["weight"]
+    set = params["set"]
+
+
+    fmt = "%Y-%m-%d"
+    # Current time in UTC
+    now_utc = datetime.now(timezone('UTC'))
+    # Convert to US/Pacific time zone
+    now_pacific = now_utc.astimezone(timezone('US/Mountain'))
+    date = now_pacific.strftime(fmt)
+
+    s = Stats(Date=date, Type=type, Exercise=exercise, Reps=int(reps), Weight=int(weight), Set=int(set))
+    s.save()
+
+    context = {
+    }
+    return JsonResponse(json.loads(json.dumps(context)))
 

@@ -96,6 +96,16 @@
                         <input type="text" class="form-control input_box" id="reps">
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <div style="margin-top:15px;" class="col-lg-5 col-lg-offset-1 col-xs-12">
+                        <label for="weight">Set:</label>
+                    </div>
+                    <div style="margin-top:10px;" class="col-lg-5 col-lg-offset-1 col-xs-12">
+                        <input type="set" class="form-control input_box" id="set">
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <div style="margin-top:15px;" class="col-lg-5 col-lg-offset-1 col-xs-12">
                         <label for="weight">Weight:</label>
@@ -109,7 +119,7 @@
         <br><br>
         <div class="row">
             <div class="col-lg-4 col-lg-offset-4 col-xs-12 centered">
-                <button type="button" class="btn btn-secondary" onclick="submit()">Submit</button>
+                <button type="button" class="btn btn-primary" onclick="submit()">Submit</button>
             </div>
         </div>
 
@@ -150,9 +160,24 @@
         console.log($(".dropdown_exercise_label").text());
         console.log($('#reps').val());
         console.log($('#weight').val());
+
+
+        url_base = "{% url 'workout:add_to_db' %}";
+        params = {'type': $(".dropdown_type_label").text(),
+                  'exercise': $(".dropdown_exercise_label").text(),
+                  'reps': $('#reps').val(),
+                  'set': $('#set').val(),
+                  'weight': $('#weight').val()};
+
+        my_url = url_base + "?" + $.param( params );
+        $.ajax({
+            url: my_url,
+            type: 'GET',
+            success: function (msg) {
+            }
+        });
+
     }
-
-
 
 </script>
 
