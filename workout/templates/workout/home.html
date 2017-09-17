@@ -99,7 +99,7 @@
 
                 <div class="form-group">
                     <div style="margin-top:15px;" class="col-lg-5 col-lg-offset-1 col-xs-12">
-                        <label for="weight">Set:</label>
+                        <label for="set">Set:</label>
                     </div>
                     <div style="margin-top:10px;" class="col-lg-5 col-lg-offset-1 col-xs-12">
                         <input type="set" class="form-control input_box" id="set">
@@ -122,12 +122,20 @@
                 <button type="button" class="btn btn-primary" onclick="submit()">Submit</button>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4 col-xs-12 centered">
+               <h5 id="data_added"></h5>
+            </div>
+        </div>
+
 
 
     </div>
 
 
 <script>
+
+    var count = 0;
 
     function clickType(name){
         $(".dropdown_type_label").html(name + " <span class='caret'></span>");
@@ -174,6 +182,8 @@
             url: my_url,
             type: 'GET',
             success: function (msg) {
+                count = count + 1;
+                $("#data_added").html("<h5 id='data_added'>Data Added: "+count+"</h5>");
             }
         });
 
