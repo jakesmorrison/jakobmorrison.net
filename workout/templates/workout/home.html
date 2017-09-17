@@ -59,44 +59,35 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-lg-2 col-lg-offset-3 col-xs-4">
+            <div class="col-lg-3 col-lg-offset-3 col-xs-6">
                 <div class="dropdown centered">
-                  <button class="btn btn-primary dropdown-toggle drop_down" type="button" data-toggle="dropdown">Type
+                  <button class="btn btn-primary dropdown-toggle drop_down dropdown_type_label" type="button" data-toggle="dropdown">Type
                   <span class="caret"></span></button>
                   <ul class="dropdown-menu">
-                    <li><a>t1</a></li>
-                    <li><a>t1</a></li>
-                    <li><a>t1</a></li>
+                      {% for x in type %}
+                        <li><a onclick="clickType('{{x}}')">{{x}}</a></li>
+                      {% endfor %}
                   </ul>
                 </div>
             </div>
-            <div class="col-lg-2 col-lg-offset-0 col-xs-4">
+            <div class="col-lg-3 col-lg-offset-0 col-xs-6">
                 <div class="dropdown centered">
-                  <button class="btn btn-primary dropdown-toggle drop_down" type="button" data-toggle="dropdown">Exercise
-                  <span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                    <li><a>t1</a></li>
-                    <li><a>t1</a></li>
-                    <li><a>t1</a></li>
+                  <button class="btn btn-primary dropdown-toggle drop_down dropdown_exercise_label" type="button" data-toggle="dropdown">Exercise<span class="caret"></span></button>
+                  <ul class="dropdown-menu" id="exercise">
                   </ul>
                 </div>
-            </div>
-            <div class="col-lg-2 col-lg-offset-0 col-xs-4 centered">
-                <button type="button" class="btn btn-success my_button centered">Refresh</button>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-xs-12">
-                <h2 class="mylabel centered">Exercise</h2>
-            </div>
+            <br>
         </div>
 
         <div class="row">
-            <div class="col-lg-2 col-lg-offset-4 col-xs-12">
-                <h2 class="mylabel centered">pic</h2>
-            </div>
-            <div class="col-lg-2 col-lg-offset-0 col-xs-12">
+            <!--<div class="col-lg-4 col-lg-offset-2 col-xs-12">-->
+                <!--<h2 class="mylabel centered">pic</h2>-->
+            <!--</div>-->
+            <div class="col-lg-4 col-lg-offset-4 col-xs-12">
                 <div class="form-group">
                     <div class="col-lg-5 col-lg-offset-1 col-xs-12">
                         <label style="margin-top:5px;" for="reps">Reps:</label>
@@ -118,12 +109,53 @@
         <br><br>
         <div class="row">
             <div class="col-lg-4 col-lg-offset-4 col-xs-12 centered">
-                <button type="button" class="btn btn-secondary">Submit</button>
+                <button type="button" class="btn btn-secondary" onclick="submit()">Submit</button>
             </div>
         </div>
 
 
     </div>
+
+
+<script>
+
+    function clickType(name){
+        $(".dropdown_type_label").html(name + " <span class='caret'></span>");
+
+        url_base = "{% url 'workout:change_type' %}";
+        params = {'type': name};
+        my_url = url_base + "?" + $.param( params );
+        $.ajax({
+            url: my_url,
+            type: 'GET',
+            success: function (msg) {
+                exercise = msg.exercise;
+                $("#exercise").html();
+                for (i = 0; i < exercise.length; i++) {
+                    $("#exercise").append("<li><a onclick='clickExercise(this)'>"+exercise[i]+"</a></li>")
+                }
+            }
+        });
+    }
+
+
+    function clickExercise(param){
+        name = $(param).text();
+        $(".dropdown_exercise_label").html(name + " <span class='caret'></span>");
+
+    }
+
+    function submit(){
+        console.log($(".dropdown_type_label").text());
+        console.log($(".dropdown_exercise_label").text());
+        console.log($('#reps').val());
+        console.log($('#weight').val());
+    }
+
+
+
+</script>
+
 
 </body>
 </html>

@@ -2,10 +2,25 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 
+from django.http import JsonResponse
+import json
+
+from .models import Workouts
+
+
 # Create your views here.
 @login_required
 def home(request):
+
+    type = []
+    for x in Workouts.objects.all().values():
+        if x['Type'] in type:
+            pass
+        else:
+            type.append((x['Type']))
+
     context = {
+        'type' : type
     }
     return render(request,"workout/home.html",context)
 
@@ -29,3 +44,19 @@ def signup(request):
     user = authenticate(username=username, password=password)
     login(request, user)
     return HttpResponseRedirect("/workout")
+
+def change_type(request):
+    params = request.GET
+    type = params["type"]
+
+    exercise = []
+    for x in Workouts.objects.all().values():
+        if x["Type"] == type:
+            exercise.append(x["Exercise"])
+
+    context = {
+        'exercise': exercise,
+    }
+    return JsonResponse(json.loads(json.dumps(context)))
+
+
