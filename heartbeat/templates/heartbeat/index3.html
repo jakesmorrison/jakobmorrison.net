@@ -58,6 +58,11 @@
                     <input id="fee_1" data-slider-id='fee_1' type="text" data-slider-min="0" data-slider-max="3" data-slider-step=".01" data-slider-value=".02"/>
                </div>
             </div>
+            <div class="row">
+                <div id="total_1" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
+                <div id="total_1_no_fee" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
+                <div id="percent_1_no_fee" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
+            </div>
 
         </div>
         <div class="col-lg-6 col-xs-12">
@@ -84,6 +89,14 @@
                     <input id="fee_2" data-slider-id='fee_2' type="text" data-slider-min="0" data-slider-max="3" data-slider-step=".01" data-slider-value=".06"/>
                </div>
             </div>
+
+            <div class="row">
+                <div id="total_2" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
+                <div id="total_2_no_fee" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
+                <div id="percent_2_no_fee" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
+            </div>
+
+
         </div>
     </div>
 
@@ -175,8 +188,16 @@ function update_data(){
     var data_1 = []
     var data_2 = []
 
-    return_1 = 1 + ((yearly_return_1-fee_1-inflation)/100)/12
-    return_2 = 1 + ((yearly_return_2-fee_2-inflation)/100)/12
+    var data_1_no_fee = []
+    var data_2_no_fee = []
+
+
+    return_1 = 1 + ((yearly_return_1-fee_1-inflation)/100)/12;
+    return_2 = 1 + ((yearly_return_2-fee_2-inflation)/100)/12;
+
+    return_1_no_fee = 1 + ((yearly_return_1-inflation)/100)/12
+    return_2_no_fee = 1 + ((yearly_return_2-inflation)/100)/12
+
 
     for(x=0; x<years; x++){
         if(x==0){
@@ -184,15 +205,39 @@ function update_data(){
             //data_2.push(seed_money*return_2);
             data_1.push(seed_money_1*Math.pow((return_1), 12));
             data_2.push(seed_money_2*Math.pow((return_2), 12));
+
+            data_1_no_fee.push(seed_money_1*Math.pow((return_1_no_fee), 12));
+            data_2_no_fee.push(seed_money_2*Math.pow((return_2_no_fee), 12));
+
         }
         else{
-            //data_1.push((data_1[x-1]+cont_1)*return_1)
-            //data_2.push((data_2[x-1]+cont_2)*return_2)
+            //data_1.push((data_1[x-1]+cont_1)*return_1);
+            //data_2.push((data_2[x-1]+cont_2)*return_2);
             data_1.push((data_1[x-1]+cont_1)*Math.pow((return_1), 12));
             data_2.push((data_2[x-1]+cont_2)*Math.pow((return_2), 12));
 
+            data_1_no_fee.push((data_1_no_fee[x-1]+cont_1)*Math.pow((return_1_no_fee), 12));
+            data_2_no_fee.push((data_2_no_fee[x-1]+cont_2)*Math.pow((return_2_no_fee), 12));
+
+
         }
     }
+    total_1 = parseInt(data_1[years-1]);
+    total_2 = parseInt(data_2[years-1]);
+
+    total_1_no_fee = parseInt(data_1_no_fee[years-1]);
+    total_2_no_fee = parseInt(data_2_no_fee[years-1]);
+
+
+    $("#total_1").html("<h5>Total: $"+total_1.toLocaleString()+"</h5>")
+    $("#total_2").html("<h5>Total: $"+total_2.toLocaleString()+"</h5>")
+
+    $("#total_1_no_fee").html("<h5>Amount Lost to Fees: $"+(total_1_no_fee -total_1).toLocaleString()+"</h5>")
+    $("#total_2_no_fee").html("<h5>Amount Lost to Fees: $"+(total_2_no_fee -total_2).toLocaleString()+"</h5>")
+
+    $("#percent_1_no_fee").html("<h5>Percent Lost to Fees: "+(100-100*(total_1/total_1_no_fee)).toLocaleString()+"%</h5>")
+    $("#percent_2_no_fee").html("<h5>Percent Lost to Fees: "+(100-100*(total_2/total_2_no_fee)).toLocaleString()+"%</h5>")
+
 
     chart.series[0].update({
             data: data_1
