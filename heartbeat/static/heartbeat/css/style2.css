@@ -2,6 +2,9 @@
     width: 100%;
     background-color: #bbbbbb;
 }
+.centered{
+    text-align:center;
+}
 
 .my-block{
     padding-top: 10vh;
