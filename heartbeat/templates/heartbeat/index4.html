@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Retirement Withdrawl Calculator</title>
+
+    {% load staticfiles %}
+    <link href=" {% static 'heartbeat/css/style.css' %}" rel="stylesheet">
+    <link href=" {% static 'heartbeat/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href=" {% static 'heartbeat/css/bootstrap_slider.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <h1 class="centered">Retirement Withdrawal</h1>
+        <br>
+        <div class="col-lg-10 col-lg-offset-1 col-xs-12"><div id="my_chart"></div></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1 col-xs-12">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-2 col-xs-12 centered">
+                    <h5 id="years_value">Number of Years</h5>
+                    <input id="years" data-slider-id='years' type="text" data-slider-min="1" data-slider-max="40" data-slider-step="1" data-slider-value="20"/>
+                </div>
+                <div class="col-lg-4 col-lg-offset-0 col-xs-12 centered">
+                    <h5 id="inflation_value">Inflation</h5>
+                    <input id="inflation" data-slider-id='inflation' type="text" data-slider-min="0" data-slider-max="5" data-slider-step=".01" data-slider-value="3"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1 col-xs-12">
+            <!--<h1 class="centered">Portfolio 1</h1>-->
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-2 col-xs-12 centered">
+                    <h5 id="ret_fund_value">Retirement Fund</h5>
+                    <!--<span onclick="seed_value_1_left()" class="left_arrow"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>-->
+                    <input id="ret_fund" data-slider-id='ret_fund' type="text" data-slider-min="0" data-slider-max="10000000" data-slider-step="50000" data-slider-value="2000000"/>
+                    <!--<span class="right_arrow"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>-->
+                </div>
+                <div class="col-lg-4 col-xs-12 centered">
+                    <h5 id="withdraw_value">Withdraw Rate</h5>
+                    <input id="withdraw" data-slider-id='withdraw' type="text" data-slider-min="0" data-slider-max="100000" data-slider-step="100" data-slider-value="50000"/>
+               </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-2 col-xs-12 centered">
+                    <h5 id="yearly_return_value_1">Yearly Return</h5>
+                    <input id="yearly_return_1" data-slider-id='yearly_return_1' type="text" data-slider-min="0" data-slider-max="8" data-slider-step=".1" data-slider-value="4"/>
+                </div>
+                <div class="col-lg-4 col-xs-12 centered">
+                    <h5 id="fee_1_value">Yearly Lived After Retirement</h5>
+                    <input id="fee_1" data-slider-id='fee_1' type="text" data-slider-min="0" data-slider-max="3" data-slider-step=".01" data-slider-value=".02"/>
+               </div>
+            </div>
+
+            <!--<div class="row">-->
+                <!--<div class="col-lg-10 col-lg-offset-1 col-xs-12 centered">-->
+                    <!--<h5 id="tax_value">Tax Rate</h5>-->
+                    <!--<input id="tax" data-slider-id='tax' type="text" data-slider-min="0" data-slider-max="50" data-slider-step=".1" data-slider-value="20"/>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <br>
+            <div class="row">
+            </div>
+        </div>
+</div>
+
+<!-- jQuery -->
+{% load staticfiles %}
+<!--<script src=" {% static 'books/js/jquery.min.js' %}" rel="stylesheet"></script>-->
+<script src=" {% static 'books/js/jquery-2.1.1.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'books/js/bootstrap.min.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'heartbeat/js/bootstrap_slider.js' %}" rel="stylesheet"></script>
+<script src="{% static 'books/js/highcharts.js' %}"></script>
+
+<script>
+
+var chart = Highcharts.chart('my_chart', {
+    chart: {
+        type: 'area'
+    },
+    title: {
+        text: ''
+    },
+    legend: {enabled: false},
+    exporting: { enabled: false },
+    credits: {enabled: false},
+    xAxis: {
+        allowDecimals: false,
+        labels: {
+            formatter: function () {
+                return this.value; // clean, unformatted number for year
+            }
+        }
+    },
+    yAxis: {
+        title: {
+            text: 'Money ($)'
+        },
+        labels: {
+            formatter: function () {
+                val = this.value;
+                return '$'+val.toLocaleString();
+            }
+        }
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>${point.y:,.0f}</b>'
+    },
+    plotOptions: {
+        area: {
+            pointStart: 1,
+            marker: {
+                enabled: false,
+                symbol: 'circle',
+                radius: 2,
+                states: {
+                    hover: {
+                        enabled: true
+                    }
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Portfolio 1',
+        data: []
+    }]
+});
+
+
+var ret_fund = 0;
+var years = 0;
+var yearly_return_1 = 0;
+var withdraw = 0;
+var fee_1 = 0;
+var inflation = 0;
+
+$( document ).ready(function() {
+    setup_sliders();
+});
+
+function update_data(){
+    var data_1 = []
+
+    var data_1_no_fee = []
+
+
+    return_1 = 1 + ((yearly_return_1-fee_1-inflation)/100)/12;
+    return_1_no_fee = 1 + ((yearly_return_1-inflation)/100)/12
+
+
+    for(x=0; x<years; x++){
+        if(x==0){
+            data_1.push((ret_fund-withdraw)*Math.pow((return_1), 12));
+            data_1_no_fee.push((ret_fund-withdraw)*Math.pow((return_1_no_fee), 12));
+        }
+        else{
+            data_1.push((data_1[x-1]-withdraw)*Math.pow((return_1), 12));
+            data_1_no_fee.push((data_1[x-1]-withdraw)*Math.pow((return_1_no_fee), 12));
+        }
+    }
+    total_1 = parseInt(data_1[years-1]);
+
+    total_1_no_fee = parseInt(data_1_no_fee[years-1]);
+
+
+    $("#total_1").html("<h5>Total: $"+total_1.toLocaleString()+"</h5>")
+
+    $("#total_1_no_fee").html("<h5>Amount Lost to Fees: $"+(total_1_no_fee -total_1).toLocaleString()+"</h5>")
+
+    $("#percent_1_no_fee").html("<h5>Percent Lost to Fees: "+(100-100*(total_1/total_1_no_fee)).toLocaleString()+"%</h5>")
+
+
+    chart.series[0].update({
+            data: data_1
+    });
+}
+
+function setup_sliders(){
+    $('#ret_fund').slider({
+        formatter: function(value) {
+            ret_fund = value;
+            $("#ret_fund_value").text("Retirement Fund: $"+value.toLocaleString());
+            return '$' + value.toLocaleString();
+        }
+    });
+
+    $('#years').slider({
+        formatter: function(value) {
+            years = value;
+            $("#years_value").text("Yearly Lived After Retirement: "+value.toLocaleString());
+            return '' + value.toLocaleString();
+        }
+    });
+
+    $('#yearly_return_1').slider({
+        formatter: function(value) {
+            yearly_return_1 = value;
+            $("#yearly_return_value_1").text("Yearly Return: "+value.toLocaleString() +"%");
+            return '' + value.toLocaleString() + "%";
+        }
+    });
+
+    $('#withdraw').slider({
+        formatter: function(value) {
+            withdraw = value;
+            $("#withdraw_value").text("Withdraw Per Year: $"+value.toLocaleString());
+            return '$' + value.toLocaleString();
+        }
+    });
+
+    $('#fee_1').slider({
+        formatter: function(value) {
+            fee_1 = value;
+            $("#fee_1_value").text("Yearly Fee: "+value.toLocaleString()+"%");
+            return '' + value.toLocaleString() +'%';
+        }
+    });
+
+    $('#inflation').slider({
+        formatter: function(value) {
+            inflation = value;
+            $("#inflation_value").text("Inflation: "+value.toLocaleString() + '%');
+            return '' + value.toLocaleString()+'%';
+        }
+    });
+
+
+    update_data();
+}
+
+
+$("#ret_fund").on("slide", function(slideEvt) {
+	ret_fund = slideEvt.value;
+    update_data();
+});
+$("#years").on("slide", function(slideEvt) {
+	years = slideEvt.value;
+    update_data();
+});
+$("#yearly_return_1").on("slide", function(slideEvt) {
+	yearly_return_1 = slideEvt.value;
+    update_data();
+});
+$("#withdraw").on("slide", function(slideEvt) {
+	withdraw = slideEvt.value;
+    update_data();
+});
+$("#fee_1").on("slide", function(slideEvt) {
+	fee_1 = slideEvt.value;
+    update_data();
+});
+$("#inflation").on("slide", function(slideEvt) {
+	inflation = slideEvt.value;
+    update_data();
+});
+
+</script>
+
+
+</body>
+</html>

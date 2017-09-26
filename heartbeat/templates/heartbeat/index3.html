@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Title</title>
+    <title>Investment Analyzer</title>
 
     {% load staticfiles %}
     <link href=" {% static 'heartbeat/css/style.css' %}" rel="stylesheet">
@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-lg-6 col-xs-12 centered">
                     <h5 id="cont_1_value">Yearly Contribution</h5>
-                    <input id="cont_1" data-slider-id='cont_1' type="text" data-slider-min="0" data-slider-max="20000" data-slider-step="100" data-slider-value="15000"/>
+                    <input id="cont_1" data-slider-id='cont_1' type="text" data-slider-min="0" data-slider-max="100000" data-slider-step="100" data-slider-value="15000"/>
                </div>
             </div>
             <div class="row">
@@ -58,6 +58,7 @@
                     <input id="fee_1" data-slider-id='fee_1' type="text" data-slider-min="0" data-slider-max="3" data-slider-step=".01" data-slider-value=".02"/>
                </div>
             </div>
+            <br>
             <div class="row">
                 <div id="total_1" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
                 <div id="total_1_no_fee" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
@@ -76,7 +77,7 @@
                 </div>
                 <div class="col-lg-6 col-xs-12 centered">
                     <h5 id="cont_2_value">Yearly Contribution</h5>
-                    <input id="cont_2" data-slider-id='cont_2' type="text" data-slider-min="0" data-slider-max="20000" data-slider-step="100" data-slider-value="15000"/>
+                    <input id="cont_2" data-slider-id='cont_2' type="text" data-slider-min="0" data-slider-max="100000" data-slider-step="100" data-slider-value="15000"/>
                </div>
             </div>
             <div class="row">
@@ -89,14 +90,12 @@
                     <input id="fee_2" data-slider-id='fee_2' type="text" data-slider-min="0" data-slider-max="3" data-slider-step=".01" data-slider-value="1"/>
                </div>
             </div>
-
+            <br>
             <div class="row">
                 <div id="total_2" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
                 <div id="total_2_no_fee" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
                 <div id="percent_2_no_fee" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
             </div>
-
-
         </div>
     </div>
 
