@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'asia.apps.AsiaConfig',
     'customdesign.apps.CustomdesignConfig',
     'workout.apps.WorkoutConfig',
+    'finance.apps.FinanceConfig',
     'rest_framework',
 ]
 

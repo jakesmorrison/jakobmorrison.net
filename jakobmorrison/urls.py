@@ -36,4 +36,5 @@ urlpatterns = [
     url(r'^asiatrip/', include('asia.urls')),
     url(r'^customdesign/', include('customdesign.urls')),
     url(r'^workout/', include('workout.urls')),
+    url(r'^finance/', include('finance.urls')),
 ]
