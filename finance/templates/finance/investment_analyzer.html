@@ -7,9 +7,11 @@
     <title>Investment Analyzer</title>
 
     {% load staticfiles %}
-    <link href=" {% static 'finance/css/style.css' %}" rel="stylesheet">
     <link href=" {% static 'finance/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href=" {% static 'finance/css/bootstrap_slider.css' %}" rel="stylesheet">
+    <link href=" {% static 'finance/css/round_slider.css' %}" rel="stylesheet">
+    <link href=" {% static 'finance/css/style.css' %}" rel="stylesheet">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -25,7 +27,8 @@
     <div class="row">
         <div class="col-lg-4 col-lg-offset-2 col-xs-12 centered">
             <h5 id="years_value">Number of Years</h5>
-            <input id="years" data-slider-id='years' type="text" data-slider-min="1" data-slider-max="50" data-slider-step="1" data-slider-value="40"/>
+            <!--<input id="years" data-slider-id='years' type="text" data-slider-min="1" data-slider-max="50" data-slider-step="1" data-slider-value="40"/>-->
+            <div id="years" class="centered"></div>
         </div>
         <div class="col-lg-4 col-lg-offset-0 col-xs-12 centered">
             <h5 id="inflation_value">Inflation</h5>
@@ -99,6 +102,9 @@
         </div>
     </div>
 
+
+
+
 </div>
 
 <!-- jQuery -->
@@ -107,9 +113,11 @@
 <script src=" {% static 'finance/js/jquery-2.1.1.js' %}" rel="stylesheet"></script>
 <script src=" {% static 'finance/js/bootstrap.min.js' %}" rel="stylesheet"></script>
 <script src=" {% static 'finance/js/bootstrap_slider.js' %}" rel="stylesheet"></script>
+<script src=" {% static 'finance/js/round_slider.js' %}" rel="stylesheet"></script>
 <script src="{% static 'finance/js/highcharts.js' %}"></script>
 
 <script>
+
 
 var chart = Highcharts.chart('my_chart', {
     chart: {
@@ -217,8 +225,6 @@ function update_data(){
 
             data_1_no_fee.push((data_1_no_fee[x-1]+cont_1)*Math.pow((return_1_no_fee), 12));
             data_2_no_fee.push((data_2_no_fee[x-1]+cont_2)*Math.pow((return_2_no_fee), 12));
-
-
         }
     }
     total_1 = parseInt(data_1[years-1]);
@@ -263,13 +269,30 @@ function setup_sliders(){
         }
     });
 
-    $('#years').slider({
-        formatter: function(value) {
-            years = value;
-            $("#years_value").text("Number of Years: "+value.toLocaleString());
-            return '' + value.toLocaleString();
-        }
+    //$('#years').slider({
+    //    formatter: function(value) {
+    //        years = value;
+    //        $("#years_value").text("Number of Years: "+value.toLocaleString());
+    //        return '' + value.toLocaleString();
+    //    }
+    //});
+
+    $("#years").roundSlider({
+        handleShape: "square",
+        radius: 100,
+        value: 40,
+        max: 50,
+        step: 1,
+        circleShape: "half-left",
+        sliderType: "min-range",
+        handleSize: "+10",
+        keyboardAction: false,
+        editableTooltip: false,
+        mouseScrollAction: true,
+        width: 10,
+        showTooltip: true
     });
+
     $('#yearly_return_1').slider({
         formatter: function(value) {
             yearly_return_1 = value;
@@ -379,6 +402,10 @@ function seed_value_left(){
         }
     });
 }
+
+$( document ).ready(function() {
+    $(".rs-seperator").css("display","none")
+});
 
 </script>
 

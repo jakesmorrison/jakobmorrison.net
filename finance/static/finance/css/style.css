@@ -22,3 +22,24 @@
     margin-left: 3px;
     cursor: pointer;
 }
+
+
+.rs-control .rs-range-color {
+    background-color: #5baac6;
+}
+.rs-control .rs-path-color {
+    background-color: #22958d;
+}
+.rs-control .rs-handle {
+    background-color: #000000;
+}
+.rs-control .rs-bg-color {
+    background-color: #fff;
+}
+
+#years_value{
+    position:absolute;
+    z-index: 100;
+    margin-left: 110px;
+    padding-top: 83px;
+}
