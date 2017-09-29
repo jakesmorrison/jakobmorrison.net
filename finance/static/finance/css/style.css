@@ -37,9 +37,16 @@
     background-color: #fff;
 }
 
-#years_value{
+.slider_text{
     position:absolute;
     z-index: 100;
-    margin-left: 110px;
+    margin-left: 105px;
     padding-top: 83px;
+}
+
+.left .rs-tooltip {
+    right: -25px;
+}
+.right .rs-tooltip {
+    left: -25px;
 }

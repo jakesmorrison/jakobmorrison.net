@@ -25,80 +25,36 @@
         <div class="col-lg-10 col-lg-offset-1 col-xs-12"><div id="my_chart"></div></div>
     </div>
     <div class="row">
-        <div class="col-lg-4 col-lg-offset-2 col-xs-12 centered">
-            <h5 id="years_value">Number of Years</h5>
-            <!--<input id="years" data-slider-id='years' type="text" data-slider-min="1" data-slider-max="50" data-slider-step="1" data-slider-value="40"/>-->
+        <div class="col-lg-2 col-lg-offset-0 col-xs-12 centered">
             <div id="years" class="centered"></div>
         </div>
-        <div class="col-lg-4 col-lg-offset-0 col-xs-12 centered">
-            <h5 id="inflation_value">Inflation</h5>
-            <input id="inflation" data-slider-id='inflation' type="text" data-slider-min="0" data-slider-max="5" data-slider-step=".01" data-slider-value="1"/>
+        <div class="col-lg-2 col-lg-offset-0 col-xs-12 centered">
+            <div id="inflation" class="centered"></div>
         </div>
 
+        <div class="col-lg-2 col-lg-offset-0 col-xs-12 centered">
+            <div id="seed_money_1" class="centered"></div>
+        </div>
+        <div class="col-lg-2 col-xs-12 centered">
+            <div id="cont_1" class="centered"></div>
+       </div>
+
+        <div class="col-lg-2 col-lg-offset-0 col-xs-12 centered">
+            <div id="yearly_return_1" class="centered"></div>
+        </div>
+        <div class="col-lg-2 col-xs-12 centered">
+            <div id="fee_1" class="centered"></div>
+       </div>
     </div>
+
     <div class="row">
         <div class="col-lg-6 col-xs-12">
-            <h1 class="centered">Portfolio 1</h1>
-            <div class="row">
-                <div class="col-lg-6 col-lg-offset-0 col-xs-12 centered">
-                    <h5 id="seed_value_1">Starting Investment</h5>
-                    <!--<span onclick="seed_value_1_left()" class="left_arrow"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>-->
-                    <input id="seed_1" data-slider-id='seed_1' type="text" data-slider-min="0" data-slider-max="100000" data-slider-step="1000" data-slider-value="0"/>
-                    <!--<span class="right_arrow"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>-->
-                </div>
-                <div class="col-lg-6 col-xs-12 centered">
-                    <h5 id="cont_1_value">Yearly Contribution</h5>
-                    <input id="cont_1" data-slider-id='cont_1' type="text" data-slider-min="0" data-slider-max="100000" data-slider-step="100" data-slider-value="15000"/>
-               </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-lg-offset-0 col-xs-12 centered">
-                    <h5 id="yearly_return_value_1">Yearly Return</h5>
-                    <input id="yearly_return_1" data-slider-id='yearly_return_1' type="text" data-slider-min="0" data-slider-max="20" data-slider-step=".1" data-slider-value="8"/>
-                </div>
-                <div class="col-lg-6 col-xs-12 centered">
-                    <h5 id="fee_1_value">Yearly Fee</h5>
-                    <input id="fee_1" data-slider-id='fee_1' type="text" data-slider-min="0" data-slider-max="3" data-slider-step=".01" data-slider-value=".02"/>
-               </div>
-            </div>
-            <br>
             <div class="row">
                 <div id="total_1" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
                 <div id="total_1_no_fee" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
                 <div id="percent_1_no_fee" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
             </div>
 
-        </div>
-        <div class="col-lg-6 col-xs-12">
-            <h1 class="centered">Portfolio 2</h1>
-            <div class="row">
-                <div class="col-lg-6 col-lg-offset-0 col-xs-12 centered">
-                    <h5 id="seed_value_2">Starting Investment</h5>
-                    <!--<span onclick="seed_value_2_left()" class="left_arrow"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>-->
-                    <input id="seed_2" data-slider-id='seed_2' type="text" data-slider-min="0" data-slider-max="100000" data-slider-step="1000" data-slider-value="0"/>
-                    <!--<span class="right_arrow"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>-->
-                </div>
-                <div class="col-lg-6 col-xs-12 centered">
-                    <h5 id="cont_2_value">Yearly Contribution</h5>
-                    <input id="cont_2" data-slider-id='cont_2' type="text" data-slider-min="0" data-slider-max="100000" data-slider-step="100" data-slider-value="15000"/>
-               </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-lg-offset-0 col-xs-12 centered">
-                    <h5 id="yearly_return_value_2">Yearly Return</h5>
-                    <input id="yearly_return_2" data-slider-id='yearly_return_2' type="text" data-slider-min="0" data-slider-max="20" data-slider-step=".1" data-slider-value="9"/>
-                </div>
-                <div class="col-lg-6 col-xs-12 centered">
-                    <h5 id="fee_2_value">Yearly Fee</h5>
-                    <input id="fee_2" data-slider-id='fee_2' type="text" data-slider-min="0" data-slider-max="3" data-slider-step=".01" data-slider-value="1"/>
-               </div>
-            </div>
-            <br>
-            <div class="row">
-                <div id="total_2" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
-                <div id="total_2_no_fee" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
-                <div id="percent_2_no_fee" class="col-lg-6 col-lg-offset-3 col-xs-12 centered"></div>
-            </div>
         </div>
     </div>
 
@@ -167,244 +123,229 @@ var chart = Highcharts.chart('my_chart', {
         }
     },
     series: [{
-        name: 'Portfolio 1',
-        data: []
-    }, {
-        name: 'Portfolio 2',
+        name: 'Portfolio',
         data: []
     }]
 });
 
 
 var seed_money_1 = 0;
-var seed_money_2 = 0;
 var years = 0;
 var yearly_return_1 = 0;
-var yearly_return_2 = 0;
 var cont_1 = 0;
 var fee_1 = 0;
-var cont_2 = 0;
-var fee_2;
 var inflation = 0;
 
-$( document ).ready(function() {
-    setup_sliders();
-});
 
 function update_data(){
     var data_1 = []
-    var data_2 = []
-
     var data_1_no_fee = []
-    var data_2_no_fee = []
-
-
     return_1 = 1 + ((yearly_return_1-fee_1-inflation)/100)/12;
-    return_2 = 1 + ((yearly_return_2-fee_2-inflation)/100)/12;
-
     return_1_no_fee = 1 + ((yearly_return_1-inflation)/100)/12
-    return_2_no_fee = 1 + ((yearly_return_2-inflation)/100)/12
-
 
     for(x=0; x<years; x++){
         if(x==0){
-            //data_1.push(seed_money*return_1);
-            //data_2.push(seed_money*return_2);
             data_1.push(seed_money_1);
-            data_2.push(seed_money_2);
-
             data_1_no_fee.push(seed_money_1);
-            data_2_no_fee.push(seed_money_2);
-
         }
         else{
-            //data_1.push((data_1[x-1]+cont_1)*return_1);
-            //data_2.push((data_2[x-1]+cont_2)*return_2);
             data_1.push((data_1[x-1]+cont_1)*Math.pow((return_1), 12));
-            data_2.push((data_2[x-1]+cont_2)*Math.pow((return_2), 12));
-
             data_1_no_fee.push((data_1_no_fee[x-1]+cont_1)*Math.pow((return_1_no_fee), 12));
-            data_2_no_fee.push((data_2_no_fee[x-1]+cont_2)*Math.pow((return_2_no_fee), 12));
         }
     }
     total_1 = parseInt(data_1[years-1]);
-    total_2 = parseInt(data_2[years-1]);
-
     total_1_no_fee = parseInt(data_1_no_fee[years-1]);
-    total_2_no_fee = parseInt(data_2_no_fee[years-1]);
 
 
     $("#total_1").html("<h5>Total: $"+total_1.toLocaleString()+"</h5>")
-    $("#total_2").html("<h5>Total: $"+total_2.toLocaleString()+"</h5>")
-
     $("#total_1_no_fee").html("<h5>Amount Lost to Fees: $"+(total_1_no_fee -total_1).toLocaleString()+"</h5>")
-    $("#total_2_no_fee").html("<h5>Amount Lost to Fees: $"+(total_2_no_fee -total_2).toLocaleString()+"</h5>")
-
     $("#percent_1_no_fee").html("<h5>Percent Lost to Fees: "+(100-100*(total_1/total_1_no_fee)).toLocaleString()+"%</h5>")
-    $("#percent_2_no_fee").html("<h5>Percent Lost to Fees: "+(100-100*(total_2/total_2_no_fee)).toLocaleString()+"%</h5>")
-
 
     chart.series[0].update({
             data: data_1
     });
-    chart.series[1].update({
-            data: data_2
-    });
 }
 
-function setup_sliders(){
-    $('#seed_1').slider({
-        formatter: function(value) {
-            seed_money_1 = value;
-            $("#seed_value_1").text("Starting Investment: $"+value.toLocaleString());
-            return '$' + value.toLocaleString();
-        }
-    });
+$("#years").roundSlider({
+    handleShape: "square",
+    radius: 100,
+    value: 40,
+    max: 50,
+    step: 1,
+    circleShape: "half-left",
+    sliderType: "min-range",
+    handleSize: "+10",
+    keyboardAction: false,
+    editableTooltip: false,
+    mouseScrollAction: false,
+    width: 10,
+    showTooltip: true,
+    tooltipFormat: "years_tooltip",
+    drag: "years_event"
+});
 
-    $('#seed_2').slider({
-        formatter: function(value) {
-            seed_money_2 = value;
-            $("#seed_value_2").text("Starting Investment: $"+value.toLocaleString());
-            return '$' + value.toLocaleString();
-        }
-    });
+function years_tooltip(args) {
+    return "Years: " + args.value;
+}
 
-    //$('#years').slider({
-    //    formatter: function(value) {
-    //        years = value;
-    //        $("#years_value").text("Number of Years: "+value.toLocaleString());
-    //        return '' + value.toLocaleString();
-    //    }
-    //});
-
-    $("#years").roundSlider({
-        handleShape: "square",
-        radius: 100,
-        value: 40,
-        max: 50,
-        step: 1,
-        circleShape: "half-left",
-        sliderType: "min-range",
-        handleSize: "+10",
-        keyboardAction: false,
-        editableTooltip: false,
-        mouseScrollAction: true,
-        width: 10,
-        showTooltip: true
-    });
-
-    $('#yearly_return_1').slider({
-        formatter: function(value) {
-            yearly_return_1 = value;
-            $("#yearly_return_value_1").text("Yearly Return: "+value.toLocaleString() +"%");
-            return '' + value.toLocaleString() + "%";
-        }
-    });
-    $('#yearly_return_2').slider({
-        formatter: function(value) {
-            yearly_return_2 = value;
-            $("#yearly_return_value_2").text("Yearly Return: "+value.toLocaleString() +"%");
-            return '' + value.toLocaleString() + "%";
-        }
-    });
-    $('#cont_1').slider({
-        formatter: function(value) {
-            cont_1 = value;
-            $("#cont_1_value").text("Yearly Contribution: $"+value.toLocaleString());
-            return '$' + value.toLocaleString();
-        }
-    });
-
-    $('#fee_1').slider({
-        formatter: function(value) {
-            fee_1 = value;
-            $("#fee_1_value").text("Yearly Fee: "+value.toLocaleString()+"%");
-            return '' + value.toLocaleString() +'%';
-        }
-    });
-    $('#cont_2').slider({
-        formatter: function(value) {
-            cont_2 = value;
-            $("#cont_2_value").text("Yearly Contribution: $"+value.toLocaleString());
-            return '$' + value.toLocaleString();
-        }
-    });
-
-    $('#fee_2').slider({
-        formatter: function(value) {
-            fee_2 = value;
-            $("#fee_2_value").text("Yearly Fee: "+value.toLocaleString()+"%");
-            return '' + value.toLocaleString() +"%";
-        }
-    });
-
-    $('#inflation').slider({
-        formatter: function(value) {
-            inflation = value;
-            $("#inflation_value").text("Inflation: "+value.toLocaleString() + '%');
-            return '' + value.toLocaleString()+'%';
-        }
-    });
-
-
+function years_event(e) {
+    years = e.value;
     update_data();
 }
 
 
-$("#seed_1").on("slide", function(slideEvt) {
-	seed_money_1 = slideEvt.value;
-    update_data();
-});
-$("#seed_2").on("slide", function(slideEvt) {
-	seed_money_2 = slideEvt.value;
-    update_data();
-});
-$("#years").on("slide", function(slideEvt) {
-	years = slideEvt.value;
-    update_data();
-});
-$("#yearly_return_1").on("slide", function(slideEvt) {
-	yearly_return_1 = slideEvt.value;
-    update_data();
-});
-$("#yearly_return_2").on("slide", function(slideEvt) {
-	yearly_return_2 = slideEvt.value;
-    update_data();
-});
-$("#cont_1").on("slide", function(slideEvt) {
-	cont_1 = slideEvt.value;
-    update_data();
-});
-$("#cont_2").on("slide", function(slideEvt) {
-	cont_2 = slideEvt.value;
-    update_data();
-});
-$("#fee_1").on("slide", function(slideEvt) {
-	fee_1 = slideEvt.value;
-    update_data();
-});
-$("#fee_2").on("slide", function(slideEvt) {
-	fee_2 = slideEvt.value;
-    update_data();
-});
-$("#inflation").on("slide", function(slideEvt) {
-	inflation = slideEvt.value;
-    update_data();
+$("#inflation").roundSlider({
+    handleShape: "square",
+    radius: 100,
+    value: 1,
+    max: 5,
+    step: .01,
+    circleShape: "half-right",
+    sliderType: "min-range",
+    handleSize: "+10",
+    keyboardAction: false,
+    editableTooltip: false,
+    mouseScrollAction: false,
+    width: 10,
+    showTooltip: true,
+    tooltipFormat: "inflation_tooltip",
+    drag: "inflation_event"
+
 });
 
-function seed_value_left(){
-    $('#seed').slider({
-        formatter: function(value) {
-            seed_money = value -1000;
-            $("#seed_value").text("Starting Investment: $"+(value-1000));
-            update_data();
-            return '$' + value;
-        }
-    });
+function inflation_tooltip(args) {
+    return "Inflation: " + args.value+"%";
 }
+
+function inflation_event(e) {
+    inflation = e.value;
+    update_data();
+}
+
+
+$("#seed_money_1").roundSlider({
+    handleShape: "square",
+    radius: 100,
+    value: 70000,
+    max: 100000,
+    step: 500,
+    circleShape: "half-left",
+    sliderType: "min-range",
+    handleSize: "+10",
+    keyboardAction: false,
+    editableTooltip: false,
+    mouseScrollAction: false,
+    width: 10,
+    showTooltip: true,
+    tooltipFormat: "seed_money_tooltip",
+    drag: "seed_money_event"
+
+});
+
+function seed_money_tooltip(args) {
+    return "Initial: $" + args.value+"";
+
+}
+
+function seed_money_event(e) {
+    seed_value_1 = e.value;
+    update_data();
+}
+
+$("#cont_1").roundSlider({
+    handleShape: "square",
+    radius: 100,
+    value: 15000,
+    max: 50000,
+    step: 1000,
+    circleShape: "half-right",
+    sliderType: "min-range",
+    handleSize: "+10",
+    keyboardAction: false,
+    editableTooltip: false,
+    mouseScrollAction: false,
+    width: 10,
+    showTooltip: true,
+    tooltipFormat: "cont_tooltip",
+    drag: "cont_event"
+
+});
+
+function cont_tooltip(args) {
+    return "Contribution: $" + args.value;
+}
+
+function cont_event(e) {
+    cont_1 = e.value;
+    update_data();
+}
+
+$("#yearly_return_1").roundSlider({
+    handleShape: "square",
+    radius: 100,
+    value: 8,
+    max: 20,
+    step: .5,
+    circleShape: "half-left",
+    sliderType: "min-range",
+    handleSize: "+10",
+    keyboardAction: false,
+    editableTooltip: false,
+    mouseScrollAction: false,
+    width: 10,
+    showTooltip: true,
+    tooltipFormat: "yearly_return_tooltip",
+    drag: "yearly_return_event"
+
+});
+
+function yearly_return_tooltip(args) {
+    return "Yearly Return: " + args.value+ "%";
+}
+
+function yearly_return_event(e) {
+    yearly_return_1 = e.value;
+    update_data();
+}
+
+$("#fee_1").roundSlider({
+    handleShape: "square",
+    radius: 100,
+    value: 1,
+    max: 5,
+    step: .01,
+    circleShape: "half-right",
+    sliderType: "min-range",
+    handleSize: "+10",
+    keyboardAction: false,
+    editableTooltip: false,
+    mouseScrollAction: false,
+    width: 10,
+    showTooltip: true,
+    tooltipFormat: "fee_tooltip",
+    drag: "fee_event"
+
+});
+
+function fee_tooltip(args) {
+    return "Fee: " + args.value+"%";
+}
+
+function fee_event(e) {
+    fee_1 = e.value;
+    update_data();
+}
+
 
 $( document ).ready(function() {
     $(".rs-seperator").css("display","none")
+    years = $("#years").data("roundSlider").getValue();
+    seed_money_1 = $("#seed_money_1").data("roundSlider").getValue();
+    yearly_return_1 = $("#yearly_return_1").data("roundSlider").getValue();
+    cont_1 = $("#cont_1").data("roundSlider").getValue();
+    fee_1 = $("#fee_1").data("roundSlider").getValue();
+    inflation = $("#inflation").data("roundSlider").getValue();
+    update_data();
 });
 
 </script>

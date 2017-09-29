@@ -10,7 +10,7 @@ def index(request):
 def investment_analyzer(request):
     context={
     }
-    return render(request,"finance/investment_analyzer.html",context)
+    return render(request,"finance/investment_analyzer_1.html",context)
 
 
 def retirement_withdrawl(request):
