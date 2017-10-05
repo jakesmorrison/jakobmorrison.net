@@ -153,13 +153,10 @@ $( document ).ready(function() {
 
 function update_data(){
     var data_1 = []
-
     var data_1_no_fee = []
-
 
     return_1 = 1 + ((yearly_return_1-fee_1-inflation)/100)/12;
     return_1_no_fee = 1 + ((yearly_return_1-inflation)/100)/12
-
 
     for(x=0; x<years; x++){
         if(x==0){
@@ -172,14 +169,11 @@ function update_data(){
         }
     }
     total_1 = parseInt(data_1[years-1]);
-
     total_1_no_fee = parseInt(data_1_no_fee[years-1]);
 
 
     $("#total_1").html("<h5>Total: $"+total_1.toLocaleString()+"</h5>")
-
     $("#total_1_no_fee").html("<h5>Amount Lost to Fees: $"+(total_1_no_fee -total_1).toLocaleString()+"</h5>")
-
     $("#percent_1_no_fee").html("<h5>Percent Lost to Fees: "+(100-100*(total_1/total_1_no_fee)).toLocaleString()+"%</h5>")
 
 
