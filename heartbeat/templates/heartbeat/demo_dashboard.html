@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    {% load staticfiles %}
+    <link href=" {% static 'heartbeat/css/bootstrap.min.css' %}" rel="stylesheet">
+
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12" style="text-align:center;">
+            <h2>Some Title</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 ">
+            <div id="container" style="width: 1000px; height: 400px; margin: 0 auto"></div>
+        </div>
+    </div>
+</div>
+
+
+
+{% load staticfiles %}
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.1.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+<script src=" {% static 'heartbeat/js/bootstrap.min.js' %}" rel="stylesheet"></script>
+
+<script>
+var chart; // global
+
+/**
+ * Request data from the server, add it to the graph and set a timeout
+ * to request again
+ */
+var arr = []
+function requestData() {
+    url_base = "{% url 'heartbeat:get_data' %}";
+    $.ajax({
+        url: url_base,
+        success: function(msg) {
+            var series = chart.series[0], shift = series.data.length > 40;
+            chart.series[0].addPoint(msg.arr, false, shift);
+            chart.series[1].addPoint(msg.arr2, false, shift);
+            chart.redraw()
+
+            //if (arr.length<20){
+            //    arr.push(msg.arr)
+            //}
+            //else{
+            //    arr.shift();
+            //    arr.push(msg.arr);
+            //}
+            //chart.series[0].setData(arr,true);
+            setTimeout(requestData, 550);
+        },
+        cache: false
+    });
+}
+
+$(document).ready(function() {
+    chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'container',
+            defaultSeriesType: 'areaspline',
+            events: {
+                load: requestData
+            }
+        },
+        exporting: { enabled: false },
+        credits: {enabled: false},
+        tooltip: { enabled: false },
+        title: {
+            text: ''
+        },
+        xAxis: {
+            title: {
+                text: ''
+            },
+            labels: {
+               enabled: false
+           },
+           minorTickLength: 0,
+           tickLength: 0
+
+        },
+        yAxis: {
+            minPadding: 0.2,
+            maxPadding: 0.2,
+            title: {
+                text: 'Value',
+                margin: 0
+            }
+        },
+        plotOptions: {
+            areaspline: {
+                fillOpacity: 0.5,
+                lineWidth: 5,
+                marker: {
+                    enabled: false
+                }
+            },
+            series: {
+                marker: {
+                    states: {
+                        hover: {
+                            enabled: false
+                        }
+                    }
+                }
+            }
+
+        },
+        series: [{
+            name: 'NVDIMM',
+            data: []
+        },
+        {
+            name: 'NAND',
+            data: []
+        }]
+    });
+});
+
+
+
+</script>
+
+</body>
+</html>

@@ -17,7 +17,9 @@ function player_game_stat(data,cats,bands){
       yAxis: {
         title: {
           text: 'OPS'
-        }
+        },
+        min: 0,
+        max: 4
       },
       tooltip: {
         shared: true,
@@ -29,8 +31,9 @@ function player_game_stat(data,cats,bands){
       plotOptions: {
         areaspline: {
           fillOpacity: 0.5
-        }
+        },
       },
       series: data
     });
 }
+

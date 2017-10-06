@@ -197,7 +197,7 @@ def player_dash(request):
     pie_chart = [x for x in pie_chart if x["value"]>0]
 
     df_bands = df.drop_duplicates(['Date'])
-    season_color = ['rgba(68, 170, 213, .2)','rgba(68, 100, 213, .2)','rgba(68, 170, 12, .2)']
+    season_color = ['rgba(68, 170, 213, .2)','rgba(68, 100, 213, .2)','rgba(68, 170, 213, .2)','rgba(68, 100, 213, .2)']
     start = -.5
     bands = []
     season = ""
@@ -217,9 +217,15 @@ def player_dash(request):
             season = row["Season"]
     bands.append({"from": start, "to": start + counter, "color": season_color[color_counter]})
 
+    df = df[df["OPS"]>0]
+    print(df)
+
+    player_game_stat_data = [{"name":name,"data":df["OPS"].tolist()}]
+    player_game_stat_cat = [str(x) for x in df["Date"].tolist()]
+
     context = {
-        "player_game_stat_data": [{"name":name,"data":df["OPS"].tolist()}],
-        "player_game_stat_cat": [str(x) for x in df["Date"].tolist()],
+        "player_game_stat_data": player_game_stat_data,
+        "player_game_stat_cat": player_game_stat_cat,
         "player_game_stat_bands": bands,
         "pie_chart":pie_chart
     }
